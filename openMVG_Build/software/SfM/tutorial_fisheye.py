@@ -40,30 +40,27 @@ camera_file_params = os.path.join(CAMERA_SENSOR_WIDTH_DIRECTORY, "sensor_width_c
 if not os.path.exists(matches_dir):
   os.mkdir(matches_dir)
 
-#3333
-# print ("########################################################")
-# print ("1. Intrinsics analysis")
-# pIntrisics = subprocess.Popen( 
-# 	[os.path.join(OPENMVG_SFM_BIN, "openMVG_main_SfMInit_ImageListing"),  
-# 	"-i", input_dir, 
-# 	"-o", matches_dir, 
-# 	"-d", camera_file_params, 
-# 	"-c", "5",
-# 	"-f", str(2592 * 1.2)] )
-# pIntrisics.wait()
+print ("########################################################")
+print ("1. Intrinsics analysis")
+pIntrisics = subprocess.Popen( 
+	[os.path.join(OPENMVG_SFM_BIN, "openMVG_main_SfMInit_ImageListing"),  
+	"-i", input_dir, 
+	"-o", matches_dir, 
+	"-d", camera_file_params, 
+	"-c", "5",
+	"-f", str(2592 * 1.2)] )
+pIntrisics.wait()
 
-# print ("########################################################")
-# print ("2. Compute features")
-# pFeatures = subprocess.Popen( 
-# 	[os.path.join(OPENMVG_SFM_BIN, "openMVG_main_ComputeFeatures"),  
-# 	"-i", matches_dir+"/sfm_data.json", 
-# 	"-o", matches_dir, 
-# 	"-m", "SIFT", 
-# 	"-f" , "1",
-# 	"-p", "ULTRA"] )
-# pFeatures.wait()
-
-#333333
+print ("########################################################")
+print ("2. Compute features")
+pFeatures = subprocess.Popen( 
+	[os.path.join(OPENMVG_SFM_BIN, "openMVG_main_ComputeFeatures"),  
+	"-i", matches_dir+"/sfm_data.json", 
+	"-o", matches_dir, 
+	"-m", "SIFT", 
+	"-f" , "1",
+	"-p", "ULTRA"] )
+pFeatures.wait()
 
 # print ("########################################################")
 # print ("2. Compute matches")
