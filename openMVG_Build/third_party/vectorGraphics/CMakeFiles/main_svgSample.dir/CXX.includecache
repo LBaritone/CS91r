@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/third_party/vectorGraphics/main.cpp
+iostream
+-
+cstdlib
+-
+math.h
+-
+vector
+-
+svgDrawer.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/third_party/vectorGraphics/svgDrawer.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/third_party/vectorGraphics/svgDrawer.hpp
+fstream
+-
+sstream
+-
+string
+-
+vector
+-
+

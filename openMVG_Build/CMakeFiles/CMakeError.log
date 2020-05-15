@@ -1,0 +1,211 @@
+Determining if the function sgemm_ exists failed with the following output:
+Change Dir: /Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG_Build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_fc5df/fast && /Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_fc5df.dir/build.make CMakeFiles/cmTC_fc5df.dir/build
+Building C object CMakeFiles/cmTC_fc5df.dir/CheckFunctionExists.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc   -march=haswell -msse2 -msse3 -mssse3 -msse4.1 -msse4.2 -mavx -mfma -mbmi2 -mavx2 -mno-sse4a -mno-xop -mno-fma4 -mno-avx512f -mno-avx512vl -mno-avx512pf -mno-avx512er -mno-avx512cd -mno-avx512dq -mno-avx512bw -mno-avx512ifma -mno-avx512vbmi -DCHECK_FUNCTION_EXISTS=sgemm_ -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_fc5df.dir/CheckFunctionExists.c.o   -c /usr/local/Cellar/cmake/3.16.4/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_fc5df
+/usr/local/Cellar/cmake/3.16.4/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fc5df.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/cc  -march=haswell -msse2 -msse3 -mssse3 -msse4.1 -msse4.2 -mavx -mfma -mbmi2 -mavx2 -mno-sse4a -mno-xop -mno-fma4 -mno-avx512f -mno-avx512vl -mno-avx512pf -mno-avx512er -mno-avx512cd -mno-avx512dq -mno-avx512bw -mno-avx512ifma -mno-avx512vbmi -DCHECK_FUNCTION_EXISTS=sgemm_ -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_fc5df.dir/CheckFunctionExists.c.o  -o cmTC_fc5df 
+Undefined symbols for architecture x86_64:
+  "_sgemm_", referenced from:
+      _main in CheckFunctionExists.c.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make[1]: *** [cmTC_fc5df] Error 1
+make: *** [cmTC_fc5df/fast] Error 2
+
+
+
+Detecting C OpenMP failed with the following output:
+Change Dir: /Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG_Build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_ad780/fast && /Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_ad780.dir/build.make CMakeFiles/cmTC_ad780.dir/build
+Building C object CMakeFiles/cmTC_ad780.dir/OpenMPTryFlag.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc   -march=haswell -msse2 -msse3 -mssse3 -msse4.1 -msse4.2 -mavx -mfma -mbmi2 -mavx2 -mno-sse4a -mno-xop -mno-fma4 -mno-avx512f -mno-avx512vl -mno-avx512pf -mno-avx512er -mno-avx512cd -mno-avx512dq -mno-avx512bw -mno-avx512ifma -mno-avx512vbmi -fopenmp=libomp -v -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_ad780.dir/OpenMPTryFlag.c.o   -c "/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG_Build/CMakeFiles/FindOpenMP/OpenMPTryFlag.c"
+Apple clang version 11.0.0 (clang-1100.0.33.17)
+Target: x86_64-apple-darwin19.3.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+clang: error: unsupported argument 'libomp' to option 'fopenmp='
+make[1]: *** [CMakeFiles/cmTC_ad780.dir/OpenMPTryFlag.c.o] Error 1
+make: *** [cmTC_ad780/fast] Error 2
+
+
+
+Detecting C OpenMP failed with the following output:
+Change Dir: /Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG_Build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_97f12/fast && /Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_97f12.dir/build.make CMakeFiles/cmTC_97f12.dir/build
+Building C object CMakeFiles/cmTC_97f12.dir/OpenMPTryFlag.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc   -march=haswell -msse2 -msse3 -mssse3 -msse4.1 -msse4.2 -mavx -mfma -mbmi2 -mavx2 -mno-sse4a -mno-xop -mno-fma4 -mno-avx512f -mno-avx512vl -mno-avx512pf -mno-avx512er -mno-avx512cd -mno-avx512dq -mno-avx512bw -mno-avx512ifma -mno-avx512vbmi -fopenmp=libiomp5 -v -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_97f12.dir/OpenMPTryFlag.c.o   -c "/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG_Build/CMakeFiles/FindOpenMP/OpenMPTryFlag.c"
+Apple clang version 11.0.0 (clang-1100.0.33.17)
+Target: x86_64-apple-darwin19.3.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+clang: error: unsupported argument 'libiomp5' to option 'fopenmp='
+make[1]: *** [CMakeFiles/cmTC_97f12.dir/OpenMPTryFlag.c.o] Error 1
+make: *** [cmTC_97f12/fast] Error 2
+
+
+
+Detecting C OpenMP failed with the following output:
+Change Dir: /Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG_Build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_80a74/fast && /Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_80a74.dir/build.make CMakeFiles/cmTC_80a74.dir/build
+Building C object CMakeFiles/cmTC_80a74.dir/OpenMPTryFlag.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc   -march=haswell -msse2 -msse3 -mssse3 -msse4.1 -msse4.2 -mavx -mfma -mbmi2 -mavx2 -mno-sse4a -mno-xop -mno-fma4 -mno-avx512f -mno-avx512vl -mno-avx512pf -mno-avx512er -mno-avx512cd -mno-avx512dq -mno-avx512bw -mno-avx512ifma -mno-avx512vbmi -fopenmp -v -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_80a74.dir/OpenMPTryFlag.c.o   -c "/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG_Build/CMakeFiles/FindOpenMP/OpenMPTryFlag.c"
+Apple clang version 11.0.0 (clang-1100.0.33.17)
+Target: x86_64-apple-darwin19.3.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+clang: error: unsupported option '-fopenmp'
+make[1]: *** [CMakeFiles/cmTC_80a74.dir/OpenMPTryFlag.c.o] Error 1
+make: *** [cmTC_80a74/fast] Error 2
+
+
+
+Detecting CXX OpenMP failed with the following output:
+Change Dir: /Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG_Build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_2f131/fast && /Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_2f131.dir/build.make CMakeFiles/cmTC_2f131.dir/build
+Building CXX object CMakeFiles/cmTC_2f131.dir/OpenMPTryFlag.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -march=haswell -msse2 -msse3 -mssse3 -msse4.1 -msse4.2 -mavx -mfma -mbmi2 -mavx2 -mno-sse4a -mno-xop -mno-fma4 -mno-avx512f -mno-avx512vl -mno-avx512pf -mno-avx512er -mno-avx512cd -mno-avx512dq -mno-avx512bw -mno-avx512ifma -mno-avx512vbmi -fopenmp=libomp -v -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_2f131.dir/OpenMPTryFlag.cpp.o -c "/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG_Build/CMakeFiles/FindOpenMP/OpenMPTryFlag.cpp"
+Apple clang version 11.0.0 (clang-1100.0.33.17)
+Target: x86_64-apple-darwin19.3.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+clang: error: unsupported argument 'libomp' to option 'fopenmp='
+make[1]: *** [CMakeFiles/cmTC_2f131.dir/OpenMPTryFlag.cpp.o] Error 1
+make: *** [cmTC_2f131/fast] Error 2
+
+
+
+Detecting CXX OpenMP failed with the following output:
+Change Dir: /Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG_Build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_58e53/fast && /Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_58e53.dir/build.make CMakeFiles/cmTC_58e53.dir/build
+Building CXX object CMakeFiles/cmTC_58e53.dir/OpenMPTryFlag.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -march=haswell -msse2 -msse3 -mssse3 -msse4.1 -msse4.2 -mavx -mfma -mbmi2 -mavx2 -mno-sse4a -mno-xop -mno-fma4 -mno-avx512f -mno-avx512vl -mno-avx512pf -mno-avx512er -mno-avx512cd -mno-avx512dq -mno-avx512bw -mno-avx512ifma -mno-avx512vbmi -fopenmp=libiomp5 -v -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_58e53.dir/OpenMPTryFlag.cpp.o -c "/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG_Build/CMakeFiles/FindOpenMP/OpenMPTryFlag.cpp"
+Apple clang version 11.0.0 (clang-1100.0.33.17)
+Target: x86_64-apple-darwin19.3.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+clang: error: unsupported argument 'libiomp5' to option 'fopenmp='
+make[1]: *** [CMakeFiles/cmTC_58e53.dir/OpenMPTryFlag.cpp.o] Error 1
+make: *** [cmTC_58e53/fast] Error 2
+
+
+
+Detecting CXX OpenMP failed with the following output:
+Change Dir: /Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG_Build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_95418/fast && /Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_95418.dir/build.make CMakeFiles/cmTC_95418.dir/build
+Building CXX object CMakeFiles/cmTC_95418.dir/OpenMPTryFlag.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -march=haswell -msse2 -msse3 -mssse3 -msse4.1 -msse4.2 -mavx -mfma -mbmi2 -mavx2 -mno-sse4a -mno-xop -mno-fma4 -mno-avx512f -mno-avx512vl -mno-avx512pf -mno-avx512er -mno-avx512cd -mno-avx512dq -mno-avx512bw -mno-avx512ifma -mno-avx512vbmi -fopenmp -v -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_95418.dir/OpenMPTryFlag.cpp.o -c "/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG_Build/CMakeFiles/FindOpenMP/OpenMPTryFlag.cpp"
+Apple clang version 11.0.0 (clang-1100.0.33.17)
+Target: x86_64-apple-darwin19.3.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+clang: error: unsupported option '-fopenmp'
+make[1]: *** [CMakeFiles/cmTC_95418.dir/OpenMPTryFlag.cpp.o] Error 1
+make: *** [cmTC_95418/fast] Error 2
+
+
+
+Detecting C OpenMP failed with the following output:
+Change Dir: /Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG_Build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_ba1da/fast && /Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_ba1da.dir/build.make CMakeFiles/cmTC_ba1da.dir/build
+Building C object CMakeFiles/cmTC_ba1da.dir/OpenMPTryFlag.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc   -march=haswell -msse2 -msse3 -mssse3 -msse4.1 -msse4.2 -mavx -mfma -mbmi2 -mavx2 -mno-sse4a -mno-xop -mno-fma4 -mno-avx512f -mno-avx512vl -mno-avx512pf -mno-avx512er -mno-avx512cd -mno-avx512dq -mno-avx512bw -mno-avx512ifma -mno-avx512vbmi -fopenmp=libomp -v -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_ba1da.dir/OpenMPTryFlag.c.o   -c "/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG_Build/CMakeFiles/FindOpenMP/OpenMPTryFlag.c"
+Apple clang version 11.0.0 (clang-1100.0.33.17)
+Target: x86_64-apple-darwin19.3.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+clang: error: unsupported argument 'libomp' to option 'fopenmp='
+make[1]: *** [CMakeFiles/cmTC_ba1da.dir/OpenMPTryFlag.c.o] Error 1
+make: *** [cmTC_ba1da/fast] Error 2
+
+
+
+Detecting C OpenMP failed with the following output:
+Change Dir: /Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG_Build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_4ce75/fast && /Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_4ce75.dir/build.make CMakeFiles/cmTC_4ce75.dir/build
+Building C object CMakeFiles/cmTC_4ce75.dir/OpenMPTryFlag.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc   -march=haswell -msse2 -msse3 -mssse3 -msse4.1 -msse4.2 -mavx -mfma -mbmi2 -mavx2 -mno-sse4a -mno-xop -mno-fma4 -mno-avx512f -mno-avx512vl -mno-avx512pf -mno-avx512er -mno-avx512cd -mno-avx512dq -mno-avx512bw -mno-avx512ifma -mno-avx512vbmi -fopenmp=libiomp5 -v -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_4ce75.dir/OpenMPTryFlag.c.o   -c "/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG_Build/CMakeFiles/FindOpenMP/OpenMPTryFlag.c"
+Apple clang version 11.0.0 (clang-1100.0.33.17)
+Target: x86_64-apple-darwin19.3.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+clang: error: unsupported argument 'libiomp5' to option 'fopenmp='
+make[1]: *** [CMakeFiles/cmTC_4ce75.dir/OpenMPTryFlag.c.o] Error 1
+make: *** [cmTC_4ce75/fast] Error 2
+
+
+
+Detecting C OpenMP failed with the following output:
+Change Dir: /Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG_Build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_10701/fast && /Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_10701.dir/build.make CMakeFiles/cmTC_10701.dir/build
+Building C object CMakeFiles/cmTC_10701.dir/OpenMPTryFlag.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc   -march=haswell -msse2 -msse3 -mssse3 -msse4.1 -msse4.2 -mavx -mfma -mbmi2 -mavx2 -mno-sse4a -mno-xop -mno-fma4 -mno-avx512f -mno-avx512vl -mno-avx512pf -mno-avx512er -mno-avx512cd -mno-avx512dq -mno-avx512bw -mno-avx512ifma -mno-avx512vbmi -fopenmp -v -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_10701.dir/OpenMPTryFlag.c.o   -c "/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG_Build/CMakeFiles/FindOpenMP/OpenMPTryFlag.c"
+Apple clang version 11.0.0 (clang-1100.0.33.17)
+Target: x86_64-apple-darwin19.3.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+clang: error: unsupported option '-fopenmp'
+make[1]: *** [CMakeFiles/cmTC_10701.dir/OpenMPTryFlag.c.o] Error 1
+make: *** [cmTC_10701/fast] Error 2
+
+
+
+Detecting CXX OpenMP failed with the following output:
+Change Dir: /Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG_Build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_c80ed/fast && /Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_c80ed.dir/build.make CMakeFiles/cmTC_c80ed.dir/build
+Building CXX object CMakeFiles/cmTC_c80ed.dir/OpenMPTryFlag.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -march=haswell -msse2 -msse3 -mssse3 -msse4.1 -msse4.2 -mavx -mfma -mbmi2 -mavx2 -mno-sse4a -mno-xop -mno-fma4 -mno-avx512f -mno-avx512vl -mno-avx512pf -mno-avx512er -mno-avx512cd -mno-avx512dq -mno-avx512bw -mno-avx512ifma -mno-avx512vbmi -fopenmp=libomp -v -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_c80ed.dir/OpenMPTryFlag.cpp.o -c "/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG_Build/CMakeFiles/FindOpenMP/OpenMPTryFlag.cpp"
+Apple clang version 11.0.0 (clang-1100.0.33.17)
+Target: x86_64-apple-darwin19.3.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+clang: error: unsupported argument 'libomp' to option 'fopenmp='
+make[1]: *** [CMakeFiles/cmTC_c80ed.dir/OpenMPTryFlag.cpp.o] Error 1
+make: *** [cmTC_c80ed/fast] Error 2
+
+
+
+Detecting CXX OpenMP failed with the following output:
+Change Dir: /Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG_Build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_93a9e/fast && /Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_93a9e.dir/build.make CMakeFiles/cmTC_93a9e.dir/build
+Building CXX object CMakeFiles/cmTC_93a9e.dir/OpenMPTryFlag.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -march=haswell -msse2 -msse3 -mssse3 -msse4.1 -msse4.2 -mavx -mfma -mbmi2 -mavx2 -mno-sse4a -mno-xop -mno-fma4 -mno-avx512f -mno-avx512vl -mno-avx512pf -mno-avx512er -mno-avx512cd -mno-avx512dq -mno-avx512bw -mno-avx512ifma -mno-avx512vbmi -fopenmp=libiomp5 -v -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_93a9e.dir/OpenMPTryFlag.cpp.o -c "/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG_Build/CMakeFiles/FindOpenMP/OpenMPTryFlag.cpp"
+Apple clang version 11.0.0 (clang-1100.0.33.17)
+Target: x86_64-apple-darwin19.3.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+clang: error: unsupported argument 'libiomp5' to option 'fopenmp='
+make[1]: *** [CMakeFiles/cmTC_93a9e.dir/OpenMPTryFlag.cpp.o] Error 1
+make: *** [cmTC_93a9e/fast] Error 2
+
+
+
+Detecting CXX OpenMP failed with the following output:
+Change Dir: /Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG_Build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_1698d/fast && /Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_1698d.dir/build.make CMakeFiles/cmTC_1698d.dir/build
+Building CXX object CMakeFiles/cmTC_1698d.dir/OpenMPTryFlag.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -march=haswell -msse2 -msse3 -mssse3 -msse4.1 -msse4.2 -mavx -mfma -mbmi2 -mavx2 -mno-sse4a -mno-xop -mno-fma4 -mno-avx512f -mno-avx512vl -mno-avx512pf -mno-avx512er -mno-avx512cd -mno-avx512dq -mno-avx512bw -mno-avx512ifma -mno-avx512vbmi -fopenmp -v -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_1698d.dir/OpenMPTryFlag.cpp.o -c "/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG_Build/CMakeFiles/FindOpenMP/OpenMPTryFlag.cpp"
+Apple clang version 11.0.0 (clang-1100.0.33.17)
+Target: x86_64-apple-darwin19.3.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+clang: error: unsupported option '-fopenmp'
+make[1]: *** [CMakeFiles/cmTC_1698d.dir/OpenMPTryFlag.cpp.o] Error 1
+make: *** [cmTC_1698d/fast] Error 2
+
+
+

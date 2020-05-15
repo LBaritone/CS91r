@@ -1,0 +1,1064 @@
+{
+    "sfm_data_version": "0.3",
+    "root_path": "/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG_Build_working/software/SfM/ImageDataset_aquarium",
+    "views": [
+        {
+            "key": 56,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483649,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef9.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 56,
+                        "id_intrinsic": 0,
+                        "id_pose": 56
+                    }
+                }
+            }
+        },
+        {
+            "key": 55,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483650,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef8.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 55,
+                        "id_intrinsic": 0,
+                        "id_pose": 55
+                    }
+                }
+            }
+        },
+        {
+            "key": 54,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483651,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef7.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 54,
+                        "id_intrinsic": 0,
+                        "id_pose": 54
+                    }
+                }
+            }
+        },
+        {
+            "key": 53,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483652,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef6.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 53,
+                        "id_intrinsic": 0,
+                        "id_pose": 53
+                    }
+                }
+            }
+        },
+        {
+            "key": 52,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483653,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef59.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 52,
+                        "id_intrinsic": 0,
+                        "id_pose": 52
+                    }
+                }
+            }
+        },
+        {
+            "key": 51,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483654,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef58.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 51,
+                        "id_intrinsic": 0,
+                        "id_pose": 51
+                    }
+                }
+            }
+        },
+        {
+            "key": 50,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483655,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef57.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 50,
+                        "id_intrinsic": 0,
+                        "id_pose": 50
+                    }
+                }
+            }
+        },
+        {
+            "key": 49,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483656,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef56.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 49,
+                        "id_intrinsic": 0,
+                        "id_pose": 49
+                    }
+                }
+            }
+        },
+        {
+            "key": 48,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483657,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef55.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 48,
+                        "id_intrinsic": 0,
+                        "id_pose": 48
+                    }
+                }
+            }
+        },
+        {
+            "key": 47,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483658,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef54.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 47,
+                        "id_intrinsic": 0,
+                        "id_pose": 47
+                    }
+                }
+            }
+        },
+        {
+            "key": 46,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483659,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef53.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 46,
+                        "id_intrinsic": 0,
+                        "id_pose": 46
+                    }
+                }
+            }
+        },
+        {
+            "key": 45,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483660,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef52.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 45,
+                        "id_intrinsic": 0,
+                        "id_pose": 45
+                    }
+                }
+            }
+        },
+        {
+            "key": 44,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483661,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef51.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 44,
+                        "id_intrinsic": 0,
+                        "id_pose": 44
+                    }
+                }
+            }
+        },
+        {
+            "key": 43,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483662,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef50.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 43,
+                        "id_intrinsic": 0,
+                        "id_pose": 43
+                    }
+                }
+            }
+        },
+        {
+            "key": 42,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483663,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef49.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 42,
+                        "id_intrinsic": 0,
+                        "id_pose": 42
+                    }
+                }
+            }
+        },
+        {
+            "key": 41,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483664,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef48.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 41,
+                        "id_intrinsic": 0,
+                        "id_pose": 41
+                    }
+                }
+            }
+        },
+        {
+            "key": 40,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483665,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef47.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 40,
+                        "id_intrinsic": 0,
+                        "id_pose": 40
+                    }
+                }
+            }
+        },
+        {
+            "key": 39,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483666,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef46.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 39,
+                        "id_intrinsic": 0,
+                        "id_pose": 39
+                    }
+                }
+            }
+        },
+        {
+            "key": 38,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483667,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef45.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 38,
+                        "id_intrinsic": 0,
+                        "id_pose": 38
+                    }
+                }
+            }
+        },
+        {
+            "key": 37,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483668,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef44.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 37,
+                        "id_intrinsic": 0,
+                        "id_pose": 37
+                    }
+                }
+            }
+        },
+        {
+            "key": 36,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483669,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef43.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 36,
+                        "id_intrinsic": 0,
+                        "id_pose": 36
+                    }
+                }
+            }
+        },
+        {
+            "key": 35,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483670,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef42.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 35,
+                        "id_intrinsic": 0,
+                        "id_pose": 35
+                    }
+                }
+            }
+        },
+        {
+            "key": 34,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483671,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef41.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 34,
+                        "id_intrinsic": 0,
+                        "id_pose": 34
+                    }
+                }
+            }
+        },
+        {
+            "key": 33,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483672,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef40.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 33,
+                        "id_intrinsic": 0,
+                        "id_pose": 33
+                    }
+                }
+            }
+        },
+        {
+            "key": 32,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483673,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef39.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 32,
+                        "id_intrinsic": 0,
+                        "id_pose": 32
+                    }
+                }
+            }
+        },
+        {
+            "key": 31,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483674,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef38.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 31,
+                        "id_intrinsic": 0,
+                        "id_pose": 31
+                    }
+                }
+            }
+        },
+        {
+            "key": 30,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483675,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef37.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 30,
+                        "id_intrinsic": 0,
+                        "id_pose": 30
+                    }
+                }
+            }
+        },
+        {
+            "key": 29,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483676,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef36.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 29,
+                        "id_intrinsic": 0,
+                        "id_pose": 29
+                    }
+                }
+            }
+        },
+        {
+            "key": 28,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483677,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef35.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 28,
+                        "id_intrinsic": 0,
+                        "id_pose": 28
+                    }
+                }
+            }
+        },
+        {
+            "key": 27,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483678,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef34.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 27,
+                        "id_intrinsic": 0,
+                        "id_pose": 27
+                    }
+                }
+            }
+        },
+        {
+            "key": 26,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483679,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef33.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 26,
+                        "id_intrinsic": 0,
+                        "id_pose": 26
+                    }
+                }
+            }
+        },
+        {
+            "key": 25,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483680,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef32.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 25,
+                        "id_intrinsic": 0,
+                        "id_pose": 25
+                    }
+                }
+            }
+        },
+        {
+            "key": 24,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483681,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef31.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 24,
+                        "id_intrinsic": 0,
+                        "id_pose": 24
+                    }
+                }
+            }
+        },
+        {
+            "key": 23,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483682,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef30.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 23,
+                        "id_intrinsic": 0,
+                        "id_pose": 23
+                    }
+                }
+            }
+        },
+        {
+            "key": 22,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483683,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef29.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 22,
+                        "id_intrinsic": 0,
+                        "id_pose": 22
+                    }
+                }
+            }
+        },
+        {
+            "key": 21,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483684,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef28.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 21,
+                        "id_intrinsic": 0,
+                        "id_pose": 21
+                    }
+                }
+            }
+        },
+        {
+            "key": 20,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483685,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef27.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 20,
+                        "id_intrinsic": 0,
+                        "id_pose": 20
+                    }
+                }
+            }
+        },
+        {
+            "key": 19,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483686,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef26.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 19,
+                        "id_intrinsic": 0,
+                        "id_pose": 19
+                    }
+                }
+            }
+        },
+        {
+            "key": 18,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483687,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef25.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 18,
+                        "id_intrinsic": 0,
+                        "id_pose": 18
+                    }
+                }
+            }
+        },
+        {
+            "key": 17,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483688,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef24.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 17,
+                        "id_intrinsic": 0,
+                        "id_pose": 17
+                    }
+                }
+            }
+        },
+        {
+            "key": 16,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483689,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef23.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 16,
+                        "id_intrinsic": 0,
+                        "id_pose": 16
+                    }
+                }
+            }
+        },
+        {
+            "key": 15,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483690,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef22.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 15,
+                        "id_intrinsic": 0,
+                        "id_pose": 15
+                    }
+                }
+            }
+        },
+        {
+            "key": 14,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483691,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef21.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 14,
+                        "id_intrinsic": 0,
+                        "id_pose": 14
+                    }
+                }
+            }
+        },
+        {
+            "key": 13,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483692,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef20.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 13,
+                        "id_intrinsic": 0,
+                        "id_pose": 13
+                    }
+                }
+            }
+        },
+        {
+            "key": 12,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483693,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef2.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 12,
+                        "id_intrinsic": 0,
+                        "id_pose": 12
+                    }
+                }
+            }
+        },
+        {
+            "key": 11,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483694,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef19.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 11,
+                        "id_intrinsic": 0,
+                        "id_pose": 11
+                    }
+                }
+            }
+        },
+        {
+            "key": 10,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483695,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef18.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 10,
+                        "id_intrinsic": 0,
+                        "id_pose": 10
+                    }
+                }
+            }
+        },
+        {
+            "key": 9,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483696,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef17.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 9,
+                        "id_intrinsic": 0,
+                        "id_pose": 9
+                    }
+                }
+            }
+        },
+        {
+            "key": 8,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483697,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef16.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 8,
+                        "id_intrinsic": 0,
+                        "id_pose": 8
+                    }
+                }
+            }
+        },
+        {
+            "key": 7,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483698,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef15.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 7,
+                        "id_intrinsic": 0,
+                        "id_pose": 7
+                    }
+                }
+            }
+        },
+        {
+            "key": 6,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483699,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef14.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 6,
+                        "id_intrinsic": 0,
+                        "id_pose": 6
+                    }
+                }
+            }
+        },
+        {
+            "key": 5,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483700,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef13.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 5,
+                        "id_intrinsic": 0,
+                        "id_pose": 5
+                    }
+                }
+            }
+        },
+        {
+            "key": 4,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483701,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef12.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 4,
+                        "id_intrinsic": 0,
+                        "id_pose": 4
+                    }
+                }
+            }
+        },
+        {
+            "key": 3,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483702,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef11.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 3,
+                        "id_intrinsic": 0,
+                        "id_pose": 3
+                    }
+                }
+            }
+        },
+        {
+            "key": 2,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483703,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef10.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 2,
+                        "id_intrinsic": 0,
+                        "id_pose": 2
+                    }
+                }
+            }
+        },
+        {
+            "key": 1,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483704,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef1.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 1,
+                        "id_intrinsic": 0,
+                        "id_pose": 1
+                    }
+                }
+            }
+        },
+        {
+            "key": 0,
+            "value": {
+                "polymorphic_id": 1073741824,
+                "ptr_wrapper": {
+                    "id": 2147483705,
+                    "data": {
+                        "local_path": "",
+                        "filename": "120_masked_aquarium_reef0.jpg",
+                        "width": 2592,
+                        "height": 1944,
+                        "id_view": 0,
+                        "id_intrinsic": 0,
+                        "id_pose": 0
+                    }
+                }
+            }
+        }
+    ],
+    "intrinsics": [
+        {
+            "key": 0,
+            "value": {
+                "polymorphic_id": 2147483649,
+                "polymorphic_name": "fisheye",
+                "ptr_wrapper": {
+                    "id": 2147483706,
+                    "data": {
+                        "value0": {
+                            "width": 2592,
+                            "height": 1944,
+                            "focal_length": 3110.4,
+                            "principal_point": [
+                                1296.0,
+                                972.0
+                            ]
+                        },
+                        "fisheye": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                }
+            }
+        }
+    ],
+    "extrinsics": [],
+    "structure": [],
+    "control_points": []
+}

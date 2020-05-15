@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/openMVG/exif/exif_IO.hpp
+string
+-
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/openMVG/exif/exif_IO_EasyExif.cpp
+openMVG/exif/exif_IO_EasyExif.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/openMVG/exif/openMVG/exif/exif_IO_EasyExif.hpp
+fstream
+-
+limits
+-
+sstream
+-
+vector
+-
+third_party/easyexif/exif.h
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/openMVG/exif/third_party/easyexif/exif.h
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/openMVG/exif/exif_IO_EasyExif.hpp
+memory
+-
+string
+-
+openMVG/exif/exif_IO.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/openMVG/exif/openMVG/exif/exif_IO.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/third_party/easyexif/exif.h
+string
+-
+
