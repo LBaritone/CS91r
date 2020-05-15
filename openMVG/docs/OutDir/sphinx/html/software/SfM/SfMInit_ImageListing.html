@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>openMVG_main_SfMInit_ImageListing &#8212; openMVG library</title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+
+    <link rel="stylesheet" href="../../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../../_static/searchtools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="openMVG_main_ComputeFeatures" href="ComputeFeatures.html" />
+    <link rel="prev" title="SfM: Structure from Motion" href="SfM.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ComputeFeatures.html" title="openMVG_main_ComputeFeatures"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="SfM.html" title="SfM: Structure from Motion"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../softwares.html" >openMVG softwares &amp; tools</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="SfM.html" accesskey="U">SfM: Structure from Motion</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="openmvg-main-sfminit-imagelisting">
+<h1>openMVG_main_SfMInit_ImageListing<a class="headerlink" href="#openmvg-main-sfminit-imagelisting" title="Permalink to this headline">¶</a></h1>
+<p>The first task to process an image dataset in openMVG pipelines consist in creating a <strong>sfm_data.json</strong> file that describe the used image dataset.</p>
+<p>This structured file lists for each images an object called a View.
+This view store image information and lists:</p>
+<ul class="simple">
+<li><p>the image name,</p></li>
+<li><p>the image size,</p></li>
+<li><p>the internal camera calibration information (intrinsic parameters) (if any).</p></li>
+</ul>
+<p>Each <strong>View</strong> is associated to a camera <strong>Pose</strong> index and an <strong>Intrinsic</strong> camera parameter group (if any). Group means that camera intrinsic parameters can be shared between some Views (that leads to more stable parameters estimation).</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>$ openMVG_main_SfMInit_ImageListing -i [] -d [] -o []
+</pre></div>
+</div>
+<p>Arguments description:</p>
+<p><strong>Required parameters:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>[-i|–imageDirectory]</strong></p></li>
+<li><p><strong>[-d|–sensorWidthDatabase]</strong> openMVG/src/openMVG/exif/sensor_width_database/sensor_width_camera_database.txt</p></li>
+<li><p><strong>[-o|–outputDirectory]</strong></p></li>
+</ul>
+</div></blockquote>
+<p><strong>Optional parameters:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>[-f|–focal]</strong> (value in pixels)</p></li>
+<li><p><strong>[-k|–intrinsics]</strong> Kmatrix: “f;0;ppx;0;f;ppy;0;0;1”</p></li>
+<li><p><strong>[-c|–camera_model]</strong> Camera model type:</p>
+<ul>
+<li><p>1: Pinhole</p></li>
+<li><p>2: Pinhole radial 1</p></li>
+<li><p>3: Pinhole radial 3 (default)</p></li>
+</ul>
+</li>
+<li><p><strong>[-g|–group_camera_model]</strong></p>
+<ul>
+<li><p>0-&gt; each view have it’s own camera intrinsic parameters</p></li>
+<li><p>1-&gt; (default) view can share some camera intrinsic parameters</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>// Example
+$ openMVG_main_SfMInit_ImageListing -d /home/user/Dev/openMVG/src/openMVG/exif/sensor_width_database/sensor_width_camera_database.txt -i /home/user/Dataset/ImageDataset_SceauxCastle/images -o /home/user/Dataset/ImageDataset_SceauxCastle/matches
+
+If you have installed OpenMVG on your machine your could do:
+$ openMVG_main_SfMInit_ImageListing -d /usr/share/openMVG/sensor_width_camera_database.txt -i /home/user/Dataset/ImageDataset_SceauxCastle/images -o /home/user/Dataset/ImageDataset_SceauxCastle/matches
+</pre></div>
+</div>
+<p>It will produce you a sfm_data.json file that is used by openMVG as a scene description.</p>
+<p>Once your have computed your dataset description you can compute the image features:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ComputeFeatures.html">openMVG_main_ComputeFeatures</a></li>
+</ul>
+</div>
+<div class="section" id="automatic-pixel-focal-computation-from-jpeg-exif-metadata">
+<h2>Automatic pixel focal computation from JPEG EXIF metadata<a class="headerlink" href="#automatic-pixel-focal-computation-from-jpeg-exif-metadata" title="Permalink to this headline">¶</a></h2>
+<p>Intrinsic image analysis is made from JPEG EXIF metadata and a database of camera sensor width.</p>
+<p><strong>Note:</strong> If you have image with no metadata you can specify the known pixel focal length value directly or let the SfM process find it automatically (at least two images that share common keypoints and with valid intrinsic group must be defined)</p>
+<p>The focal in pixel is computed as follow (if the EXIF camera model and maker is found in the provieded sensor width database )</p>
+<div class="math notranslate nohighlight">
+\[\text{focal}_{pix} = \frac{max( w_\text{pix}, h_\text{pix} ) * \text{focal}_\text{mm}} {\text{ccdw}_\text{mm}}\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\text{focal}_{pix}\)</span> the EXIF focal length (pixels),</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{focal}_{mm}\)</span> the EXIF focal length (mm),</p></li>
+<li><p><span class="math notranslate nohighlight">\(w_\text{pix}, h_\text{pix}\)</span> the image of width and height (pixels),</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{ccdw}_\text{mm}\)</span> the known sensor width size (mm)</p></li>
+</ul>
+</div>
+<div class="section" id="from-lists-txt-to-sfm-data-json">
+<h2>From lists.txt to sfm_data.json<a class="headerlink" href="#from-lists-txt-to-sfm-data-json" title="Permalink to this headline">¶</a></h2>
+<p>Old openMVG version (&lt;0.8) use a lists.txt file to describer image parameters.</p>
+<p>Example of a lists.txt file where focal is known in advance</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="mf">0000.</span><span class="n">png</span><span class="p">;</span><span class="mi">3072</span><span class="p">;</span><span class="mi">2048</span><span class="p">;</span><span class="mi">2760</span><span class="p">;</span><span class="mi">0</span><span class="p">;</span><span class="mi">1536</span><span class="p">;</span><span class="mi">0</span><span class="p">;</span><span class="mi">2760</span><span class="p">;</span><span class="mi">1024</span><span class="p">;</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">;</span><span class="mi">1</span>
+<span class="mf">0001.</span><span class="n">png</span><span class="p">;</span><span class="mi">3072</span><span class="p">;</span><span class="mi">2048</span><span class="p">;</span><span class="mi">2760</span><span class="p">;</span><span class="mi">0</span><span class="p">;</span><span class="mi">1536</span><span class="p">;</span><span class="mi">0</span><span class="p">;</span><span class="mi">2760</span><span class="p">;</span><span class="mi">1024</span><span class="p">;</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">;</span><span class="mi">1</span>
+<span class="mf">0002.</span><span class="n">png</span><span class="p">;</span><span class="mi">3072</span><span class="p">;</span><span class="mi">2048</span><span class="p">;</span><span class="mi">2760</span><span class="p">;</span><span class="mi">0</span><span class="p">;</span><span class="mi">1536</span><span class="p">;</span><span class="mi">0</span><span class="p">;</span><span class="mi">2760</span><span class="p">;</span><span class="mi">1024</span><span class="p">;</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">;</span><span class="mi">1</span>
+<span class="p">...</span>
+</pre></div>
+</div>
+<p>Example of a lists.txt file where focal is computed from exif data</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="mi">100</span><span class="n">_7100</span><span class="p">.</span><span class="n">JPG</span><span class="p">;</span><span class="mi">2832</span><span class="p">;</span><span class="mi">2128</span><span class="p">;</span><span class="mf">2881.25</span><span class="p">;</span><span class="n">EASTMAN</span> <span class="n">KODAK</span> <span class="n">COMPANY</span><span class="p">;</span><span class="n">KODAK</span> <span class="n">Z612</span> <span class="n">ZOOM</span> <span class="n">DIGITAL</span> <span class="n">CAMERA</span>
+<span class="mi">100</span><span class="n">_7101</span><span class="p">.</span><span class="n">JPG</span><span class="p">;</span><span class="mi">2832</span><span class="p">;</span><span class="mi">2128</span><span class="p">;</span><span class="mf">2881.25</span><span class="p">;</span><span class="n">EASTMAN</span> <span class="n">KODAK</span> <span class="n">COMPANY</span><span class="p">;</span><span class="n">KODAK</span> <span class="n">Z612</span> <span class="n">ZOOM</span> <span class="n">DIGITAL</span> <span class="n">CAMERA</span>
+<span class="mi">100</span><span class="n">_7102</span><span class="p">.</span><span class="n">JPG</span><span class="p">;</span><span class="mi">2832</span><span class="p">;</span><span class="mi">2128</span><span class="p">;</span><span class="mf">2881.25</span><span class="p">;</span><span class="n">EASTMAN</span> <span class="n">KODAK</span> <span class="n">COMPANY</span><span class="p">;</span><span class="n">KODAK</span> <span class="n">Z612</span> <span class="n">ZOOM</span> <span class="n">DIGITAL</span> <span class="n">CAMERA</span>
+<span class="p">...</span>
+</pre></div>
+</div>
+<p>You can convert this file to a valid sfm_data.json file by using the <strong>openMVG_main_ConvertList</strong> application.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">openMVG_main_SfMInit_ImageListing</a><ul>
+<li><a class="reference internal" href="#automatic-pixel-focal-computation-from-jpeg-exif-metadata">Automatic pixel focal computation from JPEG EXIF metadata</a></li>
+<li><a class="reference internal" href="#from-lists-txt-to-sfm-data-json">From lists.txt to sfm_data.json</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="SfM.html"
+                        title="previous chapter">SfM: Structure from Motion</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ComputeFeatures.html"
+                        title="next chapter">openMVG_main_ComputeFeatures</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/software/SfM/SfMInit_ImageListing.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ComputeFeatures.html" title="openMVG_main_ComputeFeatures"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="SfM.html" title="SfM: Structure from Motion"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../softwares.html" >openMVG softwares &amp; tools</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="SfM.html" >SfM: Structure from Motion</a> &#187;</li> 
+      </ul>
+    </div>
+<div class="footer">
+    &copy; Copyright 2013-2019, OpenMVG authors.
+</div>
+
+
+
+
+
+  </body>
+</html>

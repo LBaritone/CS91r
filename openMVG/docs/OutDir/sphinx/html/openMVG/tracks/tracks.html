@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>tracks &#8212; openMVG library</title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+
+    <link rel="stylesheet" href="../../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../../_static/searchtools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="geometry" href="../geometry/geometry.html" />
+    <link rel="prev" title="matching" href="../matching/matching.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../geometry/geometry.html" title="geometry"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../matching/matching.html" title="matching"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../openMVG.html" accesskey="U">openMVG libraries</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tracks">
+<h1>tracks<a class="headerlink" href="#tracks" title="Permalink to this headline">¶</a></h1>
+<p>The problem of feature points tracking is to follow the position of a characteristic point in a set of images.
+These multi-view correspondences are called tracks.
+Track identification in a set of images (ordered, or not) is an important task in computer vision.
+It allows solving geometry-related problems like video stabilization, tracking, match-moving, image-stitching, structure from motion and odometry.</p>
+<div class="section" id="un-ordered-feature-tracking">
+<h2>un/ordered feature tracking<a class="headerlink" href="#un-ordered-feature-tracking" title="Permalink to this headline">¶</a></h2>
+<p>Considering n pairwise feature correspondences as input we want sets of corresponding matching features across multiple images, as illustrated in the following figures with video frames.</p>
+<div class="figure align-center" id="id2">
+<span id="tracksfigure"></span><img alt="../../_images/tracks.png" src="../../_images/tracks.png" />
+<p class="caption"><span class="caption-text">From features to tracks.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>The openMVG library provides an efficient solution to solve the union of all the pairwise correspondences.
+It is the implementation of the CVMP12 paper “Unordered feature tracking made fast and easy” <a class="reference internal" href="../../bibliography.html#trackscvmp12" id="id1"><span>[TracksCVMP12]</span></a>.</p>
+<div class="figure align-center" id="id3">
+<span id="tracks2figure"></span><img alt="../../_images/featureBasedTracking.png" src="../../_images/featureBasedTracking.png" />
+<p class="caption"><span class="caption-text">Feature based tracking.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<p>Some comments about the data structure:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">openMVG</span><span class="o">::</span><span class="n">matching</span><span class="p">;</span>
+
+<span class="c1">// pairwise matches container:</span>
+<span class="n">PairWiseMatches</span> <span class="n">map_Matches</span><span class="p">;</span>
+
+<span class="c1">// Fil the pairwise correspondeces or load a series of pairwise matches from a file</span>
+<span class="n">PairedIndMatchImport</span><span class="p">(</span><span class="s">&quot;matches.f.txt&quot;</span><span class="p">,</span> <span class="n">map_Matches</span><span class="p">);</span>
+
+<span class="c1">//---------------------------------------</span>
+<span class="c1">// Compute tracks from pairwise matches</span>
+<span class="c1">//---------------------------------------</span>
+<span class="n">TracksBuilder</span> <span class="n">tracksBuilder</span><span class="p">;</span>
+<span class="n">tracks</span><span class="o">::</span><span class="n">STLMAPTracks</span> <span class="n">map_tracks</span><span class="p">;</span>  <span class="c1">// The track container</span>
+<span class="n">tracksBuilder</span><span class="p">.</span><span class="n">Build</span><span class="p">(</span><span class="n">map_Matches</span><span class="p">);</span> <span class="c1">// Build: Efficient fusion of correspondences</span>
+<span class="n">tracksBuilder</span><span class="p">.</span><span class="n">Filter</span><span class="p">();</span>           <span class="c1">// Filter: Remove track that have conflict</span>
+<span class="n">tracksBuilder</span><span class="p">.</span><span class="n">ExportToSTL</span><span class="p">(</span><span class="n">map_tracks</span><span class="p">);</span> <span class="c1">// Build tracks with STL compliant type</span>
+
+      <span class="c1">// In order to visit all the tracks, follow this code:</span>
+      <span class="k">for</span> <span class="p">(</span><span class="n">tracks</span><span class="o">::</span><span class="n">STLMAPTracks</span><span class="o">::</span><span class="n">const_iterator</span> <span class="n">iterT</span> <span class="o">=</span> <span class="n">map_tracks</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+              <span class="n">iterT</span> <span class="o">!=</span> <span class="n">map_tracks</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="o">++</span> <span class="n">iterT</span><span class="p">)</span>
+      <span class="p">{</span>
+              <span class="k">const</span> <span class="n">IndexT</span> <span class="n">trackId</span> <span class="o">=</span> <span class="n">iterT</span><span class="o">-&gt;</span><span class="n">first</span><span class="p">;</span>
+              <span class="k">const</span> <span class="n">tracks</span><span class="o">::</span><span class="n">submapTrack</span> <span class="o">&amp;</span> <span class="n">track</span> <span class="o">=</span> <span class="n">iterT</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">;</span>
+              <span class="k">for</span> <span class="p">(</span> <span class="n">tracks</span><span class="o">::</span><span class="n">submapTrack</span><span class="o">::</span><span class="n">const_iterator</span> <span class="n">iterTrack</span> <span class="o">=</span> <span class="n">track</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+                <span class="n">iterTrack</span> <span class="o">!=</span> <span class="n">track</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="o">++</span><span class="n">iterTrack</span><span class="p">)</span>
+              <span class="p">{</span>
+                      <span class="k">const</span> <span class="n">IndexT</span> <span class="n">imageId</span> <span class="o">=</span> <span class="n">iterTrack</span><span class="o">-&gt;</span><span class="n">first</span><span class="p">;</span>
+                      <span class="k">const</span> <span class="n">IndexT</span> <span class="n">featId</span> <span class="o">=</span> <span class="n">iterTrack</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">;</span>
+
+                      <span class="c1">// Get the feature point</span>
+              <span class="p">}</span>
+      <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">tracks</a><ul>
+<li><a class="reference internal" href="#un-ordered-feature-tracking">un/ordered feature tracking</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../matching/matching.html"
+                        title="previous chapter">matching</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../geometry/geometry.html"
+                        title="next chapter">geometry</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/openMVG/tracks/tracks.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../geometry/geometry.html" title="geometry"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../matching/matching.html" title="matching"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../openMVG.html" >openMVG libraries</a> &#187;</li> 
+      </ul>
+    </div>
+<div class="footer">
+    &copy; Copyright 2013-2019, OpenMVG authors.
+</div>
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>openMVG_main_ComputeFeatures &#8212; openMVG library</title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+
+    <link rel="stylesheet" href="../../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../../_static/searchtools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="openMVG_main_ComputeMatches" href="ComputeMatches.html" />
+    <link rel="prev" title="openMVG_main_SfMInit_ImageListing" href="SfMInit_ImageListing.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ComputeMatches.html" title="openMVG_main_ComputeMatches"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="SfMInit_ImageListing.html" title="openMVG_main_SfMInit_ImageListing"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../softwares.html" >openMVG softwares &amp; tools</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="SfM.html" >SfM: Structure from Motion</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="SfMInit_ImageListing.html" accesskey="U">openMVG_main_SfMInit_ImageListing</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="openmvg-main-computefeatures">
+<h1>openMVG_main_ComputeFeatures<a class="headerlink" href="#openmvg-main-computefeatures" title="Permalink to this headline">¶</a></h1>
+<p>Compute image description for a given sfm_data.json file.
+For each view it compute the image description (local regions) and store them on disk</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>$ openMVG_main_ComputeFeatures -i [..\matches\sfm_data.json] -o [...\matches]
+</pre></div>
+</div>
+<p>Arguments description:</p>
+<p><strong>Required parameters:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>[-i|–input_file]</strong></p>
+<ul>
+<li><p>a SfM_Data file</p></li>
+</ul>
+</li>
+<li><p><strong>[-o|–outdir path]</strong></p>
+<ul>
+<li><p>path were image description will be stored</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<p><strong>Optional parameters:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>[-f|–force: Force to recompute data]</strong></p>
+<ul>
+<li><p>0: (default) reload previously computed data (useful when you have kill the process and want to continue to compute)</p></li>
+<li><p>1: useful when you change have changed a command line parameter, force recomputing and re-saving.</p></li>
+</ul>
+</li>
+<li><p><strong>[-m|–describerMethod]</strong></p>
+<ul>
+<li><p>Used method to describe an image:</p>
+<ul>
+<li><p>SIFT: (default),</p></li>
+<li><p>AKAZE_FLOAT: AKAZE with floating point descriptors,</p></li>
+<li><p>AKAZE_MLDB:  AKAZE with binary descriptors.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>[-u|–upright]</strong></p>
+<ul>
+<li><p>Use Upright feature or not</p>
+<ul>
+<li><p>0: (default, rotation invariance)</p></li>
+<li><p>1: extract upright feature (orientation angle = 0°)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>[-p|–describerPreset]</strong></p>
+<ul>
+<li><p>Used to control the Image_describer configuration:</p>
+<ul>
+<li><p>NORMAL,</p></li>
+<li><p>HIGH,</p></li>
+<li><p>ULTRA: !!Can be time consuming!!</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<p><strong>Use mask to filter keypoints/regions</strong></p>
+<blockquote>
+<div><p>Sometime you may want to compute features/regions only on some parts of your images. It could include the following cases:</p>
+<ul class="simple">
+<li><p>You know that in your acquisition some areas may disturb the SfM pipeline (even if OpenMVG is known to be robust to a fair amount of outliers)
+and lower the quality of the subsequent reconstruction. For example, in some close range configurations, you may prefer to move the object itself
+instead of moving the camera. Masks can also help you to deal with hemispherical fish-eyes, by masking useless zone of the sensor.</p></li>
+<li><p>You want to speed up the computation by reducing the number features/regions and thus the number of tie points.</p></li>
+</ul>
+<p>For this kind of needs you can use a mask. A mask is simply a binary image having the same size (width and height) than the target image.
+The black areas on a mask denote the “bad parts”, <em>i.e.</em> the areas to be masked and for which descriptors are not computed. A point is kept if the mask value at the point position is different than 0.
+In openMVG_main_ComputeFeatures, the association of a mask and an image is implicit. It uses the following conventions:</p>
+<ul class="simple">
+<li><p>It tries to load a global mask.png file from where the images are stored.</p></li>
+<li><p>It tries to load an individual &lt;image_name&gt;_mask.png from directory where the current image is stored.</p></li>
+</ul>
+<p>The individual mask <strong>always</strong> takes precedence over the global one.</p>
+</div></blockquote>
+<p>Once openMVG_main_ComputeFeatures is done you can compute the Matches between the computed description.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ComputeMatches.html">openMVG_main_ComputeMatches</a></li>
+</ul>
+</div>
+<div class="section" id="export-detected-regions-as-svg-files">
+<h2>Export detected regions as SVG files:<a class="headerlink" href="#export-detected-regions-as-svg-files" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Detected keypoints</strong>: openMVG_main_exportKeypoints</p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">openMVG_main_ComputeFeatures</a><ul>
+<li><a class="reference internal" href="#export-detected-regions-as-svg-files">Export detected regions as SVG files:</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="SfMInit_ImageListing.html"
+                        title="previous chapter">openMVG_main_SfMInit_ImageListing</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ComputeMatches.html"
+                        title="next chapter">openMVG_main_ComputeMatches</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/software/SfM/ComputeFeatures.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ComputeMatches.html" title="openMVG_main_ComputeMatches"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="SfMInit_ImageListing.html" title="openMVG_main_SfMInit_ImageListing"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../softwares.html" >openMVG softwares &amp; tools</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="SfM.html" >SfM: Structure from Motion</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="SfMInit_ImageListing.html" >openMVG_main_SfMInit_ImageListing</a> &#187;</li> 
+      </ul>
+    </div>
+<div class="footer">
+    &copy; Copyright 2013-2019, OpenMVG authors.
+</div>
+
+
+
+
+
+  </body>
+</html>

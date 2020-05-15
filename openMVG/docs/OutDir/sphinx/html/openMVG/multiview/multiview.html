@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>multiview &#8212; openMVG library</title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+
+    <link rel="stylesheet" href="../../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../../_static/searchtools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="linear programming" href="../linear_programming/lp.html" />
+    <link rel="prev" title="cameras" href="../cameras/cameras.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../linear_programming/lp.html" title="linear programming"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../cameras/cameras.html" title="cameras"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../openMVG.html" accesskey="U">openMVG libraries</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="multiview">
+<h1>multiview<a class="headerlink" href="#multiview" title="Permalink to this headline">¶</a></h1>
+<p>The multiview module consists of:</p>
+<ul class="simple">
+<li><p>a collection of solvers for 2 to n-view geometry constraints that arise in multiple view geometry,</p></li>
+<li><p>a generic framework “Kernel” that can embed these solvers for robust estimation.</p></li>
+</ul>
+<p>First accessible solvers are listed and explained and the “Kernel” concept is documented.</p>
+<div class="section" id="view-solvers-2d-2d-correspondences">
+<h2>2-view solvers (2d-2d correspondences)<a class="headerlink" href="#view-solvers-2d-2d-correspondences" title="Permalink to this headline">¶</a></h2>
+<p>openMVG provides solver for the following geometric estimation:</p>
+<ul class="simple">
+<li><p>affine,</p></li>
+<li><p>homographic,</p></li>
+<li><p>fundamental,</p>
+<ul>
+<li><p>7 to n pt,</p></li>
+<li><p>8 to n pt (Direct Linear Transform) <a class="reference internal" href="../../bibliography.html#hz" id="id1"><span>[HZ]</span></a>.</p></li>
+</ul>
+</li>
+<li><p>essential,</p>
+<ul>
+<li><p>8 to n pt (Direct Linear Transform) <a class="reference internal" href="../../bibliography.html#hz" id="id2"><span>[HZ]</span></a>,</p></li>
+<li><p>5pt + intrinsic <a class="reference internal" href="../../bibliography.html#stewenius" id="id3"><span>[Stewenius]</span></a>, <a class="reference internal" href="../../bibliography.html#nister" id="id4"><span>[Nister]</span></a>.</p></li>
+<li><p>3pt orthographic <a class="reference internal" href="../../bibliography.html#magnus" id="id5"><span>[Magnus]</span></a>.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="n-view-geometry-estimation">
+<h2>N-View geometry estimation<a class="headerlink" href="#n-view-geometry-estimation" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Triangulation</p>
+<ul>
+<li><p>2 to n view (Direct Linear Transform),</p></li>
+<li><p>2 to n view (Iterated least square).</p></li>
+</ul>
+</li>
+<li><p>Rotation averaging</p>
+<ul>
+<li><p>L2 (sparse) <a class="reference internal" href="../../bibliography.html#martinec" id="id6"><span>[Martinec]</span></a>,</p></li>
+<li><p>L1 (sparse) <a class="reference internal" href="../../bibliography.html#chatterjee" id="id7"><span>[Chatterjee]</span></a>.</p></li>
+</ul>
+</li>
+<li><p>Translation averaging</p>
+<ul>
+<li><p>L2 Chordal <a class="reference internal" href="../../bibliography.html#kyle2014" id="id8"><span>[Kyle2014]</span></a>,</p></li>
+<li><p>SoftL1 ‘approximation of the LInf method of <a class="reference internal" href="../../bibliography.html#globalacsfm" id="id9"><span>[GlobalACSfM]</span></a>’.</p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="homography-matrix">
+<h3>Homography matrix:<a class="headerlink" href="#homography-matrix" title="Permalink to this headline">¶</a></h3>
+<p>The homography matrix maps the relation between two projections of a plane: <a class="reference internal" href="#homographyfigure"><span class="std std-ref">Figure</span></a>.</p>
+<p><span class="math notranslate nohighlight">\(H\)</span> is a (3 x 3) matrix that links coordinates in left and right images with the following relation.</p>
+<div class="math notranslate nohighlight" id="equation-homographyformula">
+<span class="eqno">(1)<a class="headerlink" href="#equation-homographyformula" title="Permalink to this equation">¶</a></span>\[x'_i = Hx_i\]</div>
+<div class="figure align-center" id="id17">
+<span id="homographyfigure"></span><img alt="../../_images/homographyMatrix.png" src="../../_images/homographyMatrix.png" />
+<p class="caption"><span class="caption-text">The homography matrix and the point to point constraint.</span><a class="headerlink" href="#id17" title="Permalink to this image">¶</a></p>
+</div>
+<p>OpenMVG implementation follows the DLT (Direct Linear Transform) explained in <a class="reference internal" href="../../bibliography.html#hz" id="id10"><span>[HZ]</span></a> book:
+<span class="math notranslate nohighlight">\(H\)</span> can be estimated from 4 to <span class="math notranslate nohighlight">\(n\)</span> corresponding points.</p>
+</div>
+<div class="section" id="fundamental-matrix">
+<h3>Fundamental matrix:<a class="headerlink" href="#fundamental-matrix" title="Permalink to this headline">¶</a></h3>
+<p>The fundamental matrix is a relation between two images viewing the same scene where those point’s
+projections are visible in the two images. Given a point correspondence between two views <span class="math notranslate nohighlight">\((x_i,x'_i)\)</span>:</p>
+<p>We obtain the following relation:</p>
+<div class="math notranslate nohighlight">
+\[x'^T_i Fx_i = 0\]</div>
+<p><span class="math notranslate nohighlight">\(F\)</span> is the (3 x 3) Fundamental matrix, it puts in relation a point x to a line where belong the projection of the 3D X point.
+<span class="math notranslate nohighlight">\(l'_i = Fx_i\)</span> designs the epipolar line on which the point <span class="math notranslate nohighlight">\(x'_i\)</span> could be.
+The relation <span class="math notranslate nohighlight">\(x'^T_i Fx_i = 0\)</span> exists for all corresponding point belonging to a stereo pair.</p>
+<div class="figure align-center" id="id18">
+<img alt="../../_images/fundamentalMatrix.png" src="../../_images/fundamentalMatrix.png" />
+<p class="caption"><span class="caption-text">The fundamental matrix and the point to line constraint.</span><a class="headerlink" href="#id18" title="Permalink to this image">¶</a></p>
+</div>
+<p>The fundamental matrix is sometime called bifocal-tensor, it is a 3 x 3 matrix of rank 2
+with 7 degree of freedom. 8 or 7 non-coplanar correspondences are sufficient to compute the <span class="math notranslate nohighlight">\(F\)</span> matrix.
+Implementation follows the DLT (Direct Linear Transform) explained in <a class="reference internal" href="../../bibliography.html#hz" id="id11"><span>[HZ]</span></a> book.</p>
+</div>
+</div>
+<div class="section" id="relative-pose-estimation-essential-matrix">
+<h2>Relative pose estimation (Essential matrix)<a class="headerlink" href="#relative-pose-estimation-essential-matrix" title="Permalink to this headline">¶</a></h2>
+<p>Adding intrinsic parameters to the fundamental matrix gives a metric “object” that provides the following relation
+<span class="math notranslate nohighlight">\(E = K'^T FK\)</span> , this is the Essential relation explained by Longuet-Higgins in 1981 <a class="reference internal" href="../../bibliography.html#longuet" id="id12"><span>[Longuet]</span></a>.
+This essential matrix links the relative position of the camera to the fundamental matrix relation.</p>
+<div class="math notranslate nohighlight">
+\[E = R[t]x = K'^T FK\]</div>
+<div class="figure align-center" id="id19">
+<img alt="../../_images/essentialMatrix.png" src="../../_images/essentialMatrix.png" />
+<p class="caption"><span class="caption-text">The essential matrix geometric relation.</span><a class="headerlink" href="#id19" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="absolute-pose-estimation-camera-resection-pose-matrix">
+<h2>Absolute pose estimation/Camera resection (Pose matrix)<a class="headerlink" href="#absolute-pose-estimation-camera-resection-pose-matrix" title="Permalink to this headline">¶</a></h2>
+<p>Given a list of 3D-2D point correspondences it is possible to compute a camera pose estimation.
+It consists in estimating the camera parameters of the right camera that minimizes the residual error of the 3D points re-projections, it’s an optimization problem that trying to solve P parameters in order to minimize</p>
+<div class="math notranslate nohighlight">
+\[min \sum^n_{i=1} x_i - P(X_i).\]</div>
+<div class="figure align-center" id="id20">
+<img alt="../../_images/ResectionPose.png" src="../../_images/ResectionPose.png" />
+<p class="caption"><span class="caption-text">Resection/Pose estimation from 3D-2D correspondences.</span><a class="headerlink" href="#id20" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id21">
+<img alt="../../_images/ResidualError.png" src="../../_images/ResidualError.png" />
+<p class="caption"><span class="caption-text">Residual error.</span><a class="headerlink" href="#id21" title="Permalink to this image">¶</a></p>
+</div>
+<p>openMVG provides 4 different solvers for this problem:</p>
+<ul class="simple">
+<li><p>6pt Direct Linear Transform <a class="reference internal" href="../../bibliography.html#hz" id="id13"><span>[HZ]</span></a>,</p></li>
+<li><p>3pt with intrinsic P3P <a class="reference internal" href="../../bibliography.html#ke" id="id14"><span>[Ke]</span></a>,</p></li>
+<li><p>3pt with intrinsic P3P <a class="reference internal" href="../../bibliography.html#kneip" id="id15"><span>[Kneip]</span></a>.</p></li>
+<li><p>3pt with intrinsic P3P <a class="reference internal" href="../../bibliography.html#nordberg" id="id16"><span>[Nordberg]</span></a>,</p></li>
+</ul>
+<div class="section" id="kernel-concept">
+<h3>Kernel concept<a class="headerlink" href="#kernel-concept" title="Permalink to this headline">¶</a></h3>
+<p>In order to use the solver in a generic robust estimation framework, we use them in conjuction with the Kernel class that allow to link:</p>
+<ul class="simple">
+<li><p>data points,</p>
+<ul>
+<li><p>the set of correspondences that are used for a robust estimation problem.</p></li>
+</ul>
+</li>
+<li><p>a model solver/estimator,</p></li>
+<li><p>a metric to measure data fitting to a putative model.</p></li>
+</ul>
+<div class="figure align-center" id="id22">
+<img alt="../../_images/kernelConcept.png" src="../../_images/kernelConcept.png" />
+<p class="caption"><span class="caption-text">The Kernel concept (the two view case).</span><a class="headerlink" href="#id22" title="Permalink to this image">¶</a></p>
+</div>
+<dl class="simple">
+<dt>Solver:</dt><dd><p>MINIMUM_SAMPLES: The minimal number of point required for the model estimation,
+MAX_MODELS: The number of models that the minimal solver could return,
+A Solve function that estimates a model from MINIMUM_SAMPLES to n vector data.</p>
+</dd>
+<dt>ErrorModel:</dt><dd><p>An metric function that return the error of a sample data to the provided model.</p>
+</dd>
+<dt>Kernel:</dt><dd><p>Embed data (putative), the model estimator and the error model.
+This kernel is core brick used in the openMVG robust estimator framework.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">multiview</a><ul>
+<li><a class="reference internal" href="#view-solvers-2d-2d-correspondences">2-view solvers (2d-2d correspondences)</a></li>
+<li><a class="reference internal" href="#n-view-geometry-estimation">N-View geometry estimation</a><ul>
+<li><a class="reference internal" href="#homography-matrix">Homography matrix:</a></li>
+<li><a class="reference internal" href="#fundamental-matrix">Fundamental matrix:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#relative-pose-estimation-essential-matrix">Relative pose estimation (Essential matrix)</a></li>
+<li><a class="reference internal" href="#absolute-pose-estimation-camera-resection-pose-matrix">Absolute pose estimation/Camera resection (Pose matrix)</a><ul>
+<li><a class="reference internal" href="#kernel-concept">Kernel concept</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../cameras/cameras.html"
+                        title="previous chapter">cameras</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../linear_programming/lp.html"
+                        title="next chapter">linear programming</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/openMVG/multiview/multiview.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../linear_programming/lp.html" title="linear programming"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../cameras/cameras.html" title="cameras"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../openMVG.html" >openMVG libraries</a> &#187;</li> 
+      </ul>
+    </div>
+<div class="footer">
+    &copy; Copyright 2013-2019, OpenMVG authors.
+</div>
+
+
+
+
+
+  </body>
+</html>

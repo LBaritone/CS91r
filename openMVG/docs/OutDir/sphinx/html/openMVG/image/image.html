@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>image &#8212; openMVG library</title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+
+    <link rel="stylesheet" href="../../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../../_static/searchtools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="numeric" href="../numeric/numeric.html" />
+    <link rel="prev" title="openMVG libraries" href="../openMVG.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../numeric/numeric.html" title="numeric"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../openMVG.html" title="openMVG libraries"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../openMVG.html" accesskey="U">openMVG libraries</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="image">
+<h1>image<a class="headerlink" href="#image" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="image-container">
+<h2>Image Container<a class="headerlink" href="#image-container" title="Permalink to this headline">¶</a></h2>
+<p>OpenMVG <code class="xref py py-class docutils literal notranslate"><span class="pre">Image&lt;T&gt;</span></code> class is a generic image container based on an Eigen aligned row-major matrix of template pixel type <cite>T</cite>. Images can store grayscale, RGB, RGBA or custom data.</p>
+<p><code class="xref py py-class docutils literal notranslate"><span class="pre">Image&lt;T&gt;</span></code> provide basic pixel read and write operation.</p>
+<p>See examples from openMVG/images/image_test.cpp:</p>
+<blockquote>
+<div><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// A 8-bit gray image:</span>
+<span class="n">Image</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="o">&gt;</span> <span class="n">grayscale_image_8bit</span><span class="p">;</span>
+
+<span class="c1">// A 32-bit gray image:</span>
+<span class="n">Image</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">grayscale_image_32bit</span><span class="p">;</span>
+
+<span class="c1">// Multichannel image: (use pre-defined pixel type)</span>
+
+<span class="c1">// A 8-bit RGB image:</span>
+<span class="n">Image</span><span class="o">&lt;</span><span class="n">RGBColor</span><span class="o">&gt;</span> <span class="n">rgb_image_8bit</span><span class="p">;</span>
+<span class="n">Image</span><span class="o">&lt;</span><span class="n">Rgb</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">rgb_image2_8bit</span><span class="p">;</span>
+
+<span class="c1">// 8-bit RGBA image</span>
+<span class="n">Image</span><span class="o">&lt;</span><span class="n">RGBAColor</span><span class="o">&gt;</span> <span class="n">rgba_image_8bit</span><span class="p">;</span>
+<span class="n">Image</span><span class="o">&lt;</span><span class="n">Rgba</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">rgba_image2_8bit</span><span class="p">;</span>
+
+<span class="c1">// 32 bit RGB image:</span>
+<span class="n">Image</span><span class="o">&lt;</span><span class="n">Rgb</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">rgb_image_32bit</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="image-i-o">
+<h2>Image I/O<a class="headerlink" href="#image-i-o" title="Permalink to this headline">¶</a></h2>
+<p>Loading and writing of 8 bits (gray and color) images are supported in the following formats:</p>
+<ul class="simple">
+<li><p>ppm/pgm,</p></li>
+<li><p>jpeg,</p></li>
+<li><p>png,</p></li>
+<li><p>tiff.</p></li>
+</ul>
+<p>See examples from openMVG/images/image_IO_test.cpp:</p>
+<blockquote>
+<div><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Read a grayscale image (if conversion need, it is done on the fly)</span>
+<span class="n">Image</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="o">&gt;</span> <span class="n">gray_image</span><span class="p">;</span>
+<span class="kt">bool</span> <span class="n">bRet</span> <span class="o">=</span> <span class="n">ReadImage</span><span class="p">(</span><span class="s">&quot;Foo.imgExtension&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">gray_image</span><span class="p">);</span>
+
+<span class="c1">// Read a color image</span>
+<span class="n">Image</span><span class="o">&lt;</span><span class="n">RGBColor</span><span class="o">&gt;</span> <span class="n">rgb_image_gray</span><span class="p">;</span>
+<span class="kt">bool</span> <span class="n">bRet</span> <span class="o">=</span> <span class="n">ReadImage</span><span class="p">(</span><span class="s">&quot;Foo.imgExtension&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">rgb_image</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="drawing-operations">
+<h2>Drawing operations<a class="headerlink" href="#drawing-operations" title="Permalink to this headline">¶</a></h2>
+<p>The following operations are available:</p>
+<ul class="simple">
+<li><p>lines,</p></li>
+<li><p>circles,</p></li>
+<li><p>ellipses.</p></li>
+</ul>
+<p>See examples from openMVG/images/image_drawing_test.cpp:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="o">&gt;</span> <span class="n">image</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+<span class="n">image</span><span class="p">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+<span class="c1">// Pixel access is done as matrix (row, line)</span>
+<span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">column</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="n">image</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">)</span> <span class="o">=</span> <span class="mi">127</span><span class="p">;</span>
+
+<span class="c1">// Horizontal scanline</span>
+<span class="n">DrawLine</span><span class="p">(</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">w</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">image</span><span class="p">);</span>
+
+<span class="c1">// Circle of radius 3 and center (5,5)</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">radius</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="n">DrawCircle</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="p">)</span><span class="mi">255</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">image</span><span class="p">);</span>
+
+<span class="c1">// Ellipse of center (5,5) and (3,0</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">radius1</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">radius2</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">angle</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+
+<span class="n">DrawEllipse</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">radius1</span><span class="p">,</span> <span class="n">radius2</span><span class="p">,</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="p">)</span><span class="mi">255</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">image</span><span class="p">,</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="n">angle</span><span class="p">);</span>
+
+<span class="c1">// Example with a RGB image</span>
+<span class="n">Image</span><span class="o">&lt;</span><span class="n">RGBColor</span><span class="o">&gt;</span> <span class="n">imageRGB</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+<span class="n">DrawCircle</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">RGBColor</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="o">&amp;</span><span class="n">imageRGB</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">image</a><ul>
+<li><a class="reference internal" href="#image-container">Image Container</a></li>
+<li><a class="reference internal" href="#image-i-o">Image I/O</a></li>
+<li><a class="reference internal" href="#drawing-operations">Drawing operations</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../openMVG.html"
+                        title="previous chapter">openMVG libraries</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../numeric/numeric.html"
+                        title="next chapter">numeric</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/openMVG/image/image.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../numeric/numeric.html" title="numeric"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../openMVG.html" title="openMVG libraries"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../openMVG.html" >openMVG libraries</a> &#187;</li> 
+      </ul>
+    </div>
+<div class="footer">
+    &copy; Copyright 2013-2019, OpenMVG authors.
+</div>
+
+
+
+
+
+  </body>
+</html>

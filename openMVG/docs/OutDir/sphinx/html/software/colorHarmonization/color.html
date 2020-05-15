@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Color Harmonization &#8212; openMVG library</title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+
+    <link rel="stylesheet" href="../../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../../_static/searchtools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="patented" href="../../nonFree/patented.html" />
+    <link rel="prev" title="Geodesy: Usage of GPS prior" href="../Geodesy/geodesy.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../nonFree/patented.html" title="patented"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../Geodesy/geodesy.html" title="Geodesy: Usage of GPS prior"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../softwares.html" accesskey="U">openMVG softwares &amp; tools</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="color-harmonization">
+<h1>Color Harmonization<a class="headerlink" href="#color-harmonization" title="Permalink to this headline">¶</a></h1>
+<p>In a multiple-view image acquisition process, color consistency is not ensured.
+This is an important problem for image fusion tasks: object texturing or mosaics blending for example.
+In automatic mode, the camera adapts its settings –shutter-speed and aperture– to the captured image content.
+Therefore the color of objects changes over an image sequence.</p>
+<div class="figure align-center">
+<img alt="../../_images/globalMultipleViewColorConsistency_PRB.png" src="../../_images/globalMultipleViewColorConsistency_PRB.png" />
+</div>
+<p>In order to restore the color consistency, a transformation model between reference and observed colors have to be estimated.
+It introduces two main problems:</p>
+<ul class="simple">
+<li><p>the data selection (common pixels between images),</p></li>
+<li><p>the estimation of a reliable color transformation between those pixels.</p></li>
+</ul>
+<p>This module propose an interface to solve this problem:</p>
+<p><a class="reference internal" href="../../bibliography.html#moulon13" id="id1"><span>[Moulon13]</span></a> propose a global multi-view color consistency solution that in a first step selects robustly the common color information between images and in a second step estimates the color transformations that set all pictures in a common color reference, which involves a global minimization.
+It uses a compact histogram representation of the shared color information per image pairs and solve the color consistency by using a linear program with a gain and offset model for each image.</p>
+<p>A reference have to be chosen in order to set the color reference.</p>
+<p>Here the obtained results on the image sequence after having chosen a “white” or “blue” image as reference:</p>
+<div class="figure align-center">
+<img alt="../../_images/globalMultipleViewColorConsistency_solveA.png" src="../../_images/globalMultipleViewColorConsistency_solveA.png" />
+</div>
+<div class="figure align-center">
+<img alt="../../_images/globalMultipleViewColorConsistency_solveB.png" src="../../_images/globalMultipleViewColorConsistency_solveB.png" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../Geodesy/geodesy.html"
+                        title="previous chapter">Geodesy: Usage of GPS prior</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../../nonFree/patented.html"
+                        title="next chapter">patented</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/software/colorHarmonization/color.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../nonFree/patented.html" title="patented"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../Geodesy/geodesy.html" title="Geodesy: Usage of GPS prior"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../softwares.html" >openMVG softwares &amp; tools</a> &#187;</li> 
+      </ul>
+    </div>
+<div class="footer">
+    &copy; Copyright 2013-2019, OpenMVG authors.
+</div>
+
+
+
+
+
+  </body>
+</html>

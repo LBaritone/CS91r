@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>openMVG_main_ExportUndistortedImages &#8212; openMVG library</title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+
+    <link rel="stylesheet" href="../../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../../_static/searchtools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="MVS: Multiple View Stereovision" href="../MVS/MVS.html" />
+    <link rel="prev" title="openMVG_main_ComputeStructureFromKnownPoses" href="ComputeStructureFromKnownPoses.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../MVS/MVS.html" title="MVS: Multiple View Stereovision"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ComputeStructureFromKnownPoses.html" title="openMVG_main_ComputeStructureFromKnownPoses"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../softwares.html" >openMVG softwares &amp; tools</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="SfM.html" accesskey="U">SfM: Structure from Motion</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="openmvg-main-exportundistortedimages">
+<h1>openMVG_main_ExportUndistortedImages<a class="headerlink" href="#openmvg-main-exportundistortedimages" title="Permalink to this headline">¶</a></h1>
+<p>This application export undistorted images from known camera parameter intrinsic.</p>
+<p>Algorithm of the application</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="nl">Require</span><span class="p">:</span> <span class="n">internal</span> <span class="o">+</span> <span class="n">camera</span> <span class="n">calibration</span>
+<span class="nl">Require</span><span class="p">:</span> <span class="n">images</span>
+<span class="nl">Ensure</span><span class="p">:</span> <span class="n">undistorted</span> <span class="n">images</span>
+<span class="k">for</span> <span class="n">each</span> <span class="n">view</span>
+    <span class="k">if</span> <span class="n">view</span> <span class="n">has</span> <span class="n">valid</span> <span class="n">intrinsic</span>
+      <span class="n">undistort</span> <span class="n">and</span> <span class="n">save</span> <span class="n">the</span> <span class="n">undistorted</span> <span class="n">view</span>
+</pre></div>
+</div>
+<div class="section" id="information-and-usage">
+<h2>Information and usage<a class="headerlink" href="#information-and-usage" title="Permalink to this headline">¶</a></h2>
+<p>The chain is designed to run on a sfm_data.json file.
+The sfm_data file should contains:
+- valid view with some defined intrinsics,</p>
+<blockquote>
+<div><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>$ openMVG_main_ExportUndistortedImages -i Dataset/out_Reconstruction/sfm_data.json -o Dataset/out_Reconstruction/undistortedImages
+</pre></div>
+</div>
+</div></blockquote>
+<p>Arguments description:</p>
+<p><strong>Required parameters:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>[-i|–input_file]</strong></p>
+<ul>
+<li><p>a SfM_Data file with valid intrinsics and poses and optional structure</p></li>
+</ul>
+</li>
+<li><p><strong>[-o|–outdir]</strong></p>
+<ul>
+<li><p>path where the undistorted images will be stored</p></li>
+</ul>
+</li>
+<li><p><strong>[-r|–exportOnlyReconstructed]</strong></p>
+<ul>
+<li><p>Export only the images that have valid intrinsic and pose data (Can be 0(default) or 1)</p></li>
+</ul>
+</li>
+<li><p><strong>[-n|–numThreads]</strong></p>
+<ul>
+<li><p>number of thread(s)</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">openMVG_main_ExportUndistortedImages</a><ul>
+<li><a class="reference internal" href="#information-and-usage">Information and usage</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ComputeStructureFromKnownPoses.html"
+                        title="previous chapter">openMVG_main_ComputeStructureFromKnownPoses</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../MVS/MVS.html"
+                        title="next chapter">MVS: Multiple View Stereovision</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/software/SfM/ExportUndistortedImages.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../MVS/MVS.html" title="MVS: Multiple View Stereovision"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ComputeStructureFromKnownPoses.html" title="openMVG_main_ComputeStructureFromKnownPoses"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../softwares.html" >openMVG softwares &amp; tools</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="SfM.html" >SfM: Structure from Motion</a> &#187;</li> 
+      </ul>
+    </div>
+<div class="footer">
+    &copy; Copyright 2013-2019, OpenMVG authors.
+</div>
+
+
+
+
+
+  </body>
+</html>

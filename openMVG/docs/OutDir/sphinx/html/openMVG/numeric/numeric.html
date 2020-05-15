@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>numeric &#8212; openMVG library</title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+
+    <link rel="stylesheet" href="../../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../../_static/searchtools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="features" href="../features/features.html" />
+    <link rel="prev" title="image" href="../image/image.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../features/features.html" title="features"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../image/image.html" title="image"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../openMVG.html" accesskey="U">openMVG libraries</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="numeric">
+<h1>numeric<a class="headerlink" href="#numeric" title="Permalink to this headline">¶</a></h1>
+<p>This module provides math and linear algebra utils that relies on <a class="reference internal" href="../../bibliography.html#eigen" id="id1"><span>[Eigen]</span></a> library.
+Eigen is a C++ template library for linear algebra.</p>
+<p>Basic idea is to provide to openMVG :</p>
+<ul class="simple">
+<li><p>a high level memory container for matrices and vectors,</p></li>
+<li><p>an easy matrices and vectors manipulation,</p></li>
+<li><p>a collection of numeric solvers and related algorithms.</p></li>
+</ul>
+<div class="section" id="vector-matrix-containers">
+<h2>Vector, Matrix containers<a class="headerlink" href="#vector-matrix-containers" title="Permalink to this headline">¶</a></h2>
+<p>OpenMVG redefines some Eigen basis type (points, vectors, matrices) for code consitency and clarity:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Vec2</span></code> a single 2d point stored as a column matrix (x,y),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Vec3</span></code> a single 3d point stored as a column matrix (x,y,z),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Vec2f,</span> <span class="pre">Vec3f</span></code> float version.</p></li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Vec</span></code> a vector of value (double precision),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Vecf</span></code> a vector of floating point value,</p></li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Mat</span></code> the generic matrix container,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Mat2X</span></code> a collection of 2d points stored by column,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Mat3X</span></code> a collection of 3d points stored as column.</p></li>
+</ul>
+<p>Note: Default memory alignment is column major.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create a set of 2D points store as column</span>
+<span class="n">Mat2X</span> <span class="nf">A</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="n">A</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span>
+     <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">A</span><span class="p">.</span><span class="n">col</span><span class="p">();</span> <span class="c1">// return a column vector : (1,6)^T</span>
+<span class="n">A</span><span class="p">.</span><span class="n">row</span><span class="p">();</span> <span class="c1">// return a row vector : (1,2,3,4,5)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="linear-algebra">
+<h2>Linear algebra<a class="headerlink" href="#linear-algebra" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>SVD/QR/LU decomposition.</p></li>
+</ul>
+<div class="section" id="to-know-more">
+<h3>To know more<a class="headerlink" href="#to-know-more" title="Permalink to this headline">¶</a></h3>
+<p>Please visit: <a class="reference external" href="http://eigen.tuxfamily.org/dox/group__QuickRefPage.html">http://eigen.tuxfamily.org/dox/group__QuickRefPage.html</a></p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">numeric</a><ul>
+<li><a class="reference internal" href="#vector-matrix-containers">Vector, Matrix containers</a></li>
+<li><a class="reference internal" href="#linear-algebra">Linear algebra</a><ul>
+<li><a class="reference internal" href="#to-know-more">To know more</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../image/image.html"
+                        title="previous chapter">image</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../features/features.html"
+                        title="next chapter">features</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/openMVG/numeric/numeric.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../features/features.html" title="features"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../image/image.html" title="image"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../openMVG.html" >openMVG libraries</a> &#187;</li> 
+      </ul>
+    </div>
+<div class="footer">
+    &copy; Copyright 2013-2019, OpenMVG authors.
+</div>
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>robust_estimation &#8212; openMVG library</title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+
+    <link rel="stylesheet" href="../../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../../_static/searchtools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="matching" href="../matching/matching.html" />
+    <link rel="prev" title="linear programming" href="../linear_programming/lp.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../matching/matching.html" title="matching"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../linear_programming/lp.html" title="linear programming"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../openMVG.html" accesskey="U">openMVG libraries</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="robust-estimation">
+<h1>robust_estimation<a class="headerlink" href="#robust-estimation" title="Permalink to this headline">¶</a></h1>
+<p>Performing model estimation is not an easy task, data are always corrupted by noise and “false/outlier” data so robust estimation is required to find the “best” model along the possible ones.</p>
+<div class="figure align-center" id="id3">
+<img alt="../../_images/robustEstimation.png" src="../../_images/robustEstimation.png" />
+<p class="caption"><span class="caption-text">Robust estimation: Looking for a line in corrupted data.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<p>openMVG provides many methods to estimate one of the best possible model in corrupted data:</p>
+<ul class="simple">
+<li><p>Max-Consensus,</p></li>
+<li><p>Ransac,</p></li>
+<li><p>LMeds,</p></li>
+<li><p>AC-Ransac (A Contrario Ransac).</p></li>
+</ul>
+<div class="section" id="max-consensus">
+<h2>Max-Consensus<a class="headerlink" href="#max-consensus" title="Permalink to this headline">¶</a></h2>
+<p>The idea of Max-Consensus is to use a random picked subset of data to find a model and test if
+this model is good or not the whole dataset. At the end you keep the model that best fits your cost
+function. Best fit defined as the number of data correspondences to the model under your specified
+threshold T.</p>
+<p>Algorithm 1 Max-Consensus</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="nl">Require</span><span class="p">:</span> <span class="n">correspondences</span>
+<span class="nl">Require</span><span class="p">:</span> <span class="n">model</span> <span class="n">solver</span><span class="p">,</span> <span class="n">residual</span> <span class="n">error</span> <span class="n">computation</span>
+<span class="nl">Require</span><span class="p">:</span> <span class="n">T</span> <span class="n">threshold</span> <span class="k">for</span> <span class="n">inlier</span><span class="o">/</span><span class="n">outlier</span> <span class="n">discrimination</span>
+<span class="nl">Require</span><span class="p">:</span> <span class="n">maxIter</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">performed</span> <span class="n">model</span> <span class="n">estimation</span>
+<span class="nl">Ensure</span><span class="p">:</span> <span class="n">inlier</span> <span class="n">list</span>
+<span class="nl">Ensure</span><span class="p">:</span> <span class="n">best</span> <span class="n">estimated</span> <span class="n">model</span> <span class="n">Mbest</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">!</span> <span class="n">maxIter</span> <span class="k">do</span>
+                <span class="n">Pick</span> <span class="n">NSample</span> <span class="n">random</span> <span class="n">samples</span>
+                <span class="n">Evaluate</span> <span class="n">the</span> <span class="n">model</span> <span class="n">Mi</span> <span class="k">for</span> <span class="n">the</span> <span class="n">random</span> <span class="n">samples</span>
+                <span class="n">Compute</span> <span class="n">residuals</span> <span class="k">for</span> <span class="n">the</span> <span class="n">estimated</span> <span class="n">model</span>
+                <span class="k">if</span> <span class="n">Cardinal</span><span class="p">(</span><span class="n">residual</span> <span class="o">&lt;</span> <span class="n">T</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">previousInlierCount</span> <span class="n">then</span>
+                        <span class="n">previousInlierCount</span> <span class="o">=</span> <span class="n">Cardinal</span><span class="p">(</span><span class="n">residual</span> <span class="o">&lt;</span> <span class="n">T</span><span class="p">)</span>
+                        <span class="n">Mbest</span> <span class="o">=</span> <span class="n">Mi</span>
+                <span class="n">end</span> <span class="k">if</span>
+        <span class="n">end</span> <span class="k">for</span>
+</pre></div>
+</div>
+<p>Here an example of how find a best fit line:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Mat2X</span> <span class="nf">xy</span> <span class="p">(</span> <span class="mi">2</span> <span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="c1">// Defines some data points</span>
+<span class="n">xy</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span>  <span class="mi">5</span><span class="p">,</span> <span class="c1">// x</span>
+      <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">;</span> <span class="c1">// y</span>
+
+<span class="c1">// The base model estimator and associated error metric</span>
+<span class="n">LineKernel</span> <span class="nf">kernel</span> <span class="p">(</span> <span class="n">xy</span> <span class="p">);</span>
+
+<span class="c1">// Call the Max-Consensus routine</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span> <span class="n">vec_inliers</span><span class="p">;</span>
+<span class="n">Vec2</span> <span class="n">model</span> <span class="o">=</span> <span class="n">MaxConsensus</span> <span class="p">(</span> <span class="n">kernel</span> <span class="p">,</span> <span class="n">ScorerEvaluator</span><span class="o">&lt;</span><span class="n">LineKernel</span> <span class="o">&gt;</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span> <span class="p">,</span> <span class="o">&amp;-</span><span class="n">vec_inliers</span> <span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ransac">
+<h2>Ransac<a class="headerlink" href="#ransac" title="Permalink to this headline">¶</a></h2>
+<p>Ransac <a class="reference internal" href="../../bibliography.html#ransac" id="id1"><span>[RANSAC]</span></a> is an evolution of Max-Consensus with a-priori information about the noise and corrupted
+data amount of the data. That information allows to reduce the number of iterations in order to be
+sure to have made sufficient random sampling steps in order to find the model for the given data
+confidence. The number of remaining steps is so iteratively updated given the inlier/outlier ratio of
+the current found model.</p>
+<p>Here an example of how find a best fit line:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Mat2X</span> <span class="nf">xy</span> <span class="p">(</span> <span class="mi">2</span> <span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="c1">// Defines some data points</span>
+<span class="n">xy</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span>  <span class="mi">5</span><span class="p">,</span> <span class="c1">// x</span>
+      <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">;</span> <span class="c1">// y</span>
+
+<span class="c1">// The base model estimator and associated error metric</span>
+<span class="n">LineKernel</span> <span class="nf">kernel</span> <span class="p">(</span> <span class="n">xy</span> <span class="p">);</span>
+
+<span class="c1">// Call the Ransac routine</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span> <span class="n">vec_inliers</span><span class="p">;</span>
+<span class="n">Vec2</span> <span class="n">model</span> <span class="o">=</span> <span class="n">Ransac</span> <span class="p">(</span> <span class="n">kernel</span><span class="p">,</span> <span class="n">ScorerEvaluator</span><span class="o">&lt;</span><span class="n">LineKernel</span> <span class="o">&gt;</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span> <span class="p">,</span> <span class="o">&amp;</span><span class="n">vec_inliers</span> <span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ac-ransac-a-contrario-ransac">
+<h2>AC-Ransac A Contrario Ransac<a class="headerlink" href="#ac-ransac-a-contrario-ransac" title="Permalink to this headline">¶</a></h2>
+<p>RANSAC requires the choice of a threshold T, which must be balanced:</p>
+<ul class="simple">
+<li><p>Too small: Too few inliers, leading to model imprecision,</p></li>
+<li><p>Too large: Models are contaminated by outliers (false data).</p></li>
+</ul>
+<p>AC-Ransac <a class="reference internal" href="../../bibliography.html#acransac" id="id2"><span>[ACRANSAC]</span></a> uses the a contrario methodology in order to find a model that best fits the
+data with a confidence threshold T that adapts automatically to noise. It so finds a model and its
+associated noise. If there is too much noise, the a contrario method returns that no model was
+found.</p>
+<div class="figure align-center" id="id4">
+<img alt="../../_images/ACRansac.png" src="../../_images/ACRansac.png" />
+<p class="caption"><span class="caption-text">A contrario robust estimation, noise adaptivity.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<p>Here an example of how to find a best fit line, by using the a contrario robust estimation framework:
+It is a bit more complex, we use a class in order to perform the a contrario required task.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Mat2X</span> <span class="nf">xy</span> <span class="p">(</span> <span class="mi">2</span> <span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="c1">// Defines some data points</span>
+<span class="n">xy</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span>  <span class="mi">5</span><span class="p">,</span> <span class="c1">// x</span>
+      <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">;</span> <span class="c1">// y</span>
+
+<span class="c1">// The acontrario adapted base model estimator and associated error metric</span>
+<span class="k">const</span> <span class="kt">size_t</span> <span class="n">img_width</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+<span class="n">ACRANSACOneViewKernel</span><span class="o">&lt;</span><span class="n">LineSolver</span><span class="p">,</span> <span class="n">pointToLineError</span><span class="p">,</span> <span class="n">Vec2</span><span class="o">&gt;</span> <span class="n">lineKernel</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span>  <span class="o">-</span><span class="n">img_width</span><span class="p">,</span> <span class="n">img_width</span><span class="p">);</span>
+
+<span class="c1">// Call the AC-Ransac routine</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span> <span class="n">vec_inliers</span><span class="p">;</span>
+<span class="n">Vec2</span> <span class="n">line</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;</span> <span class="n">res</span> <span class="o">=</span> <span class="n">ACRANSAC</span><span class="p">(</span><span class="n">lineKernel</span><span class="p">,</span> <span class="n">vec_inliers</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">line</span><span class="p">);</span>
+<span class="kt">double</span> <span class="n">dPrecision</span> <span class="o">=</span> <span class="n">res</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
+<span class="kt">double</span> <span class="n">dNfa</span> <span class="o">=</span> <span class="n">res</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">robust_estimation</a><ul>
+<li><a class="reference internal" href="#max-consensus">Max-Consensus</a></li>
+<li><a class="reference internal" href="#ransac">Ransac</a></li>
+<li><a class="reference internal" href="#ac-ransac-a-contrario-ransac">AC-Ransac A Contrario Ransac</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../linear_programming/lp.html"
+                        title="previous chapter">linear programming</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../matching/matching.html"
+                        title="next chapter">matching</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/openMVG/robust_estimation/robust_estimation.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../matching/matching.html" title="matching"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../linear_programming/lp.html" title="linear programming"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../openMVG.html" >openMVG libraries</a> &#187;</li> 
+      </ul>
+    </div>
+<div class="footer">
+    &copy; Copyright 2013-2019, OpenMVG authors.
+</div>
+
+
+
+
+
+  </body>
+</html>

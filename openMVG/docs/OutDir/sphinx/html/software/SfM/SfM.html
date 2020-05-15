@@ -1,0 +1,310 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>SfM: Structure from Motion &#8212; openMVG library</title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+
+    <link rel="stylesheet" href="../../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../../_static/searchtools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="openMVG_main_SfMInit_ImageListing" href="SfMInit_ImageListing.html" />
+    <link rel="prev" title="openMVG softwares &amp; tools" href="../softwares.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="SfMInit_ImageListing.html" title="openMVG_main_SfMInit_ImageListing"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../softwares.html" title="openMVG softwares &amp; tools"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../softwares.html" accesskey="U">openMVG softwares &amp; tools</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="sfm-structure-from-motion">
+<h1>SfM: Structure from Motion<a class="headerlink" href="#sfm-structure-from-motion" title="Permalink to this headline">¶</a></h1>
+<p>Structure from Motion computes an external camera pose per image (the motion) and a 3D point cloud (the structure) from:</p>
+<ul class="simple">
+<li><p>images,</p></li>
+<li><p>some intrinsic camera parameters,</p></li>
+<li><p>corresponding geometric valid features accross images.</p></li>
+</ul>
+<div class="figure align-center" id="id4">
+<img alt="../../_images/imagesInput.png" src="../../_images/imagesInput.png" />
+<p class="caption"><span class="caption-text">Figure : Input images, estimated camera location and structure.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="openmvg-sfm-tools">
+<h2>openMVG SfM tools<a class="headerlink" href="#openmvg-sfm-tools" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>2 <strong>Structure from Motion (SfM) pipeline</strong>:</p>
+<ul>
+<li><p>an Incremental Structure from Motion chain <a class="reference internal" href="../../bibliography.html#acsfm" id="id1"><span>[ACSfM]</span></a> (ACCV 2012),</p></li>
+<li><p>a Global Structure from Motion chain <a class="reference internal" href="../../bibliography.html#globalacsfm" id="id2"><span>[GlobalACSfM]</span></a> (ICCV 2013),</p></li>
+</ul>
+</li>
+<li><p>1 <strong>Structure from known Motion (SfM) pipeline</strong>:</p>
+<ul>
+<li><p>Structure computation from known camera poses and features.</p></li>
+</ul>
+</li>
+<li><p><strong>tools</strong> to visualize:</p>
+<ul>
+<li><p>features,</p></li>
+<li><p>photometric/geometric matches correspondences,</p></li>
+<li><p>features tracks.</p></li>
+</ul>
+</li>
+<li><p><strong>tools to export to existing Multiple View Stereovision (MVS) pipeline</strong>:</p>
+<ul>
+<li><p><a class="reference internal" href="../../bibliography.html#pmvs" id="id3"><span>[PMVS]</span></a>, CMPMVS.</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="openmvg-sfm-pipelines">
+<h2>OpenMVG SfM pipelines<a class="headerlink" href="#openmvg-sfm-pipelines" title="Permalink to this headline">¶</a></h2>
+<p>OpenMVG SfM pipelines run as a 4 step process:</p>
+<div class="section" id="image-listing">
+<h3>1. Image listing<a class="headerlink" href="#image-listing" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="SfMInit_ImageListing.html">openMVG_main_SfMInit_ImageListing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SfMInit_ImageListingFromKnownPoses.html">openMVG_main_SfMInit_ImageListingFromKnownPoses</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="image-description-computation">
+<h3>2. Image description computation<a class="headerlink" href="#image-description-computation" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ComputeFeatures.html">openMVG_main_ComputeFeatures</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="corresponding-images-and-correspondences-computation">
+<h3>3. Corresponding images and correspondences computation<a class="headerlink" href="#corresponding-images-and-correspondences-computation" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ComputeMatches.html">openMVG_main_ComputeMatches</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="sfm-solving-2-methods">
+<h3>4. SfM solving (2 methods)<a class="headerlink" href="#sfm-solving-2-methods" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="IncrementalSfM.html">openMVG_main_IncrementalSfM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IncrementalSfM.html#openmvg-main-incrementalsfm2">openMVG_main_IncrementalSfM2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GlobalSfM.html">openMVG_main_GlobalSfM</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="optional-further-processing">
+<h3>5. Optional further processing<a class="headerlink" href="#optional-further-processing" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ComputeSfM_DataColor.html">openMVG_main_ComputeSfM_DataColor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ComputeStructureFromKnownPoses.html">openMVG_main_ComputeStructureFromKnownPoses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ExportUndistortedImages.html">openMVG_main_ExportUndistortedImages</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="optional-further-processing-3rd-party">
+<h3>5. Optional further processing (3rd party)<a class="headerlink" href="#optional-further-processing-3rd-party" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../MVS/MVS.html">MVS: Multiple View Stereovision</a></li>
+</ul>
+</div>
+<p><strong>You can either run by hand all the process or use pre-defined python scripts (that are using some default options).</strong></p>
+</div>
+</div>
+<div class="section" id="openmvg-sfm-pipelines-demo">
+<h2>OpenMVG SfM pipelines demo<a class="headerlink" href="#openmvg-sfm-pipelines-demo" title="Permalink to this headline">¶</a></h2>
+<p>A complete ready to use tutorial demo is exported in your build directory. It clones an image dataset and run the SfM pipelines on it:</p>
+<ul class="simple">
+<li><p>openMVG_Build/software/SfM/tutorial_demo.py</p></li>
+</ul>
+<p>In order to use easily the Sequential or the Global pipeline, ready to used script are exported in your build directory:</p>
+<ul class="simple">
+<li><p>openMVG_Build/software/SfM/SfM_SequentialPipeline.py</p></li>
+<li><p>openMVG_Build/software/SfM/SfM_GlobalPipeline.py</p></li>
+</ul>
+<p>To use them simply run:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>$ cd openMVG_Build/software/SfM/
+$ python SfM_SequentialPipeline.py [full path image directory] [resulting directory]
+$ python SfM_SequentialPipeline.py ~/home/user/data/ImageDataset_SceauxCastle/images ~/home/user/data/ImageDataset_SceauxCastle/Castle_Incremental_Reconstruction
+
+$ python SfM_GlobalPipeline.py [full path image directory] [resulting directory]
+</pre></div>
+</div>
+</div>
+<div class="section" id="more-details-about-openmvg-tools">
+<h2>More details about openMVG tools<a class="headerlink" href="#more-details-about-openmvg-tools" title="Permalink to this headline">¶</a></h2>
+<p>To know more about each tool visit the following link and read the doc below:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="SfMInit_ImageListing.html">openMVG_main_SfMInit_ImageListing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ComputeFeatures.html">openMVG_main_ComputeFeatures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ComputeMatches.html">openMVG_main_ComputeMatches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IncrementalSfM.html">openMVG_main_IncrementalSfM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IncrementalSfM.html#openmvg-main-incrementalsfm2">openMVG_main_IncrementalSfM2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GlobalSfM.html">openMVG_main_GlobalSfM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ComputeSfM_DataColor.html">openMVG_main_ComputeSfM_DataColor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ComputeStructureFromKnownPoses.html">openMVG_main_ComputeStructureFromKnownPoses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ExportUndistortedImages.html">openMVG_main_ExportUndistortedImages</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="SfM_OutputFormat.html">SfM_data format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MVS/MVS.html">MVS: Multiple View Stereovision</a></li>
+</ul>
+</div>
+<p>PS: We strongly advise to use a 3 directories based data organisation structure</p>
+<ul class="simple">
+<li><p><strong>images</strong></p>
+<ul>
+<li><p>your image sequence.</p></li>
+</ul>
+</li>
+<li><p><strong>matches</strong></p>
+<ul>
+<li><p>directory used to store image information, images features, descriptors and matches information.</p></li>
+</ul>
+</li>
+<li><p><strong>outReconstruction</strong></p>
+<ul>
+<li><p>directory used to store the SfM result and process log.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="notes-about-spherical-sfm">
+<h2>Notes about Spherical SfM<a class="headerlink" href="#notes-about-spherical-sfm" title="Permalink to this headline">¶</a></h2>
+<p>Here as an example the pipeline to use in order to process equirectangular images (360 images) for SfM.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>// Configure the scene to use the Spherical camera model and a unit focal length
+$ openMVG_main_SfMInit_ImageListing -i [full path image directory] -o [matches directory] -c 7 -f 1
+
+// Extract the features (using the HIGH preset is advised, since the spherical image introduced distortions)
+$ openMVG_main_ComputeFeatures -i [matches directory]/sfm_data.json -o [matches directory] -m SIFT -p HIGH
+
+// Computes the matches (using the Essential matrix with an angular constraint)
+$ openMVG_main_ComputeMatches -i [matches directory]/sfm_data.json -o [matches directory] -g a
+
+// Compute the reconstruction
+$ openMVG_main_IncrementalSfM -i [matches directory]/sfm_data.json -m [matches directory] -o [reconstruction directory] -a R0010762.JPG -b R0010764.JPG
+// /!\ Since the spherical geometry is different than classic pinhole images, the best is to provide the initial pair by hand with the -a -b image basenames (i.e. R0010762.JPG).
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">SfM: Structure from Motion</a><ul>
+<li><a class="reference internal" href="#openmvg-sfm-tools">openMVG SfM tools</a></li>
+<li><a class="reference internal" href="#openmvg-sfm-pipelines">OpenMVG SfM pipelines</a><ul>
+<li><a class="reference internal" href="#image-listing">1. Image listing</a></li>
+<li><a class="reference internal" href="#image-description-computation">2. Image description computation</a></li>
+<li><a class="reference internal" href="#corresponding-images-and-correspondences-computation">3. Corresponding images and correspondences computation</a></li>
+<li><a class="reference internal" href="#sfm-solving-2-methods">4. SfM solving (2 methods)</a></li>
+<li><a class="reference internal" href="#optional-further-processing">5. Optional further processing</a></li>
+<li><a class="reference internal" href="#optional-further-processing-3rd-party">5. Optional further processing (3rd party)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#openmvg-sfm-pipelines-demo">OpenMVG SfM pipelines demo</a></li>
+<li><a class="reference internal" href="#more-details-about-openmvg-tools">More details about openMVG tools</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#notes-about-spherical-sfm">Notes about Spherical SfM</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../softwares.html"
+                        title="previous chapter">openMVG softwares &amp; tools</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="SfMInit_ImageListing.html"
+                        title="next chapter">openMVG_main_SfMInit_ImageListing</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/software/SfM/SfM.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="SfMInit_ImageListing.html" title="openMVG_main_SfMInit_ImageListing"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../softwares.html" title="openMVG softwares &amp; tools"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../softwares.html" >openMVG softwares &amp; tools</a> &#187;</li> 
+      </ul>
+    </div>
+<div class="footer">
+    &copy; Copyright 2013-2019, OpenMVG authors.
+</div>
+
+
+
+
+
+  </body>
+</html>

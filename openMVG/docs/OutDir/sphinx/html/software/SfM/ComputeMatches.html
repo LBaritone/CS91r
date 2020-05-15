@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>openMVG_main_ComputeMatches &#8212; openMVG library</title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+
+    <link rel="stylesheet" href="../../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../../_static/searchtools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="openMVG_main_IncrementalSfM" href="IncrementalSfM.html" />
+    <link rel="prev" title="openMVG_main_ComputeFeatures" href="ComputeFeatures.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="IncrementalSfM.html" title="openMVG_main_IncrementalSfM"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ComputeFeatures.html" title="openMVG_main_ComputeFeatures"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../softwares.html" >openMVG softwares &amp; tools</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="SfM.html" >SfM: Structure from Motion</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="SfMInit_ImageListing.html" >openMVG_main_SfMInit_ImageListing</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="ComputeFeatures.html" accesskey="U">openMVG_main_ComputeFeatures</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="openmvg-main-computematches">
+<h1>openMVG_main_ComputeMatches<a class="headerlink" href="#openmvg-main-computematches" title="Permalink to this headline">¶</a></h1>
+<p>This binary compute images that have a visual overlap. Using image descriptions computed by <strong>openMVG_main_ComputeFeatures</strong>, we establish the corresponding putative photometric matches and filter the resulting correspondences using some robust geometric filters.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>$ openMVG_main_ComputeMatches -i [..\matches\sfm_data.json] -o [...\matches]
+</pre></div>
+</div>
+<p>Arguments description:</p>
+<p><strong>Required parameters:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>[-i|–input_file]</strong></p>
+<ul>
+<li><p>a SfM_Data file</p></li>
+</ul>
+</li>
+<li><p><strong>[-o|–out_dir path]</strong></p>
+<ul>
+<li><p>path were putative and geometric matches will be stored</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<p><strong>Optional parameters:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>[-f|–force: Force to recompute data]</strong></p>
+<ul>
+<li><p>0: (default) reload previously computed data (useful when you have kill the process and want to continue to compute)</p></li>
+<li><p>1: useful when you change have changed a command line parameter, force recomputing and re-saving.</p></li>
+</ul>
+</li>
+<li><p><strong>[-r|-ratio]</strong></p>
+<ul>
+<li><dl class="simple">
+<dt>(Nearest Neighbor distance ratio, default value is set to 0.8).</dt><dd><p>Using 0.6 is more restrictive =&gt; provides less false positive.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</li>
+<li><p><strong>[-g|-geometric_model]</strong></p>
+<ul>
+<li><p>type of model used for robust estimation from the photometric putative matches</p>
+<ul>
+<li><p>f: Fundamental matrix filtering</p></li>
+<li><p>e: Essential matrix filtering</p></li>
+<li><p>h: Homography matrix filtering</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>[-n|–nearest_matching_method]</strong></p>
+<ul>
+<li><p>AUTO: auto choice from regions type,</p></li>
+<li><p>For Scalar based descriptor you can use:</p>
+<ul>
+<li><p>BRUTEFORCEL2: BruteForce L2 matching for Scalar based regions descriptor,</p></li>
+<li><p>ANNL2: Approximate Nearest Neighbor L2 matching for Scalar based regions descriptor,</p></li>
+<li><p>CASCADEHASHINGL2: L2 Cascade Hashing matching,</p></li>
+<li><dl class="simple">
+<dt>FASTCASCADEHASHINGL2: (default).</dt><dd><p>L2 Cascade Hashing with precomputed hashed regions,
+(faster than CASCADEHASHINGL2 but use more memory).</p>
+</dd>
+</dl>
+</li>
+</ul>
+</li>
+<li><p>For Binary based descriptor you must use:</p>
+<ul>
+<li><p>BRUTEFORCEHAMMING: BruteForce Hamming matching for binary based regions descriptor,</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>[-v|–video_mode_matching]</strong></p>
+<ul>
+<li><p>(sequence matching with an overlap of X images)</p>
+<ul>
+<li><p>X: with match 0 with (1-&gt;X), …]</p></li>
+<li><p>2: will match 0 with (1,2), 1 with (2,3), …</p></li>
+<li><p>3: will match 0 with (1,2,3), 1 with (2,3,4), …]</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>[-l|–pair_list]</strong></p>
+<ul>
+<li><p>file that explicitly list the View pair that must be compared</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<p>Once matches have been computed you can, at your choice, you can display detected, matches as SVG files:</p>
+<ul class="simple">
+<li><p><strong>Detected keypoints</strong>: openMVG_main_exportKeypoints</p></li>
+<li><p><strong>Putative, Geometric matches</strong>: openMVG_main_exportMatches</p></li>
+<li><p><strong>Tracks</strong>: openMVG_main_exportTracks</p></li>
+</ul>
+<p><strong>Or start the 3D reconstruction:</strong></p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="IncrementalSfM.html">openMVG_main_IncrementalSfM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IncrementalSfM.html#openmvg-main-incrementalsfm2">openMVG_main_IncrementalSfM2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GlobalSfM.html">openMVG_main_GlobalSfM</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ComputeFeatures.html"
+                        title="previous chapter">openMVG_main_ComputeFeatures</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="IncrementalSfM.html"
+                        title="next chapter">openMVG_main_IncrementalSfM</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/software/SfM/ComputeMatches.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="IncrementalSfM.html" title="openMVG_main_IncrementalSfM"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ComputeFeatures.html" title="openMVG_main_ComputeFeatures"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../softwares.html" >openMVG softwares &amp; tools</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="SfM.html" >SfM: Structure from Motion</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="SfMInit_ImageListing.html" >openMVG_main_SfMInit_ImageListing</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="ComputeFeatures.html" >openMVG_main_ComputeFeatures</a> &#187;</li> 
+      </ul>
+    </div>
+<div class="footer">
+    &copy; Copyright 2013-2019, OpenMVG authors.
+</div>
+
+
+
+
+
+  </body>
+</html>

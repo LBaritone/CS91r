@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>openMVG samples &#8212; openMVG library</title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+
+    <link rel="stylesheet" href="../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../_static/searchtools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="openMVG softwares &amp; tools" href="../software/softwares.html" />
+    <link rel="prev" title="sfm" href="../openMVG/sfm/sfm.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../software/softwares.html" title="openMVG softwares &amp; tools"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../openMVG/sfm/sfm.html" title="sfm"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">openMVG library</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="openmvg-samples">
+<h1>openMVG samples<a class="headerlink" href="#openmvg-samples" title="Permalink to this headline">¶</a></h1>
+<p>openMVG focus on a strong implementation checking of the provided features.
+To do so it provides unit test (that assert code results and helps user to see how the code must be used) but it provides also illustrated samples of the major features.</p>
+<p>The samples can be seen as showcase and tutorials:</p>
+<div class="section" id="imagedata">
+<h2>imageData<a class="headerlink" href="#imagedata" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>some pictures for each of the following examples.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="features-siftputativematches">
+<h2>features_siftPutativeMatches<a class="headerlink" href="#features-siftputativematches" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>Show how:</dt><dd><ul class="simple">
+<li><p>extract SIFT features and descriptors,</p></li>
+<li><p>match features descriptors,</p></li>
+<li><p>display the computed matches.</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="features-affine-demo">
+<h2>features_affine_demo<a class="headerlink" href="#features-affine-demo" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>Show how:</dt><dd><ul class="simple">
+<li><p>use the MSER/TBMR region detector</p></li>
+<li><p>display regions fitted ellipses</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="features-image-matching">
+<h2>features_image_matching<a class="headerlink" href="#features-image-matching" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>Show how:</dt><dd><ul class="simple">
+<li><p>use the Image_describer interface to extract features &amp; descriptors</p></li>
+<li><p>match the detected regions</p></li>
+<li><p>display detected features &amp; corresponding matches</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="features-kvld-filter">
+<h2>features_kvld_filter<a class="headerlink" href="#features-kvld-filter" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>Show how:</dt><dd><ul class="simple">
+<li><p>filter putative matches with the K-VLD filter <a class="reference internal" href="../bibliography.html#kvld12" id="id1"><span>[KVLD12]</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="features-repeatability">
+<h2>features_repeatability<a class="headerlink" href="#features-repeatability" title="Permalink to this headline">¶</a></h2>
+<p>Show how to use Oxford’s “Affine Covariant Regions Datasets” image datasets in order to compute feature position and or descriptor matching repeatability measures.</p>
+</div>
+<div class="section" id="multiview-robust-homography">
+<h2>multiview_robust_homography<a class="headerlink" href="#multiview-robust-homography" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>Show how:</dt><dd><ul class="simple">
+<li><p>estimate a robust homography between features matches.</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="multiview-robust-homography-guided">
+<h2>multiview_robust_homography_guided<a class="headerlink" href="#multiview-robust-homography-guided" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>Show how:</dt><dd><ul class="simple">
+<li><p>estimate a robust homography between features matches,</p></li>
+<li><p>extend the putative matches with a H guided filter,</p></li>
+<li><p>warp the query image over the reference image.</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="multiview-robust-fundamental">
+<h2>multiview_robust_fundamental<a class="headerlink" href="#multiview-robust-fundamental" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>Show how:</dt><dd><ul class="simple">
+<li><p>estimate a robust fundamental matrix between features matches.</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="multiview-robust-fundamental-guided">
+<h2>multiview_robust_fundamental_guided<a class="headerlink" href="#multiview-robust-fundamental-guided" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>Show how:</dt><dd><ul class="simple">
+<li><p>estimate a robust fundamental matrix between features matches,</p></li>
+<li><p>extend the putative matches with a F guided filter.</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="multiview-robust-essential">
+<h2>multiview_robust_essential<a class="headerlink" href="#multiview-robust-essential" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>Show how:</dt><dd><ul class="simple">
+<li><p>estimate a robust essential matrix between features matches,</p></li>
+<li><p>compute the 3D structure by triangulation of the corresponding inliers.</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="multiview-robust-essential-ba">
+<h2>multiview_robust_essential_ba<a class="headerlink" href="#multiview-robust-essential-ba" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>Show how:</dt><dd><ul class="simple">
+<li><p>refine with bundle_adjustment the Structure and Motion of a scene</p></li>
+<li><p>for different camera model:</p>
+<ul>
+<li><p>Refine <code class="docutils literal notranslate"><span class="pre">[X],[f,R|t]</span></code> (individual cameras),</p></li>
+<li><p>Refine <code class="docutils literal notranslate"><span class="pre">[X],[R|t]</span></code>, shared <code class="docutils literal notranslate"><span class="pre">[f]</span></code>,</p></li>
+<li><p>Refine <code class="docutils literal notranslate"><span class="pre">[X],[R|t]</span></code>, shared brown disto models.</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="multiview-robust-essential-spherical">
+<h2>multiview_robust_essential_spherical<a class="headerlink" href="#multiview-robust-essential-spherical" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>Show how:</dt><dd><ul class="simple">
+<li><p>estimate a robust essential matrix between two spherical panorama</p></li>
+<li><p>triangulate remaning inliers.</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="exif-parsing">
+<h2>exif_Parsing<a class="headerlink" href="#exif-parsing" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>Show how:</dt><dd><ul class="simple">
+<li><p>parse JPEG EXIF metadata</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="exif-sensorwidthdatabase">
+<h2>exif_sensorWidthDatabase<a class="headerlink" href="#exif-sensorwidthdatabase" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>Show how:</dt><dd><ul class="simple">
+<li><p>use the camera sensor width database</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="cameras-undisto-brown">
+<h2>cameras_undisto_Brown<a class="headerlink" href="#cameras-undisto-brown" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>Show how:</dt><dd><ul class="simple">
+<li><p>undistord a picture according known Brown radial parameters.</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="openmvg-sample-pano-converter">
+<h2>openMVG_sample_pano_converter<a class="headerlink" href="#openmvg-sample-pano-converter" title="Permalink to this headline">¶</a></h2>
+<p>Show how extract many rectilinear images from a spherical panorama.</p>
+<p><strong>Don’t hesitate to help to extend the list.</strong></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">openMVG samples</a><ul>
+<li><a class="reference internal" href="#imagedata">imageData</a></li>
+<li><a class="reference internal" href="#features-siftputativematches">features_siftPutativeMatches</a></li>
+<li><a class="reference internal" href="#features-affine-demo">features_affine_demo</a></li>
+<li><a class="reference internal" href="#features-image-matching">features_image_matching</a></li>
+<li><a class="reference internal" href="#features-kvld-filter">features_kvld_filter</a></li>
+<li><a class="reference internal" href="#features-repeatability">features_repeatability</a></li>
+<li><a class="reference internal" href="#multiview-robust-homography">multiview_robust_homography</a></li>
+<li><a class="reference internal" href="#multiview-robust-homography-guided">multiview_robust_homography_guided</a></li>
+<li><a class="reference internal" href="#multiview-robust-fundamental">multiview_robust_fundamental</a></li>
+<li><a class="reference internal" href="#multiview-robust-fundamental-guided">multiview_robust_fundamental_guided</a></li>
+<li><a class="reference internal" href="#multiview-robust-essential">multiview_robust_essential</a></li>
+<li><a class="reference internal" href="#multiview-robust-essential-ba">multiview_robust_essential_ba</a></li>
+<li><a class="reference internal" href="#multiview-robust-essential-spherical">multiview_robust_essential_spherical</a></li>
+<li><a class="reference internal" href="#exif-parsing">exif_Parsing</a></li>
+<li><a class="reference internal" href="#exif-sensorwidthdatabase">exif_sensorWidthDatabase</a></li>
+<li><a class="reference internal" href="#cameras-undisto-brown">cameras_undisto_Brown</a></li>
+<li><a class="reference internal" href="#openmvg-sample-pano-converter">openMVG_sample_pano_converter</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../openMVG/sfm/sfm.html"
+                        title="previous chapter">sfm</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../software/softwares.html"
+                        title="next chapter">openMVG softwares &amp; tools</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/openMVG_Samples/openMVG_Samples.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../software/softwares.html" title="openMVG softwares &amp; tools"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../openMVG/sfm/sfm.html" title="sfm"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">openMVG library</a> &#187;</li> 
+      </ul>
+    </div>
+<div class="footer">
+    &copy; Copyright 2013-2019, OpenMVG authors.
+</div>
+
+
+
+
+
+  </body>
+</html>

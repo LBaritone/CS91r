@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>matching &#8212; openMVG library</title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+
+    <link rel="stylesheet" href="../../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../../_static/searchtools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="tracks" href="../tracks/tracks.html" />
+    <link rel="prev" title="robust_estimation" href="../robust_estimation/robust_estimation.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../tracks/tracks.html" title="tracks"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../robust_estimation/robust_estimation.html" title="robust_estimation"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../openMVG.html" accesskey="U">openMVG libraries</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="matching">
+<h1>matching<a class="headerlink" href="#matching" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="nearest-neighbor-search">
+<h2>Nearest neighbor search<a class="headerlink" href="#nearest-neighbor-search" title="Permalink to this headline">¶</a></h2>
+<p>We provide a generic interface to perform:</p>
+<ul class="simple">
+<li><p><strong>Nearest neighbor search (NNS)</strong></p></li>
+<li><p><strong>K-Nearest Neighbor (K-NN)</strong></p></li>
+</ul>
+<p>Three implementations are available:</p>
+<ul class="simple">
+<li><p>a Brute force,</p></li>
+<li><p>an Approximate Nearest Neighbor <a class="reference internal" href="../../bibliography.html#flann" id="id1"><span>[FLANN]</span></a>,</p></li>
+<li><p>a Cascade hashing Nearest Neighbor <a class="reference internal" href="../../bibliography.html#cascadehashing" id="id2"><span>[CASCADEHASHING]</span></a>.</p></li>
+<li><p>an approximate nearest neighbor search using Hierarchical Navigable Small World graphs <a class="reference internal" href="../../bibliography.html#hnsw" id="id3"><span>[HNSW]</span></a>.</p></li>
+</ul>
+<p>This module works for data of any dimensionality, it could be use to search nearest neighbors for:</p>
+<ul class="simple">
+<li><p>Point coordinates (2d, 3d, nd),</p></li>
+<li><p>Feature descriptors (64, 128, nd).</p></li>
+</ul>
+<p>Note:</p>
+<ul class="simple">
+<li><p>Since the distance metric is configurable you can use it with Scalar (L1, L2, .. distance), or binary vector (Hamming distance).</p></li>
+</ul>
+<p>Using the <strong>Nearest neighbor search (NNS)</strong> let you find pairs of elements (<code class="docutils literal notranslate"><span class="pre">(i,j)</span></code>) from sets <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> that are the closest for a given metric <code class="docutils literal notranslate"><span class="pre">d</span></code>:</p>
+<div class="math notranslate nohighlight">
+\[\lbrace (P^i_A,P^j_B): j = \underset{k} {\mathrm{argmin}} \quad d(\text{desc}(P^i_A), \text{desc}(P^k_B)) \rbrace\]</div>
+<p>Using the <strong>K-NN</strong> will return you tuple of elements: <code class="docutils literal notranslate"><span class="pre">(i;(j,k))</span></code> if 2 nearest values have been asked for the Inth query.</p>
+<p>Example of usage:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Setup the matcher</span>
+<span class="n">ArrayMatcherBruteForce</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">matcher</span><span class="p">;</span>
+<span class="c1">// The reference array</span>
+<span class="kt">float</span> <span class="n">array</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">};</span>
+<span class="c1">// Setup the reference array of the matcher</span>
+<span class="n">matcher</span><span class="p">.</span><span class="n">Build</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+<span class="c1">//--</span>
+<span class="c1">// Looking for the nearest neighbor:</span>
+<span class="c1">//--</span>
+<span class="c1">// Perform a query to look which point is closest to 1.8</span>
+<span class="kt">float</span> <span class="n">query</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mf">1.8f</span><span class="p">};</span>
+<span class="kt">int</span> <span class="n">nIndice</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="kt">float</span> <span class="n">fDistance</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0f</span><span class="p">;</span>
+<span class="n">matcher</span><span class="p">.</span><span class="n">SearchNeighbour</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">nIndice</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">fDistance</span><span class="p">);</span>
+
+<span class="c1">//  nIndice == 2 ; // index of the found nearest neighbor</span>
+<span class="c1">//  fDistance == 0.4; // squared distance</span>
+
+<span class="c1">//--</span>
+<span class="c1">// Looking for the K=2 nearest neighbor</span>
+<span class="c1">//--</span>
+<span class="n">IndMatches</span> <span class="n">vec_nIndices</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">vec_fDistance</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">K</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">matcher</span><span class="p">.</span><span class="n">SearchNeighbours</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">vec_nIndices</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">vec_fDistance</span><span class="p">,</span> <span class="n">K</span><span class="p">);</span>
+
+<span class="c1">// vec_nIndices = {IndMatch(0,2), IndMatche(0,1)};</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="metric-customization">
+<h2>Metric customization<a class="headerlink" href="#metric-customization" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>L2 (used by default):</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[d(x,y):=\| x-y \|_2\]</div>
+<ul class="simple">
+<li><p>i.e L1 for binary descriptor (Hamming distance),</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[d(x,y) = \sum(x \oplus y)\]</div>
+<ul class="simple">
+<li><p>user customized distance (L1, …).</p></li>
+</ul>
+</div>
+<div class="section" id="image-domain-correspondences-filtering-kvld">
+<h2>Image domain, correspondences filtering (KVLD)<a class="headerlink" href="#image-domain-correspondences-filtering-kvld" title="Permalink to this headline">¶</a></h2>
+<p>When used with descriptors found putative matches can be filtered thanks to different filters:</p>
+<ul class="simple">
+<li><p>Symmetric distance (Left-Right check).</p>
+<ul>
+<li><p>Keep only mutal correspondences: a match is kept if it is the same in the A-&gt;B and B-&gt;A order.</p></li>
+</ul>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\lbrace (P^i_A,P^j_B): j = \underset{k} {\mathrm{argmin}} ~ d(\text{desc}(P^i_A), \text{desc}(P^k_B)), i = \underset{k} \min ~ d(\text{desc}(P^k_A), \text{desc}(P^j_B))
+\rbrace\]</div>
+<ul class="simple">
+<li><p>“Nearest Neighbor Distance Ratio” distance check can be performed to remove repetitive elements.</p>
+<ul>
+<li><p>As many nearest points have been asked we can measure the similarity between the N-nearest neighbor. If the ratio of distance is inferior to a threshold <code class="docutils literal notranslate"><span class="pre">\delta</span></code> the match is kept else it is rejected (since the risk of confusion is higher). It allows to avoid ambiguous correspondences. <code class="docutils literal notranslate"><span class="pre">\delta</span></code> is often chosen between <code class="docutils literal notranslate"><span class="pre">0.6</span></code> and <code class="docutils literal notranslate"><span class="pre">0.8</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\lbrace (P^i_A,P^j_B): j = \underset{k} {\mathrm{argmin}} ~ d(\text{desc}(P^i_A), \text{desc}(P^k_B)) &lt; \delta \underset{k\neq j} \min ~ d(\text{desc}(P^i_A), \text{desc}(P^k_B))
+\rbrace\]</div>
+<ul class="simple">
+<li><p>K-VLD Filter (K-Virtual Line Descriptor) <a class="reference internal" href="../../bibliography.html#kvld12" id="id4"><span>[KVLD12]</span></a></p>
+<ul>
+<li><p>A virtual segment (a segment/line between two points) is kept if at least one of it’s supporting point is linked to K virtual segments. It produces a coherent photometric graph of the features from the set of points <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code>. Below: Top (SIFT putative matches found by NNS), Bottom: K-VLD coherent matches.</p></li>
+</ul>
+</li>
+</ul>
+<div class="figure align-center">
+<img alt="../../_images/KVLD_matches.jpg" src="../../_images/KVLD_matches.jpg" />
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">matching</a><ul>
+<li><a class="reference internal" href="#nearest-neighbor-search">Nearest neighbor search</a></li>
+<li><a class="reference internal" href="#metric-customization">Metric customization</a></li>
+<li><a class="reference internal" href="#image-domain-correspondences-filtering-kvld">Image domain, correspondences filtering (KVLD)</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../robust_estimation/robust_estimation.html"
+                        title="previous chapter">robust_estimation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../tracks/tracks.html"
+                        title="next chapter">tracks</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/openMVG/matching/matching.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../tracks/tracks.html" title="tracks"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../robust_estimation/robust_estimation.html" title="robust_estimation"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../openMVG.html" >openMVG libraries</a> &#187;</li> 
+      </ul>
+    </div>
+<div class="footer">
+    &copy; Copyright 2013-2019, OpenMVG authors.
+</div>
+
+
+
+
+
+  </body>
+</html>

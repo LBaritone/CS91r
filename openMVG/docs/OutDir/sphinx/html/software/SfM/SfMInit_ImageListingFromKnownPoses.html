@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>openMVG_main_SfMInit_ImageListingFromKnownPoses &#8212; openMVG library</title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+
+    <link rel="stylesheet" href="../../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../../_static/searchtools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="openMVG_main_ComputeSfM_DataColor" href="ComputeSfM_DataColor.html" />
+    <link rel="prev" title="openMVG_main_GlobalSfM" href="GlobalSfM.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ComputeSfM_DataColor.html" title="openMVG_main_ComputeSfM_DataColor"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="GlobalSfM.html" title="openMVG_main_GlobalSfM"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../softwares.html" >openMVG softwares &amp; tools</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="SfM.html" accesskey="U">SfM: Structure from Motion</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="openmvg-main-sfminit-imagelistingfromknownposes">
+<h1>openMVG_main_SfMInit_ImageListingFromKnownPoses<a class="headerlink" href="#openmvg-main-sfminit-imagelistingfromknownposes" title="Permalink to this headline">¶</a></h1>
+<p>Load datasets with ground truth position and orientation information and pack them into sfm_data.json.
+Now support <a class="reference external" href="https://icwww.epfl.ch/~marquez/multiview/denseMVS.html">Strecha’s Dataset</a>, <a class="reference external" href="http://vision.middlebury.edu/mview/data/">MiddleBury’s Dataset</a>, <a class="reference external" href="http://roboimagedata.compute.dtu.dk/?page_id=36">DTU MVS Dataset</a>, <a class="reference external" href="https://www.eth3d.net/datasets">ETH 3D Dataset</a> and <a class="reference external" href="http://www.cvlibs.net/datasets/kitti/eval_odometry.php">Kitti Odometry Dataset</a>.</p>
+<div class="section" id="note">
+<h2>Note<a class="headerlink" href="#note" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>openMVG_main_SfMInit_ImageListingFromKnownPoses only support rectified images nowadays. So when you use the  “DTU MVS Dataset” and “ETH 3D Dataset”, you have to pay attention to download the correct images.</p></li>
+<li><p>Please put the ground truth information and images in separate folder so that the  openMVG_main_SfMInit_ImageListingFromKnownPoses can load the correct ground truth file and images.</p></li>
+<li><p>Because Kitti Odometry Dataset only provided the left camera’s ground truth, we only support load the ground truth of the left camera.</p></li>
+<li><p>DTU MVS Dataset provides images with different illumination, you have to select images with the same illumination.</p></li>
+</ol>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>$ openMVG_main_SfMInit_ImageListing -i [] -g [] -t []
+</pre></div>
+</div>
+<p>Arguments description:</p>
+<p><strong>Required parameters:</strong></p>
+<blockquote>
+<div><ul>
+<li><p><strong>[-i|–imageDirectory]</strong></p>
+<ul class="simple">
+<li><p>Path store the images</p></li>
+</ul>
+</li>
+<li><p><strong>[-g|–groundTruthDirectory]</strong></p>
+<ul class="simple">
+<li><p>Path store the ground truth(must different with the imageDirectory )</p></li>
+</ul>
+</li>
+<li><p><strong>[-t|–groundTruthDataset]</strong></p>
+<ul>
+<li><p>Type of dataset</p>
+<p>-1: Strecha’s Dataset</p>
+<p>-2: MiddleBury’s Dataset</p>
+<p>-3: DTU MVS Dataset</p>
+<p>-4: ETH 3D Dataset</p>
+<p>-5: Kitti Odometry Dataset</p>
+</li>
+</ul>
+</li>
+<li><p><strong>[-o|–outputDirectory]</strong></p>
+<ul class="simple">
+<li><p>Path store the sfm_data.json</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="demo-load-from-strecha-s-dataset">
+<h2>Demo: Load From Strecha’s Dataset<a class="headerlink" href="#demo-load-from-strecha-s-dataset" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Download one of the Strecha’s datasets from <a class="reference external" href="https://icwww.epfl.ch/~marquez/multiview/denseMVS.html">Strecha’s Dataset</a></p></li>
+<li><p>Put the images and ground truth file in separate folder</p></li>
+<li><p>Launch the openMVG_main_SfMInit_ImageListingFromKnownPoses</p></li>
+</ol>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>$ openMVG_main_SfMInit_ImageListingFromKnownPoses -i /home/user/Dataset/Strecha/images -g /home/user/Dataset/Strecha/gt -t 1 -o /home/user/Dataset/Strecha/result
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>A sfm_data.json file will be produced that is used by openMVG as a scene description.</p></li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">openMVG_main_SfMInit_ImageListingFromKnownPoses</a><ul>
+<li><a class="reference internal" href="#note">Note</a></li>
+<li><a class="reference internal" href="#demo-load-from-strecha-s-dataset">Demo: Load From Strecha’s Dataset</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="GlobalSfM.html"
+                        title="previous chapter">openMVG_main_GlobalSfM</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ComputeSfM_DataColor.html"
+                        title="next chapter">openMVG_main_ComputeSfM_DataColor</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/software/SfM/SfMInit_ImageListingFromKnownPoses.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ComputeSfM_DataColor.html" title="openMVG_main_ComputeSfM_DataColor"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="GlobalSfM.html" title="openMVG_main_GlobalSfM"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../softwares.html" >openMVG softwares &amp; tools</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="SfM.html" >SfM: Structure from Motion</a> &#187;</li> 
+      </ul>
+    </div>
+<div class="footer">
+    &copy; Copyright 2013-2019, OpenMVG authors.
+</div>
+
+
+
+
+
+  </body>
+</html>

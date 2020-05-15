@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>SfM_data format &#8212; openMVG library</title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+
+    <link rel="stylesheet" href="../../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../../_static/searchtools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Ground Control Points registration" href="../ui/SfM/control_points_registration/GCP.html" />
+    <link rel="prev" title="Export to Colmap" href="../MVS/Colmap.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../ui/SfM/control_points_registration/GCP.html" title="Ground Control Points registration"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../MVS/Colmap.html" title="Export to Colmap"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../softwares.html" >openMVG softwares &amp; tools</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="SfM.html" accesskey="U">SfM: Structure from Motion</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="sfm-data-format">
+<h1>SfM_data format<a class="headerlink" href="#sfm-data-format" title="Permalink to this headline">¶</a></h1>
+<p>SfM_Data is a data container. It contains:</p>
+<ul class="simple">
+<li><p><strong>Views</strong>
+- images</p></li>
+<li><p><strong>Intrinsics</strong>
+- intrinsics camera parameters</p></li>
+<li><p><strong>Poses</strong>
+- extrinsic camera parameters</p></li>
+<li><p><strong>Landmarks</strong>
+- 3D points and their 2D Observations</p></li>
+</ul>
+<p>The View and Intrinsic concept are abstract and so:</p>
+<ul class="simple">
+<li><p>any internal camera model can be used</p></li>
+<li><p>any metadata can be stored related to a view.</p></li>
+</ul>
+<p>Dynamic loading of stored object is performed thanks to the cereal serialization library (this library allow polymorphism serialization).</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../MVS/Colmap.html"
+                        title="previous chapter">Export to Colmap</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../ui/SfM/control_points_registration/GCP.html"
+                        title="next chapter">Ground Control Points registration</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/software/SfM/SfM_OutputFormat.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../ui/SfM/control_points_registration/GCP.html" title="Ground Control Points registration"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../MVS/Colmap.html" title="Export to Colmap"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../softwares.html" >openMVG softwares &amp; tools</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="SfM.html" >SfM: Structure from Motion</a> &#187;</li> 
+      </ul>
+    </div>
+<div class="footer">
+    &copy; Copyright 2013-2019, OpenMVG authors.
+</div>
+
+
+
+
+
+  </body>
+</html>

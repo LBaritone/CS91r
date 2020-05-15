@@ -1,0 +1,348 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Geodesy: Usage of GPS prior &#8212; openMVG library</title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+
+    <link rel="stylesheet" href="../../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../../_static/searchtools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Color Harmonization" href="../colorHarmonization/color.html" />
+    <link rel="prev" title="Localization" href="../localization/localization.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../colorHarmonization/color.html" title="Color Harmonization"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../localization/localization.html" title="Localization"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../softwares.html" accesskey="U">openMVG softwares &amp; tools</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="geodesy-usage-of-gps-prior">
+<h1><a class="toc-backref" href="#id1">Geodesy: Usage of GPS prior</a><a class="headerlink" href="#geodesy-usage-of-gps-prior" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#geodesy-usage-of-gps-prior" id="id1">Geodesy: Usage of GPS prior</a></p>
+<ul>
+<li><p><a class="reference internal" href="#introduction" id="id2">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#usage-of-pose-prior" id="id3">Usage of pose prior</a></p></li>
+<li><p><a class="reference internal" href="#for-sfm-to-xyz-gps-registration" id="id4">For SfM to XYZ (GPS) registration</a></p></li>
+<li><p><a class="reference internal" href="#prepare-a-geo-referenced-scene-for-processing-for-mvs" id="id5">Prepare a geo-referenced scene for processing for MVS</a></p></li>
+<li><p><a class="reference internal" href="#use-case-command-line-used-for-a-flat-uav-survey" id="id6">Use-case: command line used for a flat UAV survey</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id2">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>In order to compute scene in the user coordinates system, the user can use some Geodesy data (i.e GPS or XYZ prior).</p>
+<p>Those informations can be used in two ways in OpenMVG:</p>
+<p>To speed up the pairwise feature matching step:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>limit the number of pair by matching only neighbor images.</p></li>
+</ul>
+</div></blockquote>
+<p>For SfM:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>As rigid prior,</p></li>
+<li><p>As non rigid prior.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="usage-of-pose-prior">
+<h2><a class="toc-backref" href="#id3">Usage of pose prior</a><a class="headerlink" href="#usage-of-pose-prior" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="to-speed-up-the-pairwise-feature-matching-step">
+<h3>To speed up the pairwise feature matching step<a class="headerlink" href="#to-speed-up-the-pairwise-feature-matching-step" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>$ openMVG_main_ListMatchingPairs -G -n 5 -i Dataset/matching/sfm_data.json -o Dataset/matching/pair_list.txt
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>Required parameters:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>[-i|–input_file]</strong> The input SfM_Data file (must have pose prior see “Scene initialization” below)</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>[-o|–output_file]</strong> The pair list filename (will be send to main_ComputeMatches to limit the number of pairs)</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<p><strong>Enable the neighboring view limitation</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>[-G|–gps_mode]</strong> Enable the computation of GPS neighborhood</p></li>
+<li><p><strong>[-n|–neighbor_count]</strong> The number of maximum neighbor per poses (list the N closest poses GPS corresponding XYZ positions.)</p></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="for-sfm-to-xyz-gps-registration">
+<h2><a class="toc-backref" href="#id4">For SfM to XYZ (GPS) registration</a><a class="headerlink" href="#for-sfm-to-xyz-gps-registration" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rigid-registration-sfm">
+<h3>Rigid Registration [SfM]<a class="headerlink" href="#rigid-registration-sfm" title="Permalink to this headline">¶</a></h3>
+<p>Once you have performed SfM on your scene, you can adjust your scene coordinate system to fit your GPS datum.
+A 7DoF similarity can be computed between the SfM camera center position &amp; the image GPS datum.
+The found similarity is applied to Camera position &amp; landmarks.</p>
+<p>Note: GPS conversion to XYZ Image position is computed in ECEF by using valid WGS84 GPS latitude, longitude &amp; altitude EXIF data.</p>
+<blockquote>
+<div><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>$ openMVG_main_geodesy_registration_to_gps_position -i Dataset/out_Reconstruction/sfm_data.bin -o Dataset/out_Reconstruction/sfm_data_adjusted.bin
+</pre></div>
+</div>
+</div></blockquote>
+<p>Arguments description:</p>
+<p><strong>Required parameters:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>[-i|–input_file]</strong></p>
+<ul>
+<li><p>a SfM_Data file with valid intrinsics and poses and optional structure</p></li>
+</ul>
+</li>
+<li><p><strong>[-o|–output_file]</strong></p>
+<ul>
+<li><p>filename in which the registered SfM_Data scene must be saved</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<p><strong>Optional parameters:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>[-m|–method]</strong> method that will be used to compute the GPS registration</p>
+<ul>
+<li><p>0: Registration is done by using a robust estimation (Minimization of the Median fitting error).</p></li>
+<li><p>1(default): Registration is done using all corresponding points.</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="non-rigid-registration-adaptive-registration-sfm">
+<h3>Non-Rigid Registration (adaptive registration) [SfM]<a class="headerlink" href="#non-rigid-registration-adaptive-registration-sfm" title="Permalink to this headline">¶</a></h3>
+<p>Pose prior (GPS/Odometry) can be use as a non rigid prior during OpenMVG SfM Bundle Adjustment phase.
+To do so, XYZ pose prior must be set in the initial SfM_Data file and the usage of prior must be set in the SfM binaries.</p>
+<p>Here the command line change that you must notice in order to use the GPS prior data.</p>
+<ul class="simple">
+<li><p>First you must initialize the scene with XYZ view’s pose prior.</p></li>
+<li><p>Then you must tell to the SfM pipeline to use the pose prior data.</p></li>
+</ul>
+<div class="section" id="scene-initialization">
+<h4>Scene initialization<a class="headerlink" href="#scene-initialization" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>$ openMVG_main_SfMInit_ImageListing -P [other args]
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>Optional parameters:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>[-P]</strong></p>
+<ul>
+<li><p>Setup a XYZ position prior for each view that have valid EXIF GPS data.</p></li>
+</ul>
+</li>
+<li><p><strong>[-w]</strong></p>
+<ul>
+<li><p>Allow to customize the pose prior weight in each XYZ dimention i.e. default is equivalent to “1.0;1.0;1.0”</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="force-pose-prior-usage">
+<h4>Force pose prior usage<a class="headerlink" href="#force-pose-prior-usage" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>$ openMVG_main_IncrementalSfM -P [other args]
+$ openMVG_main_GlobalSfM -P [other args]
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>Optional parameters:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>[-P]</strong></p>
+<ul>
+<li><p>Enable the usage of view’s motion priors data.</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="prepare-a-geo-referenced-scene-for-processing-for-mvs">
+<h2><a class="toc-backref" href="#id5">Prepare a geo-referenced scene for processing for MVS</a><a class="headerlink" href="#prepare-a-geo-referenced-scene-for-processing-for-mvs" title="Permalink to this headline">¶</a></h2>
+<p>Since MVS frameworks does not like large double values (raw GPS coordinates) you can use the tool openMVG_main_ChangeLocalOrigin to center the scene on the first camera poses. This binary will create a sfm_data_local.bin file that has been recentered.</p>
+<blockquote>
+<div><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Recenter the scene</span>
+<span class="n">openMVG_main_ChangeLocalOrigin</span> \
+  <span class="o">-</span><span class="n">i</span> <span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">pierre</span><span class="o">/</span><span class="n">SenseFly</span><span class="o">/</span><span class="n">Quarry</span><span class="o">/</span><span class="n">quary_output</span><span class="o">/</span><span class="n">global_reconstruction</span><span class="o">/</span><span class="n">sfm_data</span><span class="p">.</span><span class="n">bin</span> \
+  <span class="o">-</span><span class="n">o</span> <span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">pierre</span><span class="o">/</span><span class="n">SenseFly</span><span class="o">/</span><span class="n">Quarry</span><span class="o">/</span><span class="n">quary_output</span><span class="o">/</span><span class="n">global_reconstruction</span><span class="o">/</span> \
+  <span class="o">-</span><span class="n">f</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="use-case-command-line-used-for-a-flat-uav-survey">
+<h2><a class="toc-backref" href="#id6">Use-case: command line used for a flat UAV survey</a><a class="headerlink" href="#use-case-command-line-used-for-a-flat-uav-survey" title="Permalink to this headline">¶</a></h2>
+<p>Launched on the dataset Swiss Quarry <a class="reference external" href="https://senseflycom.s3.amazonaws.com/datasets/quarry-switzerland/geotagged-images.zip">Geotagged multispectral images</a>.</p>
+<blockquote>
+<div><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>// Initialize the scene
+//  Pose prior for each view will be set thanks to the GPS data
+openMVG_main_SfMInit_ImageListing \
+  -P \
+  -d sensor_width_camera_database.txt \
+  -i /media/pierre/SenseFly/Quarry/geotagged-images/ \
+  -o /media/pierre/SenseFly/Quarry/quary_output/
+
+thread_count=8
+openMVG_main_ComputeFeatures \
+  -i /media/pierre/SenseFly/Quarry/quary_output/sfm_data.json \
+  -o /media/pierre/SenseFly/Quarry/quary_output/matches \
+  -n $thread_count
+
+// Limit the number of pairs that will be used for matching
+// -&gt; limit to pose neighborhood thanks to the pose center prior location
+openMVG_main_ListMatchingPairs \
+  -G \
+  -n 8 \
+  -i /media/pierre/SenseFly/Quarry/quary_output/sfm_data.json \
+  -o /media/pierre/SenseFly/Quarry/quary_output/matches/pair_list.txt
+
+openMVG_main_ComputeMatches \
+  -i /media/pierre/SenseFly/Quarry/quary_output/sfm_data.json \
+  -l /media/pierre/SenseFly/Quarry/quary_output/matches/pair_list.txt \
+  -g e \
+  -o /media/pierre/SenseFly/Quarry/quary_output/matches/
+
+openMVG_main_GlobalSfM \
+  -P \
+  -i /media/pierre/SenseFly/Quarry/quary_output/sfm_data.json \
+  -m /media/pierre/SenseFly/Quarry/quary_output/matches/ \
+  -o /media/pierre/SenseFly/Quarry/quary_output/global_reconstruction
+</pre></div>
+</div>
+</div></blockquote>
+<p>Here the final results:</p>
+<p>In green the SFM poses, and in blue the GPS Exif ECEF poses. We clearly see that the two coordinates system are close.</p>
+<div class="figure align-center">
+<img alt="../../_images/swiss_quarry_registered.png" src="../../_images/swiss_quarry_registered.png" />
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Geodesy: Usage of GPS prior</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#usage-of-pose-prior">Usage of pose prior</a><ul>
+<li><a class="reference internal" href="#to-speed-up-the-pairwise-feature-matching-step">To speed up the pairwise feature matching step</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#for-sfm-to-xyz-gps-registration">For SfM to XYZ (GPS) registration</a><ul>
+<li><a class="reference internal" href="#rigid-registration-sfm">Rigid Registration [SfM]</a></li>
+<li><a class="reference internal" href="#non-rigid-registration-adaptive-registration-sfm">Non-Rigid Registration (adaptive registration) [SfM]</a><ul>
+<li><a class="reference internal" href="#scene-initialization">Scene initialization</a></li>
+<li><a class="reference internal" href="#force-pose-prior-usage">Force pose prior usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#prepare-a-geo-referenced-scene-for-processing-for-mvs">Prepare a geo-referenced scene for processing for MVS</a></li>
+<li><a class="reference internal" href="#use-case-command-line-used-for-a-flat-uav-survey">Use-case: command line used for a flat UAV survey</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../localization/localization.html"
+                        title="previous chapter">Localization</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../colorHarmonization/color.html"
+                        title="next chapter">Color Harmonization</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/software/Geodesy/geodesy.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../colorHarmonization/color.html" title="Color Harmonization"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../localization/localization.html" title="Localization"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../softwares.html" >openMVG softwares &amp; tools</a> &#187;</li> 
+      </ul>
+    </div>
+<div class="footer">
+    &copy; Copyright 2013-2019, OpenMVG authors.
+</div>
+
+
+
+
+
+  </body>
+</html>

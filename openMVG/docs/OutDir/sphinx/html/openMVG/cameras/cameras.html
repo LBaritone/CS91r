@@ -1,0 +1,250 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>cameras &#8212; openMVG library</title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+
+    <link rel="stylesheet" href="../../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../../_static/searchtools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="multiview" href="../multiview/multiview.html" />
+    <link rel="prev" title="features" href="../features/features.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../multiview/multiview.html" title="multiview"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../features/features.html" title="features"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../openMVG.html" accesskey="U">openMVG libraries</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cameras">
+<h1>cameras<a class="headerlink" href="#cameras" title="Permalink to this headline">¶</a></h1>
+<p>This module provides different camera models.</p>
+<div class="section" id="pinhole-camera-model">
+<h2>Pinhole camera model<a class="headerlink" href="#pinhole-camera-model" title="Permalink to this headline">¶</a></h2>
+<p>A camera could be approximated by a projective model, often called pinhole projection.
+The simplest representation of a camera is a light sensible surface (sensor): an image plane, a lens
+(projective projection) at a given position and orientation in space.</p>
+<div class="figure align-center" id="id1">
+<img alt="../../_images/pinholeCamera.png" src="../../_images/pinholeCamera.png" />
+<p class="caption"><span class="caption-text">The pinhole camera model. An oriented central projective camera.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>The pinhole camera geometry models the projective camera with two sub-parametrizations,
+intrinsic and extrinsic parameters.
+Intrinsic parameters model the optic component (without distortion) and extrinsic model the camera position and orientation in space.
+This projection of the camera is described as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}P_{3 \times 4} = K [R|t] =
+\begin{bmatrix}
+f*k_u &amp;  &amp; c_u \\
+ &amp; f*k_v &amp; c_v \\
+ &amp;  &amp; 1
+\end{bmatrix}
+\begin{bmatrix}
+ &amp;  &amp;  &amp; t_x \\
+ &amp; R_{3 \times 3} &amp;  &amp; t_y \\
+  &amp;  &amp;  &amp; t_z \\
+\end{bmatrix}\end{split}\]</div>
+<ul class="simple">
+<li><p>Intrinsic parameters <span class="math notranslate nohighlight">\([f; cu; cv]:\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(ku, kv :\)</span> scale factor relating pixels to distance (often equal to 1),</p></li>
+<li><p><span class="math notranslate nohighlight">\(f :\)</span> the focal distance (distance between focal and image plane),</p></li>
+<li><p><span class="math notranslate nohighlight">\(cu, cv :\)</span> the principal point, which would be ideally in the centre of the image.</p></li>
+</ul>
+</li>
+<li><p>Extrinsic parameters <span class="math notranslate nohighlight">\([R|t] = [R| - RC]:\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(R :\)</span> the rotation of the camera to the world frame,</p></li>
+<li><p><span class="math notranslate nohighlight">\(t :\)</span> the translation of the camera. t is not the position of the camera. It is the position of the origin of the world coordinate system expressed in coordinates of the camera-centred coordinate system. The position, <span class="math notranslate nohighlight">\(C\)</span>, of the camera expressed in world coordinates is <span class="math notranslate nohighlight">\(C=-R^{-1} t = -R^T t\)</span> (since R is a rotation matrix).</p></li>
+</ul>
+</li>
+</ul>
+<p>A 3D point is projected in a image with the following formula (homogeneous coordinates):</p>
+<div class="math notranslate nohighlight">
+\[x_i = PX_i = K[R|t]X_i\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+u_i\\
+v_i\\
+w_i\\
+\end{bmatrix} =
+\begin{bmatrix}
+f*k_u &amp;  &amp; c_u \\
+ &amp; f*k_v &amp; c_v \\
+ &amp;  &amp; 1\\
+\end{bmatrix}
+\begin{bmatrix}
+ &amp;  &amp;  &amp; t_x \\
+ &amp; R_{3 \times 3} &amp;  &amp; t_y \\
+ &amp;  &amp;  &amp; t_z \\
+\end{bmatrix}
+\begin{bmatrix}
+X_i\\
+Y_i\\
+Z_i\\
+W_i\\
+\end{bmatrix}\end{split}\]</div>
+<div class="section" id="openmvg-pinhole-camera-models">
+<h3>OpenMVG Pinhole camera models<a class="headerlink" href="#openmvg-pinhole-camera-models" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Pinhole intrinsic</p>
+<ul>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Pinhole_Intrinsic</span> <span class="pre">:</span> <span class="pre">public</span> <span class="pre">IntrinsicBase</span></code></p>
+<ul>
+<li><p>classic pinhole camera (Focal + principal point and image size).</p></li>
+</ul>
+</li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Pinhole_Intrinsic_Radial_K1</span> <span class="pre">:</span> <span class="pre">public</span> <span class="pre">Pinhole_Intrinsic</span></code></p>
+<ul>
+<li><p>classic pinhole camera (Focal + principal point and image size) + radial distortion defined by one factor.</p></li>
+<li><p>can add and remove distortion</p></li>
+</ul>
+</li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Pinhole_Intrinsic_Radial_K3</span> <span class="pre">:</span> <span class="pre">public</span> <span class="pre">Pinhole_Intrinsic</span></code></p>
+<ul>
+<li><p>classic pinhole camera (Focal + principal point and image size) + radial distortion by three factors.</p></li>
+<li><p>can add and remove distortion</p></li>
+</ul>
+</li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Pinhole_Intrinsic_Brown_T2</span> <span class="pre">:</span> <span class="pre">public</span> <span class="pre">Pinhole_Intrinsic</span></code></p>
+<ul>
+<li><p>classic pinhole camera (Focal + principal point and image size) + radial distortion by three factors + tangential distortion by two factors.</p></li>
+<li><p>can add and remove distortion</p></li>
+</ul>
+</li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Pinhole_Intrinsic_Fisheye</span> <span class="pre">:</span> <span class="pre">public</span> <span class="pre">Pinhole_Intrinsic</span></code></p>
+<ul>
+<li><p>classic pinhole camera (Focal + principal point and image size) + fish-eye distortion by four factors.</p></li>
+<li><p>can add and remove distortion</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Simple pinhole camera models (intrinsic + extrinsic(pose))</p></li>
+</ul>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Setup a simple pinhole camera at origin</span>
+<span class="c1">// Pinhole camera P = K[R|t], t = -RC</span>
+<span class="n">Mat3</span> <span class="n">K</span><span class="p">;</span>
+<span class="n">K</span> <span class="o">&lt;&lt;</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span>
+     <span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span>
+     <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">PinholeCamera</span> <span class="nf">cam</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">Mat3</span><span class="o">::</span><span class="n">Identity</span><span class="p">(),</span> <span class="n">Vec3</span><span class="o">::</span><span class="n">Zero</span><span class="p">());</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="openmvg-spherical-camera-models">
+<h3>OpenMVG Spherical camera models<a class="headerlink" href="#openmvg-spherical-camera-models" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Intrinsic_Spherical</span> <span class="pre">:</span> <span class="pre">public</span> <span class="pre">IntrinsicBase</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>a camera model for equirectangular panorama (360x180 degree). No focal is required, the camera is modelized as a unit sphere.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">cameras</a><ul>
+<li><a class="reference internal" href="#pinhole-camera-model">Pinhole camera model</a><ul>
+<li><a class="reference internal" href="#openmvg-pinhole-camera-models">OpenMVG Pinhole camera models</a></li>
+<li><a class="reference internal" href="#openmvg-spherical-camera-models">OpenMVG Spherical camera models</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../features/features.html"
+                        title="previous chapter">features</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../multiview/multiview.html"
+                        title="next chapter">multiview</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/openMVG/cameras/cameras.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../multiview/multiview.html" title="multiview"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../features/features.html" title="features"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../openMVG.html" >openMVG libraries</a> &#187;</li> 
+      </ul>
+    </div>
+<div class="footer">
+    &copy; Copyright 2013-2019, OpenMVG authors.
+</div>
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Export to MVE (Multi-View Environment) &#8212; openMVG library</title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+
+    <link rel="stylesheet" href="../../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../../_static/searchtools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Export to OpenMVS Open Multiple View Stereovision" href="OpenMVS.html" />
+    <link rel="prev" title="Export to CMPMVS" href="CMPMVS.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="OpenMVS.html" title="Export to OpenMVS Open Multiple View Stereovision"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="CMPMVS.html" title="Export to CMPMVS"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../softwares.html" >openMVG softwares &amp; tools</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../SfM/SfM.html" >SfM: Structure from Motion</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="MVS.html" accesskey="U">MVS: Multiple View Stereovision</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="export-to-mve-multi-view-environment">
+<h1>Export to MVE (Multi-View Environment)<a class="headerlink" href="#export-to-mve-multi-view-environment" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://github.com/simonfuhrmann/mve">MVE</a> can import a converted openMVG SfM scene and use it to create dense depth map and complete dense 3D models.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span># Convert the openMVG SfM scene to the MVE format
+$ openMVG_main_openMVG2MVE -i Dataset/outReconstruction/sfm_data.bin -o Dataset/outReconstruction
+
+#--
+# shell script example
+#--
+
+directory=Dataset/outReconstruction/MVE
+resolution=2
+
+# MVE
+dmrecon -s$resolution $directory
+scene2pset -ddepth-L$resolution -iundist-L$resolution -n -s -c $directory $directory/OUTPUT.ply
+fssrecon $directory/OUTPUT.ply $directory/OUTPUT_MESH.ply
+meshclean $directory/OUTPUT_MESH.ply $directory/OUTPUT_MESH_CLEAN.ply
+
+Call any tool without arguments to see the help.
+</pre></div>
+</div>
+<div class="section" id="export-to-mvs-texturing">
+<h2>Export to MVS Texturing<a class="headerlink" href="#export-to-mvs-texturing" title="Permalink to this headline">¶</a></h2>
+<p>If you don’t want to use the full MVE pipeline but only <a class="reference external" href="https://github.com/nmoehrle/mvs-texturing">MVS Texturing</a> <a class="reference internal" href="../../bibliography.html#waechter2014" id="id1"><span>[Waechter2014]</span></a> to project a set of oriented images on a mesh, one solution is to use the openMVG_main_openMVG2MVSTEXTURING binary. This binary converts your SfM_Data file into one format used by MVS Texturing. In addition, you may need to undistort your images with openMVG_main_ExportUndistortedImages as it’s not handled by the openMVG_main_openMVG2MVSTEXTURING tool.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Export to MVE (Multi-View Environment)</a><ul>
+<li><a class="reference internal" href="#export-to-mvs-texturing">Export to MVS Texturing</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="CMPMVS.html"
+                        title="previous chapter">Export to CMPMVS</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="OpenMVS.html"
+                        title="next chapter">Export to  OpenMVS Open Multiple View Stereovision</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/software/MVS/MVE.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="OpenMVS.html" title="Export to OpenMVS Open Multiple View Stereovision"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="CMPMVS.html" title="Export to CMPMVS"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../softwares.html" >openMVG softwares &amp; tools</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../SfM/SfM.html" >SfM: Structure from Motion</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="MVS.html" >MVS: Multiple View Stereovision</a> &#187;</li> 
+      </ul>
+    </div>
+<div class="footer">
+    &copy; Copyright 2013-2019, OpenMVG authors.
+</div>
+
+
+
+
+
+  </body>
+</html>

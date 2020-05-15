@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>features &#8212; openMVG library</title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+
+    <link rel="stylesheet" href="../../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../../_static/searchtools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="cameras" href="../cameras/cameras.html" />
+    <link rel="prev" title="numeric" href="../numeric/numeric.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../cameras/cameras.html" title="cameras"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../numeric/numeric.html" title="numeric"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../openMVG.html" accesskey="U">openMVG libraries</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="features">
+<h1>features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h1>
+<p>This module provides generic container for features and associated descriptors.</p>
+<div class="section" id="id1">
+<h2>Features<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Provide basic structure and IO to store Point based features.</p>
+<p>Classes to store point characteristics:</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt><code class="xref py py-class docutils literal notranslate"><span class="pre">PointFeature</span></code></dt><dd><ul>
+<li><p>Store the position of a feature (x,y).</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="xref py py-class docutils literal notranslate"><span class="pre">SIOPointFeature</span></code></dt><dd><ul>
+<li><p>Store the position, orientation and scale of a feature (x,y,s,o).</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="descriptors">
+<h2>Descriptors<a class="headerlink" href="#descriptors" title="Permalink to this headline">¶</a></h2>
+<p>Provide basic structure and IO for descriptor data.</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt><code class="xref py py-class docutils literal notranslate"><span class="pre">template</span> <span class="pre">&lt;typename</span> <span class="pre">T,</span> <span class="pre">std::size_t</span> <span class="pre">N&gt;</span> <span class="pre">class</span> <span class="pre">Descriptor</span></code>.</dt><dd><ul>
+<li><p>Store N value(s) of type T as contiguous memory.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// SIFT like descriptor</span>
+<span class="k">using</span> <span class="n">siftDescriptorData</span> <span class="n">Descriptor</span><span class="o">&lt;</span><span class="kt">float</span><span class="p">,</span> <span class="mi">128</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="c1">// SURF like descriptor</span>
+<span class="k">using</span> <span class="n">surfDescriptorData</span> <span class="o">=</span> <span class="n">Descriptor</span><span class="o">&lt;</span><span class="kt">float</span><span class="p">,</span> <span class="mi">64</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="c1">// Binary descriptor (128 bits)</span>
+<span class="k">using</span> <span class="n">binaryDescriptor_bitset</span> <span class="o">=</span> <span class="n">Descriptor</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">bitset</span><span class="o">&lt;</span><span class="mi">128</span><span class="o">&gt;</span><span class="p">,</span><span class="mi">1</span><span class="o">&gt;</span> <span class="n">binaryDescriptor_bitset</span><span class="p">;</span>
+<span class="c1">// or using unsigned chars</span>
+<span class="k">using</span> <span class="n">binaryDescriptor_uchar</span> <span class="o">=</span> <span class="n">Descriptor</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="p">,</span> <span class="mi">128</span><span class="o">/</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="keypointset">
+<h2>KeypointSet<a class="headerlink" href="#keypointset" title="Permalink to this headline">¶</a></h2>
+<p>Store a collection of features and their associated descriptors: <code class="xref py py-class docutils literal notranslate"><span class="pre">template&lt;typename</span> <span class="pre">FeaturesT,</span> <span class="pre">typename</span> <span class="pre">DescriptorsT&gt;</span> <span class="pre">class</span> <span class="pre">KeypointSet</span></code>. Basic IO is provided.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define SIFT Keypoints:</span>
+
+<span class="c1">// Define the SIFT descriptor [128 floating point value]</span>
+<span class="k">using</span> <span class="n">Descriptor</span><span class="o">&lt;</span><span class="kt">float</span><span class="p">,</span> <span class="mi">128</span><span class="o">&gt;</span> <span class="n">DescriptorT</span><span class="p">;</span>
+
+<span class="c1">// Use SIFT compatible features (scale, orientation and position)</span>
+<span class="k">using</span> <span class="n">FeatureT</span> <span class="o">=</span> <span class="n">SIOPointFeature</span><span class="p">;</span>
+
+<span class="c1">// Describe what a collection of local feature is for a given image:</span>
+<span class="k">using</span> <span class="n">FeatsT</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">FeatureT</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="k">using</span> <span class="n">DescsT</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">DescriptorT</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="c1">// Link features and their descriptors as a collection:</span>
+<span class="k">using</span> <span class="n">KeypointSetT</span> <span class="o">=</span> <span class="n">KeypointSet</span><span class="o">&lt;</span><span class="n">FeatsT</span><span class="p">,</span> <span class="n">DescsT</span><span class="o">&gt;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">features</a><ul>
+<li><a class="reference internal" href="#id1">Features</a></li>
+<li><a class="reference internal" href="#descriptors">Descriptors</a></li>
+<li><a class="reference internal" href="#keypointset">KeypointSet</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../numeric/numeric.html"
+                        title="previous chapter">numeric</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../cameras/cameras.html"
+                        title="next chapter">cameras</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/openMVG/features/features.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../cameras/cameras.html" title="cameras"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../numeric/numeric.html" title="numeric"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../openMVG.html" >openMVG libraries</a> &#187;</li> 
+      </ul>
+    </div>
+<div class="footer">
+    &copy; Copyright 2013-2019, OpenMVG authors.
+</div>
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>geometry &#8212; openMVG library</title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+
+    <link rel="stylesheet" href="../../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../../_static/searchtools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="geodesy" href="../geodesy/geodesy.html" />
+    <link rel="prev" title="tracks" href="../tracks/tracks.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../geodesy/geodesy.html" title="geodesy"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../tracks/tracks.html" title="tracks"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../openMVG.html" accesskey="U">openMVG libraries</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="geometry">
+<h1>geometry<a class="headerlink" href="#geometry" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="pose">
+<h2>Pose<a class="headerlink" href="#pose" title="Permalink to this headline">¶</a></h2>
+<p><code class="xref py py-class docutils literal notranslate"><span class="pre">Pose3</span></code> defines the 3D Pose as a 3D transform: [R|C] t = -RC</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define two poses and combine them</span>
+<span class="n">Pose3</span> <span class="nf">pose1</span><span class="p">(</span><span class="n">RotationAroundX</span><span class="p">(</span><span class="mf">0.02</span><span class="p">),</span> <span class="n">Vec3</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">));</span>
+<span class="n">Pose3</span> <span class="nf">pose2</span><span class="p">(</span><span class="n">RotationAroundX</span><span class="p">(</span><span class="mf">0.06</span><span class="p">),</span> <span class="n">Vec3</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">));</span>
+<span class="n">Pose3</span> <span class="n">combinedPose</span> <span class="o">=</span> <span class="n">pose1</span> <span class="o">*</span> <span class="n">pose2</span><span class="p">;</span>
+
+<span class="c1">// Apply the pose to a 3DPoint (World to local coordinates):</span>
+<span class="k">const</span> <span class="n">Vec3</span> <span class="n">pt</span> <span class="o">=</span> <span class="n">combinedPose</span><span class="p">(</span><span class="n">Vec3</span><span class="p">(</span><span class="mf">2.6453</span><span class="p">,</span><span class="mf">3.32</span><span class="p">,</span><span class="mf">6.3</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="frustum-frustum-intersection">
+<h2>Frustum &amp; Frustum intersection<a class="headerlink" href="#frustum-frustum-intersection" title="Permalink to this headline">¶</a></h2>
+<p>Define a camera Frustum from Pose3 and intrinsic parameters as:</p>
+<ul class="simple">
+<li><p>an infinite Frustum (4 Half Spaces) (a pyramid);</p></li>
+<li><p>a truncated Frustum (6 Half Spaces) (a truncated pyramid).</p></li>
+</ul>
+<p>This structure is used for testing frustum intersection (see if two camera can share some visual content).</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Build two truncated frustum and test their intersection</span>
+<span class="n">Frustum</span> <span class="nf">frustum1</span><span class="p">(</span><span class="n">somedata</span><span class="p">,</span> <span class="n">minDepth</span><span class="p">,</span> <span class="n">maxDepth</span><span class="p">);</span>
+<span class="n">Frustum</span> <span class="nf">frustum2</span><span class="p">(</span><span class="n">somedata</span><span class="p">,</span> <span class="n">minDepth</span><span class="p">,</span> <span class="n">maxDepth</span><span class="p">);</span>
+<span class="kt">bool</span> <span class="n">bIntersect</span> <span class="o">=</span> <span class="n">frustum1</span><span class="p">.</span><span class="n">intersect</span><span class="p">(</span><span class="n">frustum2</span><span class="p">);</span>
+
+<span class="c1">// Build two infinite frustum and test their intersection</span>
+<span class="n">Frustum</span> <span class="nf">frustum1</span><span class="p">(</span><span class="n">somedata</span><span class="p">);</span>
+<span class="n">Frustum</span> <span class="nf">frustum2</span><span class="p">(</span><span class="n">somedata</span><span class="p">);</span>
+<span class="kt">bool</span> <span class="n">bIntersect</span> <span class="o">=</span> <span class="n">frustum1</span><span class="p">.</span><span class="n">intersect</span><span class="p">(</span><span class="n">frustum2</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dof-registration-between-point-set">
+<h2>7DoF registration between point set<a class="headerlink" href="#dof-registration-between-point-set" title="Permalink to this headline">¶</a></h2>
+<p>Find the rigid registration between point set using a scale, rotation and translation model.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Simulate two point set, apply a known transformation and estimate it back:</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">nbPoints</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="k">const</span> <span class="n">Mat</span> <span class="n">x1</span> <span class="o">=</span> <span class="n">Mat</span><span class="o">::</span><span class="n">Random</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">nbPoints</span><span class="p">);</span>
+<span class="n">Mat</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">x1</span><span class="p">;</span>
+
+<span class="k">const</span> <span class="kt">double</span> <span class="n">scale</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">;</span>
+<span class="k">const</span> <span class="n">Mat3</span> <span class="n">rot</span> <span class="o">=</span> <span class="p">(</span><span class="n">Eigen</span><span class="o">::</span><span class="n">AngleAxis</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="mf">.2</span><span class="p">,</span> <span class="n">Vec3</span><span class="o">::</span><span class="n">UnitX</span><span class="p">())</span>
+  <span class="o">*</span> <span class="n">Eigen</span><span class="o">::</span><span class="n">AngleAxis</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="mf">.3</span><span class="p">,</span> <span class="n">Vec3</span><span class="o">::</span><span class="n">UnitY</span><span class="p">())</span>
+  <span class="o">*</span> <span class="n">Eigen</span><span class="o">::</span><span class="n">AngleAxis</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="mf">.6</span><span class="p">,</span> <span class="n">Vec3</span><span class="o">::</span><span class="n">UnitZ</span><span class="p">())).</span><span class="n">toRotationMatrix</span><span class="p">();</span>
+<span class="k">const</span> <span class="n">Vec3</span> <span class="nf">t</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">.38</span><span class="p">);</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nbPoints</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">const</span> <span class="n">Vec3</span> <span class="n">pt</span> <span class="o">=</span> <span class="n">x1</span><span class="p">.</span><span class="n">col</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+  <span class="n">x2</span><span class="p">.</span><span class="n">col</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">scale</span> <span class="o">*</span> <span class="n">rot</span> <span class="o">*</span> <span class="n">pt</span> <span class="o">+</span> <span class="n">t</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Compute the Similarity transform</span>
+<span class="kt">double</span> <span class="n">Sc</span><span class="p">;</span>
+<span class="n">Mat3</span> <span class="n">Rc</span><span class="p">;</span>
+<span class="n">Vec3</span> <span class="n">tc</span><span class="p">;</span>
+<span class="n">FindRTS</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">Sc</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tc</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">Rc</span><span class="p">);</span>
+<span class="c1">// Optional non linear refinement of the found parameters</span>
+<span class="n">Refine_RTS</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="o">&amp;</span><span class="n">Sc</span><span class="p">,</span><span class="o">&amp;</span><span class="n">tc</span><span class="p">,</span><span class="o">&amp;</span><span class="n">Rc</span><span class="p">);</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+  <span class="o">&lt;&lt;</span> <span class="s">&quot;Scale &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">Sc</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+  <span class="o">&lt;&lt;</span> <span class="s">&quot;Rot </span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">Rc</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+  <span class="o">&lt;&lt;</span> <span class="s">&quot;t &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">tc</span><span class="p">.</span><span class="n">transpose</span><span class="p">();</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">GT</span><span class="se">\n</span><span class="s">&quot;</span>
+  <span class="o">&lt;&lt;</span> <span class="s">&quot;Scale &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">scale</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+  <span class="o">&lt;&lt;</span> <span class="s">&quot;Rot </span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">rot</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+  <span class="o">&lt;&lt;</span> <span class="s">&quot;t &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">t</span><span class="p">.</span><span class="n">transpose</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">geometry</a><ul>
+<li><a class="reference internal" href="#pose">Pose</a></li>
+<li><a class="reference internal" href="#frustum-frustum-intersection">Frustum &amp; Frustum intersection</a></li>
+<li><a class="reference internal" href="#dof-registration-between-point-set">7DoF registration between point set</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../tracks/tracks.html"
+                        title="previous chapter">tracks</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../geodesy/geodesy.html"
+                        title="next chapter">geodesy</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/openMVG/geometry/geometry.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../geodesy/geodesy.html" title="geodesy"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../tracks/tracks.html" title="tracks"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../openMVG.html" >openMVG libraries</a> &#187;</li> 
+      </ul>
+    </div>
+<div class="footer">
+    &copy; Copyright 2013-2019, OpenMVG authors.
+</div>
+
+
+
+
+
+  </body>
+</html>

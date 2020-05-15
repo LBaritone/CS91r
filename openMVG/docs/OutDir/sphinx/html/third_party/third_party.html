@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>third_party &#8212; openMVG library</title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+
+    <link rel="stylesheet" href="../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../_static/searchtools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="FAQ" href="../FAQ/FAQ.html" />
+    <link rel="prev" title="OSI CLP" href="../dependencies/osi_clp.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../FAQ/FAQ.html" title="FAQ"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../dependencies/osi_clp.html" title="OSI CLP"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">openMVG library</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="third-party">
+<h1>third_party<a class="headerlink" href="#third-party" title="Permalink to this headline">¶</a></h1>
+<p>openMVG use some third party libraries. It is not necessary to write again something that exists and already well designed.
+The libraries are included in the openMVG in order to ease compilation and usage.</p>
+<div class="section" id="ceres-solver">
+<h2>ceres-solver<a class="headerlink" href="#ceres-solver" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../bibliography.html#ceres" id="id1"><span>[Ceres]</span></a> Solver is a portable C++ library that allows for modeling and solving large complicated nonlinear least squares problems.</p>
+<p>The cxsparse backend is included in openMVG.</p>
+</div>
+<div class="section" id="cmdline">
+<h2>cmdLine<a class="headerlink" href="#cmdline" title="Permalink to this headline">¶</a></h2>
+<p>A tiny library to handle C++ command line with named parameters.</p>
+</div>
+<div class="section" id="cppunitlite">
+<h2>CppUnitLite<a class="headerlink" href="#cppunitlite" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../bibliography.html#cppunitlite" id="id2"><span>[CppUnitLite]</span></a> is a tiny library to handle UNIT test.</p>
+</div>
+<div class="section" id="eigen">
+<h2>Eigen<a class="headerlink" href="#eigen" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../bibliography.html#eigen" id="id3"><span>[Eigen]</span></a> is a high-level C++ library of template headers for linear algebra, matrix and vector operations, numerical solvers.</p>
+<dl class="simple">
+<dt>Eigen is used for:</dt><dd><ul class="simple">
+<li><p>dense matrix and array manipulations,</p></li>
+<li><p>sparse matrix container.</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="flann">
+<h2>flann<a class="headerlink" href="#flann" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../bibliography.html#flann" id="id4"><span>[FLANN]</span></a> is a library for performing fast approximate nearest neighbor searches in high dimensional spaces.</p>
+</div>
+<div class="section" id="histogram">
+<h2>histogram<a class="headerlink" href="#histogram" title="Permalink to this headline">¶</a></h2>
+<p>A tiny class to compute data distribution of data in a provided data range.</p>
+</div>
+<div class="section" id="htmldoc">
+<h2>htmlDoc<a class="headerlink" href="#htmldoc" title="Permalink to this headline">¶</a></h2>
+<p>A class to ease HTML data export</p>
+</div>
+<div class="section" id="lemon">
+<h2>lemon<a class="headerlink" href="#lemon" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../bibliography.html#lemon" id="id5"><span>[LEMON]</span></a> stands for Library for Efficient Modeling and Optimization in Networks. It is a C++ template library providing efficient implementations of common data structures and algorithms with focus on combinatorial optimization tasks connected mainly with graphs and networks.</p>
+</div>
+<div class="section" id="progress">
+<h2>progress<a class="headerlink" href="#progress" title="Permalink to this headline">¶</a></h2>
+<p>A tiny class to handle progress status of an application</p>
+</div>
+<div class="section" id="stladdition">
+<h2>stlAddition<a class="headerlink" href="#stladdition" title="Permalink to this headline">¶</a></h2>
+<p>A collection of tools to extend the STL library.</p>
+</div>
+<div class="section" id="stlplus3">
+<h2>stlplus3<a class="headerlink" href="#stlplus3" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../bibliography.html#stlplus" id="id6"><span>[STLplus]</span></a> is a collection of reusable C++ components for developers already familiar with the STL.
+Only the file_system component is used: It provides access to a set of operating-system independent file and folder handling functions.</p>
+</div>
+<div class="section" id="image-input-ouput">
+<h2>Image Input/Ouput<a class="headerlink" href="#image-input-ouput" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>jpeg</p></li>
+<li><p>png</p></li>
+<li><p>zlib</p></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">third_party</a><ul>
+<li><a class="reference internal" href="#ceres-solver">ceres-solver</a></li>
+<li><a class="reference internal" href="#cmdline">cmdLine</a></li>
+<li><a class="reference internal" href="#cppunitlite">CppUnitLite</a></li>
+<li><a class="reference internal" href="#eigen">Eigen</a></li>
+<li><a class="reference internal" href="#flann">flann</a></li>
+<li><a class="reference internal" href="#histogram">histogram</a></li>
+<li><a class="reference internal" href="#htmldoc">htmlDoc</a></li>
+<li><a class="reference internal" href="#lemon">lemon</a></li>
+<li><a class="reference internal" href="#progress">progress</a></li>
+<li><a class="reference internal" href="#stladdition">stlAddition</a></li>
+<li><a class="reference internal" href="#stlplus3">stlplus3</a></li>
+<li><a class="reference internal" href="#image-input-ouput">Image Input/Ouput</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../dependencies/osi_clp.html"
+                        title="previous chapter">OSI CLP</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../FAQ/FAQ.html"
+                        title="next chapter">FAQ</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/third_party/third_party.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../FAQ/FAQ.html" title="FAQ"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../dependencies/osi_clp.html" title="OSI CLP"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">openMVG library</a> &#187;</li> 
+      </ul>
+    </div>
+<div class="footer">
+    &copy; Copyright 2013-2019, OpenMVG authors.
+</div>
+
+
+
+
+
+  </body>
+</html>

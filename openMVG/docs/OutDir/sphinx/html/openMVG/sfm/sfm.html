@@ -1,0 +1,358 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>sfm &#8212; openMVG library</title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+
+    <link rel="stylesheet" href="../../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../../_static/searchtools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="openMVG samples" href="../../openMVG_Samples/openMVG_Samples.html" />
+    <link rel="prev" title="geodesy" href="../geodesy/geodesy.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../openMVG_Samples/openMVG_Samples.html" title="openMVG samples"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../geodesy/geodesy.html" title="geodesy"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../openMVG.html" accesskey="U">openMVG libraries</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="sfm">
+<h1>sfm<a class="headerlink" href="#sfm" title="Permalink to this headline">¶</a></h1>
+<p>sfm is the module related to Structure from Motion.
+It handles storage of SfM related data and method to solve SfM problems (camera pose estimation, structure triangulation, bundle_adjustment).</p>
+<div class="section" id="a-generic-sfm-data-container">
+<h2>A generic SfM data container<a class="headerlink" href="#a-generic-sfm-data-container" title="Permalink to this headline">¶</a></h2>
+<p><code class="xref py py-class docutils literal notranslate"><span class="pre">SfM_Data</span></code> class contains all the data used to describe input of a SfM problem:</p>
+<ul class="simple">
+<li><p>a collection of <strong>View</strong></p>
+<ul>
+<li><p>the used images</p></li>
+</ul>
+</li>
+<li><p>a collection of <strong>camera extrinsic</strong></p>
+<ul>
+<li><p>the camera poses</p></li>
+</ul>
+</li>
+<li><p>a collection of <strong>camera intrinsic</strong></p>
+<ul>
+<li><p>the camera internal projection parameters</p></li>
+</ul>
+</li>
+<li><p>a <strong>structure</strong></p>
+<ul>
+<li><p>the collection of landmark (3D points associated with 2d view observations)</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">SfM_Data</span>
+<span class="p">{</span>
+  <span class="c1">/// Considered views</span>
+  <span class="n">Views</span> <span class="n">views</span><span class="p">;</span>
+
+  <span class="c1">/// Considered poses (indexed by view.id_pose)</span>
+  <span class="n">Poses</span> <span class="n">poses</span><span class="p">;</span>
+
+  <span class="c1">/// Considered camera intrinsics (indexed by view.id_cam)</span>
+  <span class="n">Intrinsics</span> <span class="n">intrinsics</span><span class="p">;</span>
+
+  <span class="c1">/// Structure (3D points with their 2D observations)</span>
+  <span class="n">Landmarks</span> <span class="n">structure</span><span class="p">;</span>
+
+  <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="view-concept">
+<h3>View concept<a class="headerlink" href="#view-concept" title="Permalink to this headline">¶</a></h3>
+<p>The view store information related to an image:</p>
+<ul class="simple">
+<li><p>image filename</p></li>
+<li><p>id_view (must be unique)</p></li>
+<li><p>id_pose</p></li>
+<li><p>id_intrinsic</p></li>
+<li><p>image size</p></li>
+</ul>
+<p>Note that thanks to the usage of ids we can defined shared poses &amp; shared intrinsics.</p>
+<p>View type is <strong>abstract</strong> and provide a way to add new custom View type: i.e. GeoLocatedView (add GPS position, …)</p>
+</div>
+<div class="section" id="camera-poses-concept">
+<h3>Camera Poses concept<a class="headerlink" href="#camera-poses-concept" title="Permalink to this headline">¶</a></h3>
+<p>The camera pose store a 3D pose that define a camera rotation and position (camera rotation and center).</p>
+</div>
+<div class="section" id="camera-intrinsic-concept">
+<h3>Camera Intrinsic concept<a class="headerlink" href="#camera-intrinsic-concept" title="Permalink to this headline">¶</a></h3>
+<p>Define the parameter of a camera. It can be shared or not.
+Intrinsics parameter are <strong>abstract</strong> and provide a way to easily add new custom camera type.</p>
+</div>
+<div class="section" id="structure-landmarks-concept">
+<h3>Structure/Landmarks concept<a class="headerlink" href="#structure-landmarks-concept" title="Permalink to this headline">¶</a></h3>
+<p>It defines the structure:</p>
+<ul class="simple">
+<li><p>3D point with 2D view features observations.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="sfm-data-cleaning">
+<h2>SfM_Data cleaning<a class="headerlink" href="#sfm-data-cleaning" title="Permalink to this headline">¶</a></h2>
+<p>Generic interface are defined to remove outlier observations:</p>
+<ul class="simple">
+<li><p>use a given residual pixel error to discard outlier,</p></li>
+<li><p>use a minimal angle along the track bearing vectors.</p></li>
+</ul>
+</div>
+<div class="section" id="triangulation">
+<h2>Triangulation<a class="headerlink" href="#triangulation" title="Permalink to this headline">¶</a></h2>
+<p>Once the SfM_Data is filled with some landmark observations and poses we can compute their 3D location.</p>
+<p>Two method are proposed:</p>
+<ul class="simple">
+<li><p>A blind method:</p>
+<ul>
+<li><p>Triangulate tracks using all observations,</p></li>
+<li><p>Inlier/Outlier classification is done with a cheirality test,</p></li>
+</ul>
+</li>
+<li><p>A robust method:</p>
+<ul>
+<li><p>Triangulate tracks using a RANSAC scheme,</p></li>
+<li><p>Check cheirality and a pixel residual error.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="non-linear-refinement-bundle-adjustment">
+<h2>Non linear refinement, Bundle Adjustment<a class="headerlink" href="#non-linear-refinement-bundle-adjustment" title="Permalink to this headline">¶</a></h2>
+<p>OpenMVG provides a generic bundle_adjustment framework to refine or keep as constant the following parameters:</p>
+<ul class="simple">
+<li><p>internal orientation parameters (intrinsics: camera projection model),</p></li>
+<li><p>external orientation parameters (extrinsics: camera poses),</p></li>
+<li><p>structure (3D points).</p></li>
+</ul>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">SfM_Data</span> <span class="n">sfm_data</span><span class="p">;</span>
+<span class="c1">// initialize the data</span>
+<span class="c1">// ...</span>
+
+<span class="k">const</span> <span class="kt">double</span> <span class="n">dResidual_before</span> <span class="o">=</span> <span class="n">RMSE</span><span class="p">(</span><span class="n">sfm_data</span><span class="p">);</span>
+
+<span class="c1">// Bundle adjustement over all the parameters:</span>
+<span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Bundle_Adjustment</span><span class="o">&gt;</span> <span class="n">ba_object</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Bundle_Adjustment_Ceres</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="n">ba_object</span><span class="o">-&gt;</span><span class="n">Adjust</span><span class="p">(</span><span class="n">sfm_data</span><span class="p">);</span>
+
+<span class="k">const</span> <span class="kt">double</span> <span class="n">dResidual_after</span> <span class="o">=</span> <span class="n">RMSE</span><span class="p">(</span><span class="n">sfm_data</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Bundle Adjustment (ajustement de faisceaux), is a non linear optimization problem.
+It looks to minimizing the residual error of a series of user cost functions (the reprojection errors of the structure <span class="math notranslate nohighlight">\(X_j\)</span> to the images measures <span class="math notranslate nohighlight">\(x_j^i\)</span>).
+According:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(X_j\)</span> the Jnth 3D point of the structure of the scene,</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_j^i\)</span> the observation of the projection of the 3D point <span class="math notranslate nohighlight">\(X_j\)</span> in the image <span class="math notranslate nohighlight">\(i\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_i\)</span> the projection matrix of the image <span class="math notranslate nohighlight">\(i\)</span></p></li>
+</ul>
+<p>From a user provided initial guess the vector of parameters: <span class="math notranslate nohighlight">\(\{X_j,P_i\}_{i,j}\)</span>: camera parameters <span class="math notranslate nohighlight">\(\{P_i\}_i\)</span> and the scene structure <span class="math notranslate nohighlight">\(\{X_j\}_j\)</span> are refined in order to minimizes the residual reprojection cost:</p>
+<div class="math notranslate nohighlight">
+\[\underset{ \{P_i\}_i, \{X_j\}_j}{minimize} \left\| \sum_{j=0}^{m} \sum_{i=0}^{n} x_j^i - P_i X_j \right\|_2\]</div>
+<p>OpenMVG proposes options in order to tell if a parameter group must be kept as constant or refined during the minimization.</p>
+</div>
+<div class="section" id="sfm-pipelines">
+<h2>SfM Pipelines<a class="headerlink" href="#sfm-pipelines" title="Permalink to this headline">¶</a></h2>
+<p>OpenMVG provides ready to use and customizable pipelines for:</p>
+<ul class="simple">
+<li><p>solving sequential/incremental SfM,</p></li>
+<li><p>solving global SfM,</p></li>
+<li><p>computing a Structure from known camera poses.</p></li>
+</ul>
+<div class="figure align-center" id="id3">
+<img alt="../../_images/structureFromMotion.png" src="../../_images/structureFromMotion.png" />
+<p class="caption"><span class="caption-text">Figure: From point observation and intrinsic camera parameters, the 3D <strong>structure</strong> of the scene is computed <strong>from</strong> the estimated <strong>motion</strong> of the camera.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="sequential-sfm">
+<h3>Sequential SfM<a class="headerlink" href="#sequential-sfm" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference internal" href="../../bibliography.html#acsfm" id="id1"><span>[ACSfM]</span></a> SfM is based on the implementation used for the paper “Adaptive Structure from Motion with a contrario model estimation”  published at ACCV 2012.</p>
+<p>The incremental pipeline is a growing reconstruction process.
+It starts from an initial two-view reconstruction (the seed) that is iteratively extended by adding new views and 3D points, using pose estimation and triangulation.
+Due to the incremental nature of the process, successive steps of non-linear refinement, like Bundle Adjustment (BA), are performed to minimize the accumulated error (drift).</p>
+<p>Incremental Structure from Motion</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="nl">Require</span><span class="p">:</span> <span class="n">internal</span> <span class="n">camera</span> <span class="n">calibration</span> <span class="p">(</span><span class="n">possibly</span> <span class="n">from</span> <span class="n">EXIF</span> <span class="n">data</span><span class="p">)</span>
+<span class="nl">Require</span><span class="p">:</span> <span class="n">pairwise</span> <span class="n">geometry</span> <span class="n">consistent</span> <span class="n">point</span> <span class="n">correspondences</span>
+<span class="nl">Ensure</span><span class="p">:</span> <span class="mi">3</span><span class="n">D</span> <span class="n">point</span> <span class="n">cloud</span>
+<span class="nl">Ensure</span><span class="p">:</span> <span class="n">camera</span> <span class="n">poses</span>
+<span class="n">compute</span> <span class="n">correspondence</span> <span class="n">tracks</span> <span class="n">t</span>
+<span class="n">compute</span> <span class="n">connectivity</span> <span class="n">graph</span> <span class="n">G</span> <span class="p">(</span><span class="mi">1</span> <span class="n">node</span> <span class="n">per</span> <span class="n">view</span><span class="p">,</span> <span class="mi">1</span> <span class="n">edge</span> <span class="n">when</span> <span class="n">enough</span> <span class="n">matches</span><span class="p">)</span>
+<span class="n">pick</span> <span class="n">an</span> <span class="n">edge</span> <span class="n">e</span> <span class="n">in</span> <span class="n">G</span> <span class="n">with</span> <span class="n">sufficient</span> <span class="n">baseline</span>
+<span class="o">*</span> <span class="n">robustly</span> <span class="n">estimate</span> <span class="n">essential</span> <span class="n">matrix</span> <span class="n">from</span> <span class="n">images</span> <span class="n">of</span> <span class="n">e</span>
+<span class="n">triangulate</span> <span class="n">validated</span> <span class="n">tracks</span><span class="p">,</span> <span class="n">which</span> <span class="n">provides</span> <span class="n">an</span> <span class="n">initial</span> <span class="n">reconstruction</span>
+<span class="n">contract</span> <span class="n">edge</span> <span class="n">e</span>
+<span class="k">while</span> <span class="n">G</span> <span class="n">contains</span> <span class="n">an</span> <span class="n">edge</span> <span class="k">do</span>
+  <span class="n">pick</span> <span class="n">edge</span> <span class="n">e</span> <span class="n">in</span> <span class="n">G</span> <span class="n">that</span> <span class="n">maximizes</span> <span class="k">union</span><span class="p">(</span><span class="n">track</span><span class="p">(</span><span class="n">e</span><span class="p">),</span><span class="mi">3</span><span class="n">D</span> <span class="n">points</span><span class="p">)</span>
+  <span class="o">*</span> <span class="n">robustly</span> <span class="n">estimate</span> <span class="n">pose</span> <span class="p">(</span><span class="n">external</span> <span class="n">orientation</span><span class="o">/</span><span class="n">resection</span><span class="p">)</span>
+  <span class="n">triangulate</span> <span class="k">new</span> <span class="n">tracks</span>
+  <span class="n">contract</span> <span class="n">edge</span> <span class="n">e</span>
+  <span class="n">perform</span> <span class="n">bundle</span> <span class="n">adjustment</span>
+<span class="n">end</span> <span class="k">while</span>
+</pre></div>
+</div>
+<p>Steps marked by a * are robust estimation performed using the a-contrario robust estimation framework.</p>
+</div>
+<div class="section" id="global-sfm">
+<h3>Global SfM<a class="headerlink" href="#global-sfm" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="../../bibliography.html#globalacsfm" id="id2"><span>[GlobalACSfM]</span></a> is based on the paper “Global Fusion of Relative Motions for Robust, Accurate and Scalable Structure from Motion.”  published at ICCV 2013.</p>
+<p>Multi-view structure from motion (SfM) estimates the position and orientation of pictures in a common 3D coordinate frame. When views are treated incrementally, this external calibration can be subject to drift, contrary to global methods that distribute residual errors evenly. Here the method propose a new global calibration approach based on the fusion of relative motions between image pairs.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>Require: internal camera calibration (possibly from EXIF data)
+Require: pairwise geometry consistent point correspondences
+Ensure: 3D point cloud
+Ensure: camera poses
+
+compute relative pairwise rotations
+detect and remove false relative pairwise rotations
+  - using composition error of triplet of relative rotations
+compute the global rotation
+  - using a least square and approximated rotations
+compute relative translations
+  - using triplet of views for stability and colinear motion support
+compute the global translation
+  - integration of the relative translation directions using a l-∞ method
+final structure and motion
+  - link tracks validated per triplets and compute global structure by triangulation
+  - refine estimated parameters in a 3 step Bundle Adjustment
+    - refine structure and translations
+    - refine structure and camera parameters (rotations, translations)
+    - refine if asked intrinsics parameters
+</pre></div>
+</div>
+</div>
+<div class="section" id="structure-computation-from-known-camera-poses">
+<h3>Structure computation from known camera poses<a class="headerlink" href="#structure-computation-from-known-camera-poses" title="Permalink to this headline">¶</a></h3>
+<p>This class allows to compute valid 3D triangulation from 2D matches and known camera poses.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="nl">Require</span><span class="p">:</span> <span class="n">internal</span> <span class="n">and</span> <span class="n">external</span> <span class="n">camera</span> <span class="n">calibration</span>
+<span class="nl">Require</span><span class="p">:</span> <span class="n">features</span> <span class="n">and</span> <span class="n">corresponding</span> <span class="n">descriptor</span> <span class="n">per</span> <span class="n">image</span> <span class="n">view</span>
+<span class="nl">Ensure</span><span class="p">:</span> <span class="mi">3</span><span class="n">D</span> <span class="n">point</span> <span class="n">cloud</span>
+
+<span class="n">initialize</span> <span class="n">putatives</span> <span class="n">matches</span> <span class="n">pair</span> <span class="n">from</span>
+  <span class="o">-</span> <span class="n">a</span> <span class="n">provided</span> <span class="n">pair</span> <span class="n">file</span>
+  <span class="o">-</span> <span class="n">or</span> <span class="n">automatic</span> <span class="n">pair</span> <span class="n">computed</span> <span class="n">from</span> <span class="n">camera</span> <span class="n">frustum</span> <span class="n">intersection</span>
+<span class="k">for</span> <span class="n">each</span> <span class="n">pair</span>
+  <span class="o">-</span> <span class="n">find</span> <span class="n">valid</span> <span class="n">epipolar</span> <span class="n">correspondences</span>
+<span class="k">for</span> <span class="n">triplets</span> <span class="n">of</span> <span class="n">view</span>
+  <span class="o">-</span> <span class="n">filter</span> <span class="mi">3</span><span class="o">-</span><span class="n">view</span> <span class="n">correspondences</span> <span class="n">that</span> <span class="n">leads</span> <span class="n">to</span> <span class="n">invalid</span> <span class="n">triangulation</span>
+<span class="n">merge</span> <span class="mi">3</span><span class="o">-</span><span class="n">view</span> <span class="n">validated</span> <span class="n">correspondences</span>
+  <span class="o">-</span> <span class="n">robustly</span> <span class="n">triangulate</span> <span class="n">them</span>
+<span class="n">save</span> <span class="n">the</span> <span class="n">scene</span> <span class="n">with</span> <span class="n">the</span> <span class="n">update</span> <span class="n">structure</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">sfm</a><ul>
+<li><a class="reference internal" href="#a-generic-sfm-data-container">A generic SfM data container</a><ul>
+<li><a class="reference internal" href="#view-concept">View concept</a></li>
+<li><a class="reference internal" href="#camera-poses-concept">Camera Poses concept</a></li>
+<li><a class="reference internal" href="#camera-intrinsic-concept">Camera Intrinsic concept</a></li>
+<li><a class="reference internal" href="#structure-landmarks-concept">Structure/Landmarks concept</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sfm-data-cleaning">SfM_Data cleaning</a></li>
+<li><a class="reference internal" href="#triangulation">Triangulation</a></li>
+<li><a class="reference internal" href="#non-linear-refinement-bundle-adjustment">Non linear refinement, Bundle Adjustment</a></li>
+<li><a class="reference internal" href="#sfm-pipelines">SfM Pipelines</a><ul>
+<li><a class="reference internal" href="#sequential-sfm">Sequential SfM</a></li>
+<li><a class="reference internal" href="#global-sfm">Global SfM</a></li>
+<li><a class="reference internal" href="#structure-computation-from-known-camera-poses">Structure computation from known camera poses</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../geodesy/geodesy.html"
+                        title="previous chapter">geodesy</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../../openMVG_Samples/openMVG_Samples.html"
+                        title="next chapter">openMVG samples</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/openMVG/sfm/sfm.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../openMVG_Samples/openMVG_Samples.html" title="openMVG samples"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../geodesy/geodesy.html" title="geodesy"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../openMVG.html" >openMVG libraries</a> &#187;</li> 
+      </ul>
+    </div>
+<div class="footer">
+    &copy; Copyright 2013-2019, OpenMVG authors.
+</div>
+
+
+
+
+
+  </body>
+</html>

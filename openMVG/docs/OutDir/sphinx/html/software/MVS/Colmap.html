@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Export to Colmap &#8212; openMVG library</title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+
+    <link rel="stylesheet" href="../../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../../_static/searchtools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="SfM_data format" href="../SfM/SfM_OutputFormat.html" />
+    <link rel="prev" title="Export to PMVS/CMVS" href="PMVS.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../SfM/SfM_OutputFormat.html" title="SfM_data format"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="PMVS.html" title="Export to PMVS/CMVS"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../softwares.html" >openMVG softwares &amp; tools</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../SfM/SfM.html" >SfM: Structure from Motion</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="MVS.html" accesskey="U">MVS: Multiple View Stereovision</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="export-to-colmap">
+<h1>Export to Colmap<a class="headerlink" href="#export-to-colmap" title="Permalink to this headline">¶</a></h1>
+<p>OpenMVG exports to Colmap’s <a class="reference internal" href="../../bibliography.html#schoeneberger2016" id="id1"><span>[Schoeneberger2016]</span></a> SfM model format.</p>
+<p>Once a sparse reconstruction has been computed you can convert OpenMVG’s SfM output to Colmap’s model format using openMVG_main_openMVG2Colmap:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>$ openMVG_main_openMVG2Colmap -i Dataset/OpenMVGSfM/sfm_data.bin -o Dataset/ColmapSfM/model
+</pre></div>
+</div>
+<p>This will create the following files in <code class="docutils literal notranslate"><span class="pre">Dataset/ColmapSfM/model</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>model/
+├-cameras.txt
+├-images.txt
+├-points3D.txt
+</pre></div>
+</div>
+<p>Note: Colmap supports OpenMVG’s PINHOLE_CAMERA, PINHOLE_CAMERA_RADIAL1 and PINHOLE_CAMERA_RADIAL3 camera models.</p>
+<p>To open the scene in Colmap:</p>
+<ul class="simple">
+<li><p>File | Import model</p></li>
+<li><p>Specify the <code class="docutils literal notranslate"><span class="pre">Dataset/ColmapSfM/model</span></code> directory</p></li>
+</ul>
+<p>To apply Colmap’s MVS pipeline:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>$ colmap image_undistorter --image_path Dataset/images --input_path Dataset/ColmapSfM/model --output_path Dataset/ColmapMVS
+$ colmap dense_stereo --workspace_path Dataset/ColmapMVS
+$ colmap dense_fuser --workspace_path Dataset/ColmapMVS
+</pre></div>
+</div>
+<div class="figure align-center" id="id3">
+<img alt="../../_images/Colmap_result.jpg" src="../../_images/Colmap_result.jpg" />
+<p class="caption"><span class="caption-text">Figure: Multiple View Stereo result using <a class="reference internal" href="../../bibliography.html#schoeneberger2016" id="id2"><span>[Schoeneberger2016]</span></a>.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="PMVS.html"
+                        title="previous chapter">Export to PMVS/CMVS</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../SfM/SfM_OutputFormat.html"
+                        title="next chapter">SfM_data format</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/software/MVS/Colmap.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../SfM/SfM_OutputFormat.html" title="SfM_data format"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="PMVS.html" title="Export to PMVS/CMVS"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../softwares.html" >openMVG softwares &amp; tools</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../SfM/SfM.html" >SfM: Structure from Motion</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="MVS.html" >MVS: Multiple View Stereovision</a> &#187;</li> 
+      </ul>
+    </div>
+<div class="footer">
+    &copy; Copyright 2013-2019, OpenMVG authors.
+</div>
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,234 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>openMVG_main_GlobalSfM &#8212; openMVG library</title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+
+    <link rel="stylesheet" href="../../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../../_static/searchtools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="openMVG_main_SfMInit_ImageListingFromKnownPoses" href="SfMInit_ImageListingFromKnownPoses.html" />
+    <link rel="prev" title="openMVG_main_IncrementalSfM" href="IncrementalSfM.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="SfMInit_ImageListingFromKnownPoses.html" title="openMVG_main_SfMInit_ImageListingFromKnownPoses"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="IncrementalSfM.html" title="openMVG_main_IncrementalSfM"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../softwares.html" >openMVG softwares &amp; tools</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="SfM.html" >SfM: Structure from Motion</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="SfMInit_ImageListing.html" >openMVG_main_SfMInit_ImageListing</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="ComputeFeatures.html" >openMVG_main_ComputeFeatures</a> &#187;</li>
+          <li class="nav-item nav-item-5"><a href="ComputeMatches.html" accesskey="U">openMVG_main_ComputeMatches</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="openmvg-main-globalsfm">
+<h1>openMVG_main_GlobalSfM<a class="headerlink" href="#openmvg-main-globalsfm" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference internal" href="../../bibliography.html#globalacsfm" id="id1"><span>[GlobalACSfM]</span></a> is based on the paper “Global Fusion of Relative Motions for Robust, Accurate and Scalable Structure from Motion.”  published at ICCV 2013.</p>
+<p>Multi-view structure from motion (SfM) estimates the position and orientation of pictures in a common 3D coordinate frame. When views are treated incrementally, this external calibration can be subject to drift, contrary to global methods that distribute residual errors evenly. Here the method propose a new global calibration approach based on the fusion of relative motions between image pairs.</p>
+<p>Algorithm of the Global Structure from Motion</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>Require: internal camera calibration (possibly from EXIF data)
+Require: pairwise geometry consistent point correspondences
+Ensure: 3D point cloud
+Ensure: camera poses
+
+compute relative pairwise rotations
+detect and remove false relative pairwise rotations
+  - using composition error of triplet of relative rotations
+compute the global rotation
+  - using a dense least square and approximated rotations
+compute relative translations
+  - using triplet of views for stability and colinear motion support
+compute the global translation
+  - integration of the relative translation directions using a l-∞ method.
+final structure and motion
+  - link tracks validated per triplets and compute global structure by triangulation,
+  - refine estimated parameter in a 2 step Bundle Adjustment
+    - refine structure and translations
+    - refine structure and camera parameters (rotations, translations).
+</pre></div>
+</div>
+<div class="section" id="information-and-usage">
+<h2>Information and usage<a class="headerlink" href="#information-and-usage" title="Permalink to this headline">¶</a></h2>
+<p>The chain is designed to run on a sfm_data.json file and some pre-computed matches.
+The chain will only consider images with known approximate focal length. Image with invalid intrinsic id will be ignored.</p>
+<blockquote>
+<div><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>$ openMVG_main_GlobalSfM -i Dataset/matches/sfm_data.json -m Dataset/matches/ -o Dataset/out_Global_Reconstruction/
+</pre></div>
+</div>
+</div></blockquote>
+<p>Arguments description:</p>
+<p><strong>Required parameters:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>[-i|–input_file]</strong></p>
+<ul>
+<li><p>a SfM_Data file</p></li>
+</ul>
+</li>
+<li><p><strong>[-m|–matchdir]</strong></p>
+<ul>
+<li><p>path were geometric matches were stored</p></li>
+</ul>
+</li>
+<li><p><strong>[-o|–outdir]</strong></p>
+<ul>
+<li><p>path where the output data will be stored</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<p><strong>Optional parameters:</strong></p>
+<blockquote>
+<div><ul>
+<li><p><strong>[-r|–rotationAveraging]</strong></p>
+<ul class="simple">
+<li><p>1: L1 rotation averaging _[Chatterjee]</p></li>
+<li><p>2: (default) L2 rotation averaging _[Martinec]</p></li>
+</ul>
+</li>
+<li><p><strong>[-t|–translationAveraging]</strong></p>
+<ul class="simple">
+<li><p>1: (default) L1 translation averaging _[GlobalACSfM]</p></li>
+<li><p>2: L2 translation averaging _[Kyle2014]</p></li>
+<li><p>3: (default) SoftL1 minimization _[GlobalACSfM]</p></li>
+</ul>
+</li>
+<li><dl class="simple">
+<dt><strong>[-f|–refineIntrinsics]</strong></dt><dd><p>User can control exactly which parameter will be considered as constant/variable and combine them by using the ‘|’ operator.</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p>ADJUST_ALL -&gt; refine all existing parameters (default)</p></li>
+<li><p>NONE -&gt; intrinsic parameters are held as constant</p></li>
+<li><p>ADJUST_FOCAL_LENGTH -&gt; refine only the focal length</p></li>
+<li><p>ADJUST_PRINCIPAL_POINT -&gt; refine only the principal point position</p></li>
+<li><p>ADJUST_DISTORTION -&gt; refine only the distortion coefficient(s) (if any)</p></li>
+<li><p>NOTE Options can be combined thanks to ‘|’:</p>
+<ul>
+<li><p>ADJUST_FOCAL_LENGTH|ADJUST_PRINCIPAL_POINT
+-&gt; refine the focal length &amp; the principal point position</p></li>
+<li><p>ADJUST_FOCAL_LENGTH|ADJUST_DISTORTION
+-&gt; refine the focal length &amp; the distortion coefficient(s) (if any)</p></li>
+<li><p>ADJUST_PRINCIPAL_POINT|ADJUST_DISTORTION
+-&gt; refine the principal point position &amp; the distortion coefficient(s) (if any)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<p><em>_[GlobalACSfM]</em> default settings are “-r 2 -t 3”.</p>
+<p><strong>Tips</strong></p>
+<blockquote>
+<div><p>As a dense image network is required to perform global SfM it is required to detect more <strong>Regions points</strong> per image to ensure a high probability of matching.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>Please use:</dt><dd><ul class="simple">
+<li><p>“-p HIGH” option on openMVG_main_ComputeFeatures</p></li>
+<li><p>“-r .8” on openMVG_main_ComputeMatches.</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">openMVG_main_GlobalSfM</a><ul>
+<li><a class="reference internal" href="#information-and-usage">Information and usage</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="IncrementalSfM.html"
+                        title="previous chapter">openMVG_main_IncrementalSfM</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="SfMInit_ImageListingFromKnownPoses.html"
+                        title="next chapter">openMVG_main_SfMInit_ImageListingFromKnownPoses</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/software/SfM/GlobalSfM.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="SfMInit_ImageListingFromKnownPoses.html" title="openMVG_main_SfMInit_ImageListingFromKnownPoses"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="IncrementalSfM.html" title="openMVG_main_IncrementalSfM"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../softwares.html" >openMVG softwares &amp; tools</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="SfM.html" >SfM: Structure from Motion</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="SfMInit_ImageListing.html" >openMVG_main_SfMInit_ImageListing</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="ComputeFeatures.html" >openMVG_main_ComputeFeatures</a> &#187;</li>
+          <li class="nav-item nav-item-5"><a href="ComputeMatches.html" >openMVG_main_ComputeMatches</a> &#187;</li> 
+      </ul>
+    </div>
+<div class="footer">
+    &copy; Copyright 2013-2019, OpenMVG authors.
+</div>
+
+
+
+
+
+  </body>
+</html>

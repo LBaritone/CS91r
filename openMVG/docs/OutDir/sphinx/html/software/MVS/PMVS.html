@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Export to PMVS/CMVS &#8212; openMVG library</title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+
+    <link rel="stylesheet" href="../../_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../../_static/searchtools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Export to Colmap" href="Colmap.html" />
+    <link rel="prev" title="Export to OpenMVS Open Multiple View Stereovision" href="OpenMVS.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="Colmap.html" title="Export to Colmap"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="OpenMVS.html" title="Export to OpenMVS Open Multiple View Stereovision"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../softwares.html" >openMVG softwares &amp; tools</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../SfM/SfM.html" >SfM: Structure from Motion</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="MVS.html" accesskey="U">MVS: Multiple View Stereovision</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="export-to-pmvs-cmvs">
+<h1>Export to PMVS/CMVS<a class="headerlink" href="#export-to-pmvs-cmvs" title="Permalink to this headline">¶</a></h1>
+<p>OpenMVG exports <a class="reference internal" href="../../bibliography.html#pmvs" id="id1"><span>[PMVS]</span></a> ready to use project (images, projection matrices and pmvs_options.txt files).</p>
+<p>Once a 3D calibration has been computed you can convert the SfM_Ouput files to a PMVS project.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>$ openMVG_main_openMVG2PMVS -i Dataset/outReconstruction/sfm_data.bin -o Dataset/outReconstruction
+$ pmvs Dataset/outReconstruction/PMVS/ pmvs_options.txt
+</pre></div>
+</div>
+<div class="figure align-center" id="id3">
+<img alt="../../_images/PMVS_result.png" src="../../_images/PMVS_result.png" />
+<p class="caption"><span class="caption-text">Figure: Multiple View Stereo-vision point cloud densification on the estimated scene using <a class="reference internal" href="../../bibliography.html#pmvs" id="id2"><span>[PMVS]</span></a>.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<p>In order to use CMVS for large scene openMVG2PMVS exports also the scene in the Bundler output format.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>$ openMVG_main_openMVG2PMVS -i Dataset/outReconstruction/sfm_data.bin -o Dataset/outReconstruction
+$ cmvs Dataset/outReconstruction/PMVS/ [MaxImageCountByCluster=100]
+$ cmvs Dataset/outReconstruction/PMVS/ 30
+$ genOption Dataset/outReconstruction/PMVS/
+$ sh Dataset/outReconstruction/PMVS/pmvs.sh
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="OpenMVS.html"
+                        title="previous chapter">Export to  OpenMVS Open Multiple View Stereovision</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="Colmap.html"
+                        title="next chapter">Export to Colmap</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/software/MVS/PMVS.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="Colmap.html" title="Export to Colmap"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="OpenMVS.html" title="Export to OpenMVS Open Multiple View Stereovision"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">openMVG library</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../softwares.html" >openMVG softwares &amp; tools</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../SfM/SfM.html" >SfM: Structure from Motion</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="MVS.html" >MVS: Multiple View Stereovision</a> &#187;</li> 
+      </ul>
+    </div>
+<div class="footer">
+    &copy; Copyright 2013-2019, OpenMVG authors.
+</div>
+
+
+
+
+
+  </body>
+</html>
