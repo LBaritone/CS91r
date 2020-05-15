@@ -10,7 +10,7 @@ import random
 import cv2
 
 # path_to_json_in = "../openMVG_Build/software/SfM/tutorial_fish/reconstruction_global/sfm_data_des.json"
-path_to_json_in = "./3Dmaps/aquarium1/sfm_data_des.json"
+path_to_json_in = "./3Dmaps/sfm_data_des.json"
 path_to_pos = "./positions/"
 pos_list = sorted(glob.glob(path_to_pos + "*.jpg"))
 print(pos_list)
