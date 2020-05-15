@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc ../../../Darwin-x86_64-RELEASE/libopenMVG_lemon.a  CMakeFiles/openMVG_lemon.dir/arg_parser.cc.o CMakeFiles/openMVG_lemon.dir/base.cc.o CMakeFiles/openMVG_lemon.dir/color.cc.o CMakeFiles/openMVG_lemon.dir/lp_base.cc.o CMakeFiles/openMVG_lemon.dir/lp_skeleton.cc.o CMakeFiles/openMVG_lemon.dir/random.cc.o CMakeFiles/openMVG_lemon.dir/bits/windows.cc.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib ../../../Darwin-x86_64-RELEASE/libopenMVG_lemon.a

@@ -1,0 +1,144 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/third_party/lemon/lemon/assert.h
+lemon/error.h
+-
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/third_party/lemon/lemon/base.cc
+lemon/tolerance.h
+-
+lemon/core.h
+-
+lemon/time_measure.h
+-
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/third_party/lemon/lemon/bits/enable_if.h
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/third_party/lemon/lemon/bits/solver_bits.h
+vector
+-
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/third_party/lemon/lemon/bits/traits.h
+lemon/bits/enable_if.h
+-
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/third_party/lemon/lemon/bits/windows.h
+string
+-
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/third_party/lemon/lemon/color.cc
+lemon/color.h
+-
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/third_party/lemon/lemon/color.h
+vector
+-
+lemon/math.h
+-
+lemon/maps.h
+-
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/third_party/lemon/lemon/core.h
+vector
+-
+algorithm
+-
+lemon/config.h
+-
+lemon/bits/enable_if.h
+-
+lemon/bits/traits.h
+-
+lemon/assert.h
+-
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/third_party/lemon/lemon/error.h
+exception
+-
+string
+-
+sstream
+-
+iostream
+-
+cstdlib
+-
+memory
+-
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/third_party/lemon/lemon/lp_base.cc
+lemon/lp_base.h
+-
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/third_party/lemon/lemon/lp_base.h
+iostream
+-
+vector
+-
+map
+-
+limits
+-
+lemon/math.h
+-
+lemon/error.h
+-
+lemon/assert.h
+-
+lemon/core.h
+-
+lemon/bits/solver_bits.h
+-
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/third_party/lemon/lemon/lp_skeleton.cc
+lemon/lp_skeleton.h
+-
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/third_party/lemon/lemon/lp_skeleton.h
+lemon/lp_base.h
+-
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/third_party/lemon/lemon/maps.h
+iterator
+-
+functional
+-
+vector
+-
+map
+-
+lemon/core.h
+-
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/third_party/lemon/lemon/math.h
+cmath
+-
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/third_party/lemon/lemon/time_measure.h
+lemon/bits/windows.h
+-
+unistd.h
+-
+sys/times.h
+-
+sys/time.h
+-
+string
+-
+fstream
+-
+iostream
+-
+lemon/math.h
+-
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/third_party/lemon/lemon/tolerance.h
+
+third_party/lemon/lemon/config.h
+

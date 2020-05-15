@@ -1,0 +1,720 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinBuild.hpp
+CoinPragma.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPragma.hpp
+CoinTypes.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinTypes.hpp
+CoinFinite.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinFinite.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinDistance.hpp
+iterator
+-
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinError.hpp
+string
+-
+iostream
+-
+cassert
+-
+cstring
+-
+CoinUtilsConfig.h
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinUtilsConfig.h
+CoinPragma.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPragma.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinFileIO.hpp
+string
+-
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinFinite.hpp
+limits
+-
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinFloatEqual.hpp
+algorithm
+-
+cmath
+-
+CoinFinite.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinFinite.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinHelperFunctions.hpp
+CoinUtilsConfig.h
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinUtilsConfig.h
+direct.h
+-
+cctype
+-
+cctype
+-
+unistd.h
+-
+cstdlib
+-
+cstdio
+-
+algorithm
+-
+CoinTypes.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinTypes.hpp
+CoinError.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinError.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinLpIO.hpp
+cstdio
+-
+CoinPackedMatrix.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPackedMatrix.hpp
+CoinMessage.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinMessage.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinMessage.hpp
+CoinMessageHandler.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinMessageHandler.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinMessageHandler.hpp
+CoinUtilsConfig.h
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinUtilsConfig.h
+CoinPragma.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPragma.hpp
+iostream
+-
+cstdio
+-
+string
+-
+vector
+-
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinModel.hpp
+CoinModelUseful.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinModelUseful.hpp
+CoinMessageHandler.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinMessageHandler.hpp
+CoinPackedMatrix.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPackedMatrix.hpp
+CoinFinite.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinFinite.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinModelUseful.hpp
+cstdlib
+-
+cmath
+-
+cassert
+-
+cfloat
+-
+cstring
+-
+cstdio
+-
+iostream
+-
+CoinPragma.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPragma.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinMpsIO.hpp
+vector
+-
+string
+-
+CoinUtilsConfig.h
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinUtilsConfig.h
+CoinPackedMatrix.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPackedMatrix.hpp
+CoinMessageHandler.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinMessageHandler.hpp
+CoinFileIO.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinFileIO.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPackedMatrix.hpp
+CoinError.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinError.hpp
+CoinTypes.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinTypes.hpp
+CoinPackedVectorBase.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPackedVectorBase.hpp
+CoinShallowPackedVector.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinShallowPackedVector.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPackedVector.hpp
+map
+-
+CoinPragma.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPragma.hpp
+CoinPackedVectorBase.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPackedVectorBase.hpp
+CoinSort.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinSort.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPackedVectorBase.hpp
+set
+-
+map
+-
+CoinPragma.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPragma.hpp
+CoinError.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinError.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPragma.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPresolveDoubleton.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPresolveDual.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPresolveDupcol.hpp
+CoinPresolveMatrix.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPresolveMatrix.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPresolveEmpty.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPresolveFixed.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPresolveForcing.hpp
+CoinPresolveMatrix.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPresolveMatrix.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPresolveImpliedFree.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPresolveIsolated.hpp
+CoinPresolveMatrix.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPresolveMatrix.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPresolveMatrix.hpp
+CoinPragma.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPragma.hpp
+CoinPackedMatrix.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPackedMatrix.hpp
+CoinMessage.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinMessage.hpp
+CoinTime.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinTime.hpp
+cmath
+-
+cassert
+-
+cfloat
+-
+cassert
+-
+cstdlib
+-
+CoinFinite.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinFinite.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPresolveMonitor.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPresolvePsdebug.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPresolveSingleton.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPresolveSubst.hpp
+CoinPresolveMatrix.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPresolveMatrix.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPresolveTighten.hpp
+CoinPresolveMatrix.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPresolveMatrix.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPresolveTripleton.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPresolveUseless.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPresolveZeros.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinShallowPackedVector.hpp
+CoinError.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinError.hpp
+CoinPackedVectorBase.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinPackedVectorBase.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinSnapshot.hpp
+CoinTypes.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinTypes.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinSort.hpp
+functional
+-
+new
+-
+algorithm
+-
+CoinDistance.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinDistance.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinTime.hpp
+ctime
+-
+sys/time.h
+-
+sys/resource.h
+-
+windows.h
+-
+sys/types.h
+-
+sys/timeb.h
+-
+sys/time.h
+-
+windows.h
+-
+fstream
+-
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinTypes.hpp
+CoinUtilsConfig.h
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinUtilsConfig.h
+stdint.h
+-
+cstdint
+-
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinUtilsConfig.h
+config.h
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/config.h
+config_coinutils.h
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/config_coinutils.h
+config_default.h
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/config_default.h
+config_coinutils_default.h
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/config_coinutils_default.h
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinWarmStart.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinWarmStartBasis.hpp
+vector
+-
+CoinSort.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinSort.hpp
+CoinHelperFunctions.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinHelperFunctions.hpp
+CoinWarmStart.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/CoinWarmStart.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/config_coinutils_default.h
+BaseTsd.h
+-
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/config_default.h
+configall_system.h
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/configall_system.h
+config_coinutils_default.h
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/CoinUtils/src/config_coinutils_default.h
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiAuxInfo.cpp
+cassert
+-
+cstdlib
+-
+cmath
+-
+cfloat
+-
+CoinPragma.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPragma.hpp
+CoinHelperFunctions.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinHelperFunctions.hpp
+OsiSolverInterface.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiSolverInterface.hpp
+OsiAuxInfo.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiAuxInfo.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiAuxInfo.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiBranchingObject.cpp
+cassert
+-
+cstdlib
+-
+cmath
+-
+cfloat
+-
+OsiSolverInterface.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiSolverInterface.hpp
+OsiBranchingObject.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiBranchingObject.hpp
+CoinHelperFunctions.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinHelperFunctions.hpp
+CoinPackedMatrix.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPackedMatrix.hpp
+CoinSort.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinSort.hpp
+CoinError.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinError.hpp
+CoinFinite.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinFinite.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiBranchingObject.hpp
+cassert
+-
+string
+-
+vector
+-
+CoinError.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinError.hpp
+CoinTypes.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinTypes.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiChooseVariable.cpp
+string
+-
+cassert
+-
+cfloat
+-
+cmath
+-
+CoinPragma.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPragma.hpp
+OsiSolverInterface.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiSolverInterface.hpp
+OsiAuxInfo.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiAuxInfo.hpp
+OsiSolverBranch.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiSolverBranch.hpp
+CoinWarmStartBasis.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinWarmStartBasis.hpp
+CoinPackedMatrix.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPackedMatrix.hpp
+CoinTime.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinTime.hpp
+CoinSort.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinSort.hpp
+CoinFinite.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinFinite.hpp
+OsiChooseVariable.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiChooseVariable.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiChooseVariable.hpp
+string
+-
+vector
+-
+CoinWarmStartBasis.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinWarmStartBasis.hpp
+OsiBranchingObject.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiBranchingObject.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiColCut.cpp
+OsiColCut.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiColCut.hpp
+cstdlib
+-
+cstdio
+-
+iostream
+-
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiColCut.hpp
+string
+-
+CoinPackedVector.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPackedVector.hpp
+OsiCollections.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiCollections.hpp
+OsiCut.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiCut.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiCollections.hpp
+vector
+-
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiConfig.h
+config.h
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/config.h
+config_osi.h
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/config_osi.h
+config_default.h
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/config_default.h
+config_osi_default.h
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/config_osi_default.h
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiCut.cpp
+OsiCut.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiCut.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiCut.hpp
+OsiCollections.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiCollections.hpp
+OsiSolverInterface.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiSolverInterface.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiCuts.cpp
+algorithm
+-
+cassert
+-
+OsiCuts.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiCuts.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiCuts.hpp
+CoinPragma.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPragma.hpp
+cmath
+-
+cfloat
+-
+OsiCollections.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiCollections.hpp
+OsiRowCut.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiRowCut.hpp
+OsiColCut.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiColCut.hpp
+CoinFloatEqual.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinFloatEqual.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiNames.cpp
+sstream
+-
+iomanip
+-
+OsiSolverInterface.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiSolverInterface.hpp
+CoinLpIO.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinLpIO.hpp
+CoinMpsIO.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinMpsIO.hpp
+CoinModel.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinModel.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiPresolve.cpp
+stdio.h
+-
+cassert
+-
+iostream
+-
+CoinHelperFunctions.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinHelperFunctions.hpp
+CoinFinite.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinFinite.hpp
+CoinPackedMatrix.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPackedMatrix.hpp
+CoinWarmStartBasis.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinWarmStartBasis.hpp
+OsiSolverInterface.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiSolverInterface.hpp
+OsiPresolve.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiPresolve.hpp
+CoinPresolveMatrix.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPresolveMatrix.hpp
+CoinPresolvePsdebug.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPresolvePsdebug.hpp
+CoinPresolveMonitor.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPresolveMonitor.hpp
+CoinPresolveEmpty.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPresolveEmpty.hpp
+CoinPresolveFixed.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPresolveFixed.hpp
+CoinPresolveSingleton.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPresolveSingleton.hpp
+CoinPresolveDoubleton.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPresolveDoubleton.hpp
+CoinPresolveTripleton.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPresolveTripleton.hpp
+CoinPresolveZeros.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPresolveZeros.hpp
+CoinPresolveSubst.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPresolveSubst.hpp
+CoinPresolveForcing.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPresolveForcing.hpp
+CoinPresolveDual.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPresolveDual.hpp
+CoinPresolveTighten.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPresolveTighten.hpp
+CoinPresolveUseless.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPresolveUseless.hpp
+CoinPresolveDupcol.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPresolveDupcol.hpp
+CoinPresolveImpliedFree.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPresolveImpliedFree.hpp
+CoinPresolveIsolated.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPresolveIsolated.hpp
+CoinMessage.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinMessage.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiPresolve.hpp
+OsiSolverInterface.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiSolverInterface.hpp
+CoinPresolveMatrix.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPresolveMatrix.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiRowCut.cpp
+cfloat
+-
+cstdlib
+-
+cstdio
+-
+iostream
+-
+CoinPragma.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPragma.hpp
+CoinFinite.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinFinite.hpp
+OsiRowCut.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiRowCut.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiRowCut.hpp
+CoinPackedVector.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPackedVector.hpp
+OsiCollections.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiCollections.hpp
+OsiCut.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiCut.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiRowCutDebugger.cpp
+cstdlib
+-
+cstdio
+-
+cassert
+-
+cmath
+-
+cfloat
+-
+string
+-
+iostream
+-
+CoinPragma.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPragma.hpp
+CoinHelperFunctions.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinHelperFunctions.hpp
+CoinPackedVector.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPackedVector.hpp
+CoinPackedMatrix.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPackedMatrix.hpp
+CoinWarmStartBasis.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinWarmStartBasis.hpp
+OsiRowCutDebugger.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiRowCutDebugger.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiRowCutDebugger.hpp
+string
+-
+OsiCuts.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiCuts.hpp
+OsiSolverInterface.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiSolverInterface.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiSolverBranch.cpp
+CoinHelperFunctions.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinHelperFunctions.hpp
+CoinWarmStartBasis.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinWarmStartBasis.hpp
+OsiConfig.h
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiConfig.h
+CoinFinite.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinFinite.hpp
+OsiSolverInterface.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiSolverInterface.hpp
+OsiSolverBranch.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiSolverBranch.hpp
+cassert
+-
+cmath
+-
+cfloat
+-
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiSolverBranch.hpp
+CoinWarmStartBasis.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinWarmStartBasis.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiSolverInterface.cpp
+stddef.h
+-
+iostream
+-
+CoinPragma.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPragma.hpp
+CoinHelperFunctions.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinHelperFunctions.hpp
+CoinMpsIO.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinMpsIO.hpp
+CoinMessage.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinMessage.hpp
+CoinWarmStart.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinWarmStart.hpp
+CoinSnapshot.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinSnapshot.hpp
+OsiSolverInterface.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiSolverInterface.hpp
+OsiSolverBranch.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiSolverBranch.hpp
+OsiCuts.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiCuts.hpp
+OsiRowCut.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiRowCut.hpp
+OsiColCut.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiColCut.hpp
+OsiRowCutDebugger.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiRowCutDebugger.hpp
+OsiAuxInfo.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiAuxInfo.hpp
+OsiBranchingObject.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiBranchingObject.hpp
+cassert
+-
+CoinFinite.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinFinite.hpp
+CoinBuild.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinBuild.hpp
+CoinModel.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinModel.hpp
+CoinLpIO.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinLpIO.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiSolverInterface.hpp
+cstdlib
+-
+string
+-
+vector
+-
+CoinTypes.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinTypes.hpp
+CoinMessageHandler.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinMessageHandler.hpp
+CoinPackedVectorBase.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPackedVectorBase.hpp
+CoinPackedMatrix.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinPackedMatrix.hpp
+CoinWarmStart.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinWarmStart.hpp
+CoinFinite.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinFinite.hpp
+CoinError.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/CoinError.hpp
+OsiCollections.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiCollections.hpp
+OsiSolverParameters.hpp
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiSolverParameters.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/OsiSolverParameters.hpp
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/config_default.h
+configall_system.h
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/configall_system.h
+config_osi_default.h
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/config_osi_default.h
+
+/Users/lucas/OneDrive - Harvard University/school/Senior/Spring/CS91r/openMVG/src/dependencies/osi_clp/Osi/src/Osi/config_osi_default.h
+
